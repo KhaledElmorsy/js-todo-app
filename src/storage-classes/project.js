@@ -2,7 +2,8 @@ import state from "./state.js";
 import todo from "./todo.js";
 
 export default class project {
-    constructor(name) {
+    constructor(id, name) {
+        this._id = id;
         this.name = name;
         this._todoList = [];
         this._state = new state();
@@ -10,6 +11,7 @@ export default class project {
 
     set name(name) { this._name = name }
     get name() { return this._name }
+    get id() {return this._id}
 
     add(title, desc, startDate, endDate) {
         let id = this._todoList.length;
@@ -18,13 +20,9 @@ export default class project {
 
     // changeItempPriority()
 
-    get(id) { return this._todoList[id] }
+    getTodo(id) { return this._todoList[id] }
 
-    get state() { return this._state }\
+    get state() { return this._state }
 
     // Getlength?
 }
-
-// let a = new project('hello');
-// a.add('asd','asd',1,2);
-// console.log(a.get(0)?._state)
