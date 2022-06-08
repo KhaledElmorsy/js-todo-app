@@ -39,5 +39,3 @@ export default class checklist {
     getItem(id) { if (id < this.length) return this.#list[id] }
     clear() { this.#list = [] }
 }
-
-let a = new listItem('hello')

@@ -31,8 +31,3 @@ export default class todo {
 
     get checklist() { return this._checklist }
 }
-
-let a = new todo('jeff', 'bezos', 1, 2)
-a.checklist.add('hello')
-a.checklist.add('whatsup')
-a.state.toggleStatus();
