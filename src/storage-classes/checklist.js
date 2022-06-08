@@ -28,8 +28,8 @@ export default class checklist {
         this.#list = [];
     }
 
-    add(itemDesc) {
-        let id = this.#list.length;
+    add(itemDesc, id = null) {
+        id = (id)? id : this.#list.length;
         this.#list.push(new listItem(id, itemDesc))
     }
 

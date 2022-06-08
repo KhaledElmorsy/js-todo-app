@@ -13,8 +13,8 @@ export default class project {
     get name() { return this._name }
     get id() {return this._id}
 
-    add(title, desc, startDate, endDate) {
-        let id = this._todoList.length;
+    add(title, desc, startDate, endDate, id = null) {
+        id = (id)? id : this._todoList.length;
         this._todoList.push(new todo(id, title, desc, startDate, endDate));
     }
 
