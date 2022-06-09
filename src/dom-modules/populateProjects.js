@@ -1,5 +1,7 @@
 import makeEl from "../helper-modules/makeElement.js"
-export default function populateProjects(projects) {
+import projects from "../helper-modules/projectsInstance.js"
+
+export default function populateProjects() {
     const projectsDOM = document.getElementById('projects')
 
     let activeProjects = projects.getActive()
@@ -11,5 +13,4 @@ export default function populateProjects(projects) {
             }))
         }
     }
-    return activeProjects;
 }
