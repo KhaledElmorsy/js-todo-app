@@ -1,3 +1,5 @@
-export default function saveProjects(obj){
-    localStorage.projects = JSON.stringify(obj)
+import projects from "./projectsInstance.js"
+
+export default function saveProjects(){
+    localStorage.projects = JSON.stringify(projects)
 }
