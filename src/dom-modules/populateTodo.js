@@ -2,7 +2,6 @@ import drawCard from "./drawCard.js";
 
 const todoDOM = document.getElementsByTagName('main')[0];
 const newTodo = document.querySelector('.card.new-todo')
-console.log(newTodo)
 
 export default function populateTodo(project) {
     todoDOM.innerHTML = '';
