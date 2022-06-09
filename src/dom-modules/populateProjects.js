@@ -1,9 +1,10 @@
+import setProjectEvents from "../ event-modules/setProjectEvents.js";
 import makeEl from "../helper-modules/makeElement.js"
 import projects from "../helper-modules/projectsInstance.js"
 import projectsDOM from "../dom-elements/projectsDOM.js";
 
 export default function populateProjects() {
-    const projectsDOM = document.getElementById('projects')
+    projectsDOM.innerHTML = "";
 
     let activeProjects = projects.getActive()
     if (activeProjects.length) {
@@ -14,4 +15,10 @@ export default function populateProjects() {
             }))
         }
     }
+    projectsDOM.appendChild(makeEl('input',null,{
+        placeholder:'New Project',
+        id: 'new-project-field'
+    }))
+    
+    setProjectEvents()
 }
