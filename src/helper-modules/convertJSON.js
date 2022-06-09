@@ -11,21 +11,21 @@ export default function convertJSON(projectJSON) {
     const projects = new projectList();
 
     for (let project of localSave._projects) {
-        projects.add(project._name, project._id);
+        projects.addProject(project._name, project._id);
 
         let currentProj = projects.getProject(project._id);
         importState(project, currentProj);
 
         if (project._todoList.length) {          
             for (let todo of project._todoList) {
-                currentProj.add(todo._name, todo._desc,todo._startDate, todo._endDate, todo._id);
+                currentProj.addTodo(todo._name, todo._desc,todo._startDate, todo._endDate, todo._id);
                 
                 let currentTodo = currentProj.getTodo(todo._id);
                 importState(todo, currentTodo);
 
                 if (todo._checklist.list.length) {
                     for (let checklistItem of todo._checklist.list) {
-                        currentTodo.checklist.add(checklistItem._desc, checklistItem._id);
+                        currentTodo.checklist.addItem(checklistItem._desc, checklistItem._id);
                         importState(checklistItem, currentTodo.checklist.getItem(checklistItem._id));
                     }
                 }
