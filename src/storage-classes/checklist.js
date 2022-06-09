@@ -22,20 +22,19 @@ class listItem {
 
 
 export default class checklist {
-    #list;
 
     constructor() {
-        this.#list = [];
+        this.list = [];
     }
 
     add(itemDesc, id = null) {
-        id = (id)? id : this.#list.length;
-        this.#list.push(new listItem(id, itemDesc))
+        id = (id)? id : this.list.length;
+        this.list.push(new listItem(id, itemDesc))
     }
 
     // changeItempPriority()
 
-    get length() { return this.#list.length }
-    getItem(id) { if (id < this.length) return this.#list[id] }
-    clear() { this.#list = [] }
+    get length() { return this.list.length }
+    getItem(id) { if (id < this.length) return this.list[id] }
+    clear() { this.list = [] }
 }
