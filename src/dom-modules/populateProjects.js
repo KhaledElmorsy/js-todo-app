@@ -1,5 +1,6 @@
 import makeEl from "../helper-modules/makeElement.js"
 import projects from "../helper-modules/projectsInstance.js"
+import projectsDOM from "../dom-elements/projectsDOM.js";
 
 export default function populateProjects() {
     const projectsDOM = document.getElementById('projects')
