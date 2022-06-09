@@ -5,8 +5,8 @@ export default class projectList {
         this._projects = []
     }
 
-    add(name) {
-        let id = this._projects.length;
+    add(name, id = null) {
+        id = (id)? id : this._projects.length;
         this._projects.push(new project(id, name))
     }
 
