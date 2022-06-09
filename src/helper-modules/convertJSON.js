@@ -18,7 +18,7 @@ export default function convertJSON(projectJSON) {
 
         if (project._todoList.length) {          
             for (let todo of project._todoList) {
-                currentProj.addTodo(todo._name, todo._desc,todo._startDate, todo._endDate, todo._id);
+                currentProj.addTodo(todo._title, todo._desc,todo._startDate, todo._endDate, todo._id);
                 
                 let currentTodo = currentProj.getTodo(todo._id);
                 importState(todo, currentTodo);
