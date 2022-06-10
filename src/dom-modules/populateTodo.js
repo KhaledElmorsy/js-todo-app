@@ -1,7 +1,8 @@
 import drawCard from "./drawCard.js";
-import todoContainer from "../dom-elements/todoContainer.js";
+import elements from "../dom-elements/dom-elements.js";
 
-const newTodo = document.querySelector('.card.new-todo')
+const newTodo = elements.templates.newTodo
+const todoContainer = elements.containers.todoContainer
 
 export default function populateTodo(project) {
     todoContainer.innerHTML = '';

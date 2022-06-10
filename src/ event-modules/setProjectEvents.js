@@ -1,9 +1,12 @@
 import addProject from "./addProject.js"
-import projectsContainer from "../dom-elements/projectsContainer.js"
+import elements from "../dom-elements/dom-elements.js"
 import selectProject from "./selectProject.js"
+
+const projectsContainer = elements.containers.projectsContainer
 
 export default function setProjectEvents(){
     const newProject = document.getElementById('new-project-field')
+
     newProject.addEventListener('keydown',(e)=>{
         if (e.key === 'Enter') addProject(e.target.value)
     })
