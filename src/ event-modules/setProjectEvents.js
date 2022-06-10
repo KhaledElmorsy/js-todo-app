@@ -9,7 +9,7 @@ export default function setProjectEvents(){
     })
 
     for (let element of projectsDOM.children){
-        element.addEventListener('click',selectProject);
+        if(element.tagName==='P') element.addEventListener('click',selectProject);
     }
     
 }
