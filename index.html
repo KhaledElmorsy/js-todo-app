@@ -10,22 +10,37 @@
             <div id="inspiration">Make your dreams come true</div>
         </header>
         <div id="sidebar">
-            <div id="new-project"> Add New Project</div>
             <div id="projects">
             </div>
         </div>
         <main>
-            <div class="card-template" hidden>
-                <h2 class="title">Todo Item 1</h2>
-                <p class="desc">This is a test description blah blah what does it all mean man</p>
+            <div class="card new-todo">
+                <input class="title" placeholder="New Todo">
+                <input class="desc" placeholder="Description">
                 <div class="checklist-container">
+                    <h3 class="checklist-title">Tasks</h3>
+                    <input name ="1" class="checklist-input">
+                    <input name ="2" class="checklist-input">
+                    <input name ="3" class="checklist-input">
                 </div>
                 <div class="button-container">
-                    <div class="done">Done</div>
-                    <div class="delete">Delete</div>
+                    <div class="Add">Add</div>
+                    <div class="Reset">Delete</div>
                 </div>
             </div>
         </main>
     </body>
-    
+    <template id="card-template">
+        <div class="card">
+            <h2 class="title">Todo Item 1</h2>
+            <p class="desc">This is a test description blah blah what does it all mean man</p>
+            <div class="checklist-container">
+                <h3 class="checklist-title">Tasks</h3>
+            </div>
+            <div class="button-container">
+                <div class="done">Done</div>
+                <div class="delete">Delete</div>
+            </div>
+        </div>
+    </template>
 </html>
