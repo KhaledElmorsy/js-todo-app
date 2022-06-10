@@ -35,6 +35,6 @@ export default class todo {
         id = (id)? id : this._checklist.length;
         this._checklist.push(new checklistItem(id, itemDesc))
     }
-    getItem(id) { if (id < this._checklist.length) return this._checklistlist[id] }
+    getItem(id) { if (id < this._checklist.length) return this._checklist[id] }
     clearItems() { this._checklist = [] }
 }
