@@ -1,7 +1,6 @@
 import DOM from "../dom-modules/domModules.js";
 import projects from "../helper-modules/projectsInstance.js";
 import elements from "../dom-elements/dom-elements.js";
-import populateTodo from "../dom-modules/populateTodo.js";
 
 const projectsContainer = elements.containers.projectsContainer
 
@@ -19,7 +18,8 @@ export default function addTodo(){
         let desc = inputs['desc'].value
         let checklistNodes = inputs['checklist'] // returns node list
         let checklist = [...checklistNodes].map(el=>el.value).filter(v=>v) // Convert to array, map to values and remove blanks
+        
         projects.getProject(activeProjID).addTodo(title,desc,undefined,undefined,undefined,checklist)
-        populateTodo(projects.getProject(activeProjID))
+        DOM.populateTodo(projects.getProject(activeProjID))
     }   
 }
