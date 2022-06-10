@@ -1,3 +1,5 @@
+// Allows for one line element creation with tag, content and attributes
+
 export default function makeEl(type, innerHTML, attr) {
     let element = document.createElement(type);
     element.innerHTML = innerHTML || null
