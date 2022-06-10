@@ -1,6 +1,6 @@
-import addProject from "./addProject.js"
-import elements from "../dom-elements/dom-elements.js"
-import selectProject from "./selectProject.js"
+import addProject from "../addProject.js"
+import elements from "../../dom-elements/dom-elements.js"
+import selectProject from "../selectProject.js"
 
 const projectsContainer = elements.containers.projectsContainer
 

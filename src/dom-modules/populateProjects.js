@@ -1,4 +1,4 @@
-import setProjectEvents from "../ event-modules/setProjectEvents.js";
+import setProjectEvents from "../ event-modules/event-setters/setProjectEvents.js";
 import makeEl from "../helper-modules/makeElement.js"
 import projects from "../helper-modules/projectsInstance.js"
 import elements from "../dom-elements/dom-elements.js";
