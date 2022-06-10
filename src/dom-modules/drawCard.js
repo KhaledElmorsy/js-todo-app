@@ -1,5 +1,7 @@
 import makeEl from "../helper-modules/makeElement";
 
+// Uses the card HTML template to create a Todo card element with the relevant data
+
 export default function drawCard(id,title,desc,startDate,endDate,checklist,status){
     const cardTemplate = document.querySelector('#card-template').content.querySelector('.card')
     const card = cardTemplate.cloneNode(true);

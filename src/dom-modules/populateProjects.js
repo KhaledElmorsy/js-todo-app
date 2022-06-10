@@ -8,6 +8,7 @@ const projectsContainer = elements.containers.projectsContainer
 export default function populateProjects() {
     projectsContainer.innerHTML = "";
 
+    // Populate list with active projects (Projects with visibility = true)
     let activeProjects = projects.getActive()
     if (activeProjects.length) {
         for (let project of activeProjects) {
@@ -17,10 +18,11 @@ export default function populateProjects() {
             }))
         }
     }
+    // Append New Project input in the end
     projectsContainer.appendChild(makeEl('input',null,{
         placeholder:'New Project',
         id: 'new-project-field'
     }))
     
-    setProjectEvents()
+    setProjectEvents() // Add listeners to the project names and input field
 }
