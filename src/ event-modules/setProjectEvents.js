@@ -1,5 +1,5 @@
 import addProject from "./addProject.js"
-import projectsDOM from "../dom-elements/projectsDOM.js"
+import projectsContainer from "../dom-elements/projectsContainer.js"
 import selectProject from "./selectProject.js"
 
 export default function setProjectEvents(){
@@ -8,7 +8,7 @@ export default function setProjectEvents(){
         if (e.key === 'Enter') addProject(e.target.value)
     })
 
-    for (let element of projectsDOM.children){
+    for (let element of projectsContainer.children){
         if(element.tagName==='P') element.addEventListener('click',selectProject);
     }
     
