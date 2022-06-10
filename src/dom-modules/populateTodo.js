@@ -1,5 +1,7 @@
 import drawCard from "./drawCard.js";
 import elements from "../dom-elements/dom-elements.js";
+import setTodoEvents from "../ event-modules/event-setters/setTodoEvents.js";
+import resetNewTodo from "../ event-modules/resetNewTodo.js";
 
 const newTodo = elements.templates.newTodo
 const todoContainer = elements.containers.todoContainer
@@ -17,4 +19,6 @@ export default function populateTodo(project) {
         }
     }
     todoContainer.appendChild(newTodo)
+    setTodoEvents()
+    resetNewTodo()
 }

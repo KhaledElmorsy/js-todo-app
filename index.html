@@ -14,20 +14,20 @@
             </div>
         </div>
         <main>
-            <div id="new-todo" class="card">
-                <input class="title" placeholder="New Todo">
-                <input class="desc" placeholder="Description">
+            <form id="new-todo" class="card">
+                <input required class="title" name="title" placeholder="New Todo">
+                <textarea class="desc" name="desc" placeholder="Description"></textarea>
                 <div class="checklist-container">
                     <h3 class="checklist-title">Tasks</h3>
-                    <input name ="1" class="checklist-input">
-                    <input name ="2" class="checklist-input">
-                    <input name ="3" class="checklist-input">
+                    <input name ="checklist" class="checklist-input">
+                    <input name ="checklist" class="checklist-input">
+                    <input name ="checklist" class="checklist-input">
                 </div>
                 <div class="button-container">
-                    <div class="Add">Add</div>
-                    <div class="Reset">Delete</div>
+                    <div id="add-todo" class="button">Add</div>
+                    <div id="reset-todo-inputs" class="button">Reset</div>
                 </div>
-            </div>
+            </form>
         </main>
     </body>
     <template id="card-template">
