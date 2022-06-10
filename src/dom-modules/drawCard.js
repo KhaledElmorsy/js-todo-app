@@ -15,8 +15,8 @@ export default function drawCard(id,title,desc,startDate,endDate,checklist,statu
     cardDesc.innerText = desc;
 
     
-    if (checklist.list.length){
-        for (let item of checklist.list){
+    if (checklist.length){
+        for (let item of checklist){
         if (!item.state.visibility) continue;
         cardChecklist.append(makeEl('div', item.desc, {
             'class': ((item.state.status)?'done':'') + ' checklist-item',

@@ -23,10 +23,10 @@ export default function convertJSON(projectJSON) {
                 let currentTodo = currentProj.getTodo(todo._id);
                 importState(todo, currentTodo);
 
-                if (todo._checklist.list.length) {
-                    for (let checklistItem of todo._checklist.list) {
-                        currentTodo.checklist.addItem(checklistItem._desc, checklistItem._id);
-                        importState(checklistItem, currentTodo.checklist.getItem(checklistItem._id));
+                if (todo._checklist.length) {
+                    for (let checklistItem of todo._checklist) {
+                        currentTodo.addItem(checklistItem._desc, checklistItem._id);
+                        importState(checklistItem, currentTodo.getItem(checklistItem._id));
                     }
                 }
             }

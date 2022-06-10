@@ -1,4 +1,4 @@
-import checklist from './checklist.js'
+import checklistItem from './checklistItem.js'
 import state from './state.js';
 
 export default class todo {
@@ -8,7 +8,7 @@ export default class todo {
         this.desc = desc;
         this.startDate = startDate;
         this.endDate = endDate;
-        this._checklist = new checklist();
+        this._checklist = [];
         this._state = new state();
     }
 
@@ -30,4 +30,11 @@ export default class todo {
     get state() { return this._state }
 
     get checklist() { return this._checklist }
+    
+    addItem(itemDesc, id = null) {
+        id = (id)? id : this._checklist.length;
+        this._checklist.push(new checklistItem(id, itemDesc))
+    }
+    getItem(id) { if (id < this._checklist.length) return this._checklistlist[id] }
+    clearItems() { this._checklist = [] }
 }
