@@ -4,15 +4,19 @@ import selectProject from "../selectProject.js"
 
 const projectsContainer = elements.containers.projectsContainer
 
-export default function setProjectEvents(){
+export default function setProjectEvents() {
     const newProject = document.getElementById('new-project-field')
 
-    newProject.addEventListener('keydown',(e)=>{
+    newProject.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') addProject(e.target.value)
     })
 
-    for (let element of projectsContainer.children){
-        if(element.tagName==='P') element.addEventListener('click',selectProject);
+    for (let element of projectsContainer.children) {
+        if (element.tagName === 'P') {
+            element.addEventListener('click', e => {
+                selectProject(e.target.getAttribute('data-project-id'))
+            })
+        }
     }
-    
+
 }
