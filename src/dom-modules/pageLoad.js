@@ -6,7 +6,5 @@ export default function pageLoad() {
     DOM.populateProjects();
     
     let activeProjects = projects.getActive()
-    selectProject(activeProjects[0].id)
-    
-    return projects;
+    if (activeProjects.length) selectProject(activeProjects[0].id)
 }
