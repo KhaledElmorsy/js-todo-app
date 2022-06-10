@@ -1,5 +1,5 @@
 import populateProjects from "../dom-modules/populateProjects.js";
-import saveProjects from "../helper-modules/saveProjects.js";
+import saveProjects from "../helper-modules/storage-modules/saveProjects.js";
 import projects from "../helper-modules/projectsInstance.js";
 import selectProject from "./selectProject.js";
 

@@ -1,10 +1,16 @@
-import projectList from "../storage-classes/projectList";
+import projectList from "../../storage-classes/projectList";
 
 function importState(imported, object){
     if (!imported._state.visible) object.state.disable();
     if (imported._state.done) object.state.toggleStatus();
     object.state.priority = imported._state._priority;
 }
+
+/**
+ *  Iterates through JSON and reconstructs original project list object
+ *  Checks and adds all Projects > Project.Todos > Todo.ChecklistItems
+ *  Also imports each object's state (complete status, visibility, priority)
+ */
 
 export default function convertJSON(projectJSON) {
     const localSave = JSON.parse(projectJSON);
