@@ -5,13 +5,14 @@ const newTodo = document.querySelector('.card.new-todo')
 
 export default function populateTodo(project) {
     todoDOM.innerHTML = '';
-    for (let todo of project.todoList) {
-        console.log(todo.state)
-        if (todo.state.visibility) {
+    if (project.todoList.length) {
+        for (let todo of project.todoList) {
+            if (todo.state.visibility) {
 
-            todoDOM.appendChild(drawCard(todo.id, todo.title, todo.desc,
-                todo.startDate, todo.endDate, todo.checklist,
-                todo.state.status))
+                todoDOM.appendChild(drawCard(todo.id, todo.title, todo.desc,
+                    todo.startDate, todo.endDate, todo.checklist,
+                    todo.state.status))
+            }
         }
     }
     todoDOM.appendChild(newTodo)
