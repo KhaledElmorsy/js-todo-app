@@ -13,9 +13,9 @@ export default class project {
     get name() { return this._name }
     get id() {return this._id}
 
-    addTodo(title, desc, startDate, endDate, id = null) {
+    addTodo(title, desc, startDate = null, endDate = null, id = null, checklist = null) {
         id = (id)? id : this._todoList.length;
-        this._todoList.push(new todo(id, title, desc, startDate, endDate));
+        this._todoList.push(new todo(id, title, desc, startDate, endDate, checklist));
     }
 
     // changeItempPriority()

@@ -2,14 +2,15 @@ import checklistItem from './checklistItem.js'
 import state from './state.js';
 
 export default class todo {
-    constructor(id, title, desc, startDate, endDate) {
+    constructor(id, title, desc, startDate = null, endDate = null, checklist = null) {
         this.id = id;
         this.title = title;
         this.desc = desc;
         this.startDate = startDate;
         this.endDate = endDate;
-        this._checklist = [];
         this._state = new state();
+        this._checklist = []
+        if (checklist?.length) checklist.forEach(desc => this.addItem(desc))
     }
 
     set id(id) { this._id = id }
@@ -30,9 +31,9 @@ export default class todo {
     get state() { return this._state }
 
     get checklist() { return this._checklist }
-    
+
     addItem(itemDesc, id = null) {
-        id = (id)? id : this._checklist.length;
+        id = (id) ? id : this._checklist.length;
         this._checklist.push(new checklistItem(id, itemDesc))
     }
     getItem(id) { if (id < this._checklist.length) return this._checklist[id] }
