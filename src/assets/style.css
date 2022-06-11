@@ -70,6 +70,7 @@ header {
 }
 
 main {
+    overflow: auto;
     padding: 30px 30px;
     display: grid;
     grid-template-columns: repeat(auto-fit, 350px);
