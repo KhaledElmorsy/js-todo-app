@@ -1,12 +1,13 @@
 import DOM from "../dom-modules/domModules.js";
 import projects from "../helper-modules/projectsInstance.js";
 import elements from "../dom-elements/dom-elements.js";
+import activeObject from "../helper-modules/activeObject.js";
 
 const projectsContainer = elements.containers.projectsContainer
 
 export default function addTodo(){
-    const activeProjElement = projectsContainer.querySelector('[data-active-project="true"]')
-    const activeProjID = activeProjElement.getAttribute('data-project-id')
+    let projectID = activeObject.projectID
+
     const newTodoElement = elements.templates.newTodo // Form element
 
     if (!newTodoElement.checkValidity()) {
