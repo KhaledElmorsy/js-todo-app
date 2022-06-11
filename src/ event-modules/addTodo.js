@@ -24,6 +24,6 @@ export default function addTodo(){
         
         projects.getProject(projectID).addTodo(title,desc,undefined,undefined,undefined,checklist)
         saveProjects()
-        DOM.populateTodo(projects.getProject(projectID))
+        DOM.populateTodo(projectID)
     }   
 }

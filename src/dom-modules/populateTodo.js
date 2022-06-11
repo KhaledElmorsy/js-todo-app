@@ -2,11 +2,13 @@ import drawCard from "./drawCard.js";
 import elements from "../dom-elements/dom-elements.js";
 import setTodoEvents from "../ event-modules/event-setters/setTodoEvents.js";
 import resetNewTodo from "../ event-modules/resetNewTodo.js";
+import projects from "../helper-modules/projectsInstance.js";
 
 const newTodo = elements.templates.newTodo // Save New Todo form element before clearing the todo area
 const todoContainer = elements.containers.todoContainer
 
-export default function populateTodo(project) {
+export default function populateTodo(projectID) {
+    const project = projects.getProject(projectID)
     todoContainer.innerHTML = ''; // Clear todo area
     // If the project has todos, populate the area with the active ones
     if (project.todoList.length) {

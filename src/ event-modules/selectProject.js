@@ -12,6 +12,5 @@ export default function selectProject(projectID){
     for (let element of projectsContainer.children) element.setAttribute('data-active-project',false)
     activeProjElement.setAttribute('data-active-project',true)
 
-    let projectObj = projects.getProject(projectID);
-    DOM.populateTodo(projectObj);
+    DOM.populateTodo(projectID);
 }

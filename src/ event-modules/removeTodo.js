@@ -5,5 +5,5 @@ import activeObject from "../helper-modules/activeObject";
 export default function removeTodo(todoID){
     let projectID = activeObject.projectID
     projects.getProject(projectID).getTodo(todoID).state.disable();
-    DOM.populateTodo(projects.getProject(projectID))
+    DOM.populateTodo(projectID)
 }
