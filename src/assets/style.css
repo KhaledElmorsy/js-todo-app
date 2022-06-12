@@ -64,15 +64,21 @@ header {
     line-height: 2rem;
 }
 
-#project p::before{
-    z-index: 5;
-    display: inline-block;
-    content: "asdasd asd";
-    height: 30px;
-    width: 200px;
-    background-color: rgb(208, 208, 15);
-    color: red;
-    font-weight: bold;
+#projects .delete{
+    color: palevioletred;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    opacity: 0;
+    transition: 200ms;
+}
+
+#projects .project:hover .delete{
+    opacity: 0.6;
+}
+
+#projects .project:hover .delete:hover{
+    opacity: 1;
 }
 
 main {

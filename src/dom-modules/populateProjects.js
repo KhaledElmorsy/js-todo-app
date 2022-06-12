@@ -12,13 +12,14 @@ export default function populateProjects() {
     let activeProjects = projects.getActive()
     if (activeProjects.length) {
         for (let project of activeProjects) {
+            let deleteProj = makeEl('div','x',{class:'delete'})
             let projectName = makeEl('p', project.name, {class:'name'})
             let projectDiv = makeEl('div',null, {
                 class: 'project',
                 'data-project-id': project.id,
                 'data-status': project.state.status
             })
-            projectDiv.append(projectName)
+            projectDiv.append(projectName, deleteProj)
            projectsContainer.appendChild(projectDiv)
         }
     }
