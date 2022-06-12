@@ -12,9 +12,9 @@ export default function setProjectEvents() {
     })
 
     for (let element of projectsContainer.children) {
-        if (element.tagName === 'P') {
-            element.addEventListener('click', e => {
-                selectProject(e.target.getAttribute('data-project-id'))
+        let projectID = element.getAttribute('data-project-id')
+        element.querySelector('.name').addEventListener('click', e => {
+            selectProject(projectID)
             })
         }
     }
