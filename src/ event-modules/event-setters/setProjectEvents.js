@@ -11,7 +11,7 @@ export default function setProjectEvents() {
         if (e.key === 'Enter') addProject(e.target.value)
     })
 
-    for (let element of projectsContainer.children) {
+    for (let element of projectsContainer.querySelectorAll('.project')) {
         let projectID = element.getAttribute('data-project-id')
         element.querySelector('.name').addEventListener('click', e => {
             selectProject(projectID)
