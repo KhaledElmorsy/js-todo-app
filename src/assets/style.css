@@ -54,7 +54,13 @@ header {
     flex-direction: column;
 }
 
-#projects p{
+#projects .project{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#projects .name{
     line-height: 2rem;
 }
 

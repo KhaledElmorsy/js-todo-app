@@ -12,10 +12,14 @@ export default function populateProjects() {
     let activeProjects = projects.getActive()
     if (activeProjects.length) {
         for (let project of activeProjects) {
-            projectsContainer.appendChild(makeEl('p', project.name, {
+            let projectName = makeEl('p', project.name, {class:'name'})
+            let projectDiv = makeEl('div',null, {
+                class: 'project',
                 'data-project-id': project.id,
                 'data-status': project.state.status
-            }))
+            })
+            projectDiv.append(projectName)
+           projectsContainer.appendChild(projectDiv)
         }
     }
     // Append New Project input in the end
