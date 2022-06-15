@@ -1,16 +1,13 @@
-import todoTemplates from "./todo.js";
 import projectTemplates from "./project.js";
+import projectListTemplates from "./projectList.js";
 
 /***
- * Here, templates are functions that optionally receive model objects and 
- * use them to fill and return template literals (Strings of HTML).
- * Template files contain different templates concerning one view type.
- * Open a file in /src to check them out.
+ * In this project, templates are functions that optionally receive model 
+ * objects and use them to fill and return template literals (Strings of HTML).
+ * Template files contain different templates relaated to a single view.
+ * Open one and check them out (project.js is more intense)
  */
-const templateFuncs = {
-    todo: todoTemplates,
-    project: projectTemplates
-}
+
 
 /***
  * Converts template literals into element objects. 
@@ -26,6 +23,13 @@ const convertElement = elementHTML => {
         return tempWrapper.firstChild        // Return it if true, otherwise return temp wrapper
     return tempWrapper                       // This is a failsafe, not a feature. 
 }
+
+// Consilidate template function in an object to enable the command pattern below
+const templateFuncs = {
+    project: projectTemplates,
+    projectList: projectListTemplates
+}
+
 
 export default function templates(view, type) {
     return function (model) {
