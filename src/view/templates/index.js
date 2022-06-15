@@ -1,5 +1,5 @@
-import todoTemplates from "./src/todo.js";
-import projectTemplates from "./src/project.js";
+import todoTemplates from "./todo.js";
+import projectTemplates from "./project.js";
 
 /***
  * Here, templates are functions that optionally receive model objects and 
