@@ -5,12 +5,6 @@ const containers = {
     project: document.getElementById('projects')
 }
 
-// Add event liseners to element collections based on containers
-function setListeners(container, selector, event, callback) {
-    const elements = container.querySelectorAll(selector)
-
-    for (let element of elements) element.addEventListener(event, callback)
-}
 
 class View {
     constructor(model) {
@@ -29,15 +23,8 @@ class View {
         this.getActive(modelList).forEach(modelObj =>
             this._container.append(this._template(modelObj)))
     }
-
-    listeners() { }
-
-    // Default update flow
-    update(model) {
-        render(model);
-        listeners();
-    }
 }
+
 
 class TodoView extends View {
     constructor() {
@@ -49,19 +36,8 @@ class TodoView extends View {
         super.render(todoList);
         this._container.append(this._addTodo());
     }
-
-    listeners() {
-        setListeners(this._container, '.delete', 'click', Handlers.todo.remove);
-        setListeners(this._container, '.done', 'click', Handlers.todo.toggle);
-
-        setListeners(this._container, '#add-todo', 'click', Handlers.todo.add);
-        setListeners(this._container, '#reset-input', 'click', Handlers.todo.reset);
-    }
-
-    update(){
-        super.update();
-    }
 }
+
 
 class ProjectView extends View {
     constructor() {
@@ -73,16 +49,8 @@ class ProjectView extends View {
        super.render(projectList);
        this._container.append(this._addProject);
     }
-
-    listeners() {
-        setListeners(this._container, '.project', 'click', Handlers.project.select);
-        setListeners(this._container, '#new-project', 'click', Handlers.project.add);
-    }
-
-    update() {
-        super.update();
-    }
 }
+
 
 const views = {
     todo: new TodoView(),
