@@ -22,9 +22,9 @@ class ChecklistItem {
 }
 
 class Todo {
-    constructor(id, name, descr, endDate = null, startDate = null, list = null) {
+    constructor(id, title, descr, endDate = null, startDate = null, list = null) {
     this.id = id;
-        this.name = name;
+        this.title = title;
         this.descr = descr;
         this.endDate = endDate;
         this.startDate = startDate;
@@ -37,9 +37,9 @@ class Todo {
 }
 
 class Project {
-    constructor(id, name, list = null) {
+    constructor(id, title, list = null) {
         this.id = id;
-        this.name = name;
+        this.title = title;
 
         this.status = false;
         this.visible = true;
