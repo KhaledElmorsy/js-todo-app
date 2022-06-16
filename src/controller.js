@@ -47,6 +47,8 @@ class ProjectController extends Controller {
         const id = this.list.length
 
         const form = document.getElementById('new-todo')
+        if (!form.reportValidity()) return
+        
         const inputs = form.elements // HTMLCollection: [title, desc, checklist1, checklist2, checklist3]
         const inputValues = [...inputs].map(element => element.value) // Convert to array of values
         const [title, descr, ...checklist] = inputValues
