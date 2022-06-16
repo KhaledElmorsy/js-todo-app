@@ -1,5 +1,5 @@
-import model from '../model'
-import view from '../view'
+import model from './model'
+import view from './view'
 
 const { instance, classes } = model
 
@@ -37,8 +37,9 @@ class ProjectController extends Controller {
     constructor(project) {
         super();
         this.model = project;
-        this.view = new view.project(this.model);
         this.list = project.list;
+        this.view = new view.project(this.model);
+        
         super.update();
     }
 
