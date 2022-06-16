@@ -1,6 +1,5 @@
 
-import DOM from "./dom-modules/domModules.js";
+import ProjectListController from './controller'
 import './assets/style.css'
 
-
-DOM.pageLoad()
+const App = new ProjectListController();

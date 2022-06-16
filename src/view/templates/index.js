@@ -17,7 +17,6 @@ import projectListTemplates from "./projectList.js";
 const convertElement = elementHTML => {
     const tempWrapper = document.createElement('div');
     tempWrapper.innerHTML = elementHTML;
-
     // To keep ouputs consistently element object, NOT HTML Collections:
     if (tempWrapper.childElementCount === 1) // Check if template element is already wrapped
         return tempWrapper.firstChild        // Return it if true, otherwise return temp wrapper
@@ -26,8 +25,8 @@ const convertElement = elementHTML => {
 
 // Consilidate template function in an object to enable the command pattern below
 const templateFuncs = {
-    project: projectTemplates,
-    projectList: projectListTemplates
+    Project: projectTemplates,
+    ProjectList: projectListTemplates
 }
 
 

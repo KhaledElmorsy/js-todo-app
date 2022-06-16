@@ -6,12 +6,12 @@
 
 // Generate HTML template literal using the project object
 const projectTemplate = (project) => {
-    const projectStatus = project.state.status ? 'done' : '' ;
+    const projectStatus = project.status ? 'done' : '' ;
 
     const elementHTML =
-        `<div class="project ${projectStatus}" data-project-id="${project.id}" data-active-project="false">
-            <p class="name">${project.title}</p>
-            <div class="delete">x</div>
+        `<div class="project ${projectStatus}" data-active-project="false">
+            <p class="name" data-child-id="${project.id}">${project.title}</p>
+            <div class="delete" data-child-id="${project.id}">x</div>
         </div>`
     return elementHTML
 }
@@ -19,12 +19,12 @@ const projectTemplate = (project) => {
 // Generate HTML for the 'New Project' input field
 const addProjectTemplate = () => {
     const elementHTML =
-        `<input placeholder="New Project" id="new-project">`
+        `<input placeholder="New Project" id="add-project">`
     return elementHTML
 }
 
 const projectListTemplates = {
-    new: addProjectTemplate,
+    add: addProjectTemplate,
     standard: projectTemplate
 }
 

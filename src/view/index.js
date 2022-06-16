@@ -1,8 +1,8 @@
 import templates from "./templates"
 
 const containers = {
-    project: document.querySelector('main'),
-    projectList: document.getElementById('projects')
+    Project: document.querySelector('main'),
+    ProjectList: document.getElementById('projects')
 }
 
 
@@ -11,20 +11,24 @@ class View {
         if (this.constructor === View) throw new Error('Abstract Class');
 
         this.model = model;
-        let modelType = model.constructor.name;
-        this.container = containers[modelType];
-        this.template = template( modelType, 'standard');
+
+        const viewType = this.constructor.name.replace('View', ''); // ProjectView -> Project
+        this.container = containers[viewType];
+        this.addForm = templates(viewType, 'add')
+        this.template = templates(viewType, 'standard');
     }
 
     // Model objects aren't 'removed' but disabled, this function returns active models
-    getActive(modelList) { return modelList.filter(model => model.state.visibility) }
-    
-    // Default rendering method. AKA Populating
-    render(chidlren) {
-        this._container.innerHTML = ''; // Clear container
+    getActive(list) { return list.filter(model => model.visible) }
 
-        this.getActive(chidlren).forEach(childObj => 
-            this._container.append(this._template(childObj)))
+    // Default rendering method. AKA Populating
+    render(list) {
+        this.container.innerHTML = ''; // Clear container
+
+        this.getActive(list).forEach(childObj =>
+            this.container.append(this.template(childObj)))  // Append Elements
+
+        this.container.append(this.addForm());  // Append 'Add "model"' element 
     }
 }
 
@@ -32,12 +36,10 @@ class View {
 class ProjectView extends View {
     constructor(project) {
         super(project);
-        this.addForm = templates('project', 'add');
     }
 
     render() {
-        super.render(this.model.todoList);
-        this.container.append(this.addForm());
+        super.render(this.model.list);
     }
 }
 
@@ -45,19 +47,17 @@ class ProjectView extends View {
 class ProjectListView extends View {
     constructor(projectList) {
         super(projectList);
-        this.addForm = templates('projectList', 'add');
     }
 
     render() {
-       super.render(this.model.projectList);
-       this._container.append(this.Form);
+        super.render(this.model.list);
     }
 }
 
 
 const views = {
-    todo: ProjectView,
-    project: ProjectListView
+    project: ProjectView,
+    projectList: ProjectListView
 }
 
 export default views

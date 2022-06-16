@@ -52,7 +52,7 @@ class ProjectList {
     constructor() {
         // Check Local Storage and Import
         let storedData = localStorage.projectList
-        this.projects = storedData? JSON.parse(storedData) : []
+        this.list = storedData? JSON.parse(storedData) : []
     }
 }
 
