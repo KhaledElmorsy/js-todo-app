@@ -39,7 +39,7 @@ class ProjectController extends Controller {
         this.model = project;
         this.list = project.list;
         this.view = new view.project(this.model);
-        
+
         super.update();
     }
 
@@ -71,7 +71,7 @@ class ProjectController extends Controller {
     }
 
     resetInput() {
-        const formInputs = this.container.getElementbyId('new-todo').elements;
+        const formInputs = document.getElementById('new-todo').elements;
         [...formInputs].forEach(input => input.value = '')
     }
 
