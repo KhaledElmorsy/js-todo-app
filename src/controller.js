@@ -45,11 +45,9 @@ class ProjectController extends Controller {
     }
 
     add() {
-        const id = this.list.length
-
         const form = document.getElementById('new-todo')
         if (!form.reportValidity()) return
-        
+
         const inputs = form.elements // HTMLCollection: [title, desc, checklist1, checklist2, checklist3]
         const inputValues = [...inputs].map(element => element.value) // Convert to array of values
         const [title, descr, ...checklist] = inputValues
@@ -58,6 +56,7 @@ class ProjectController extends Controller {
             new classes.ChecklistItem(i, itemDescr)) // id, descr
 
         const [startDate, endDate] = [null, null]
+        const id = this.list.length
 
         const todo = new classes.Todo(id, title, descr, startDate, endDate, list)
         this.list.push(todo)
