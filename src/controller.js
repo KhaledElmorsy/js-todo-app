@@ -9,6 +9,8 @@ const setListeners = (context, container, selector, listener, callback) => {
     for (let el of elements) el.addEventListener(listener, callback.bind(context))
 }
 
+const getID = event => event.target.getAttribute('data-child-id')
+
 class Controller {
 
     constructor() {
@@ -24,8 +26,7 @@ class Controller {
     add() { }
     edit() { }
 
-    remove(event) {
-        const id = event.target.getAttribute('data-child-id');
+    remove(id) {
         this.list[id].visible = false;
         this.update();
     }
@@ -80,8 +81,8 @@ class ProjectController extends Controller {
     listeners() {
         const container = this.view.container
         setListeners(this, container, '#add-todo', 'click', this.add)
-        setListeners(this, container, '.delete', 'click', this.remove)
         setListeners(this, container, '#reset-todo-inputs', 'click', this.resetInput)
+        setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
     }
 
 }
@@ -109,21 +110,20 @@ class ProjectListController extends Controller {
         super.update();
     }
 
-    select(event) {
-        const id = event.target.getAttribute('data-child-id')
+    select(id) {
         const project = this.model.list[id]
         this.projectController = new ProjectController(project); // New controller instance updates/renders its view
     }
 
-    remove(event) {
-        super.remove(event)
+    remove(id) {
+        super.remove(id)
     }
 
     listeners() {
         const container = this.view.container
-        setListeners(this, container, '.name', 'click', this.select)
-        setListeners(this, container, '.delete', 'click', this.remove)
         setListeners(this, container, '#add-project', 'keydown', this.add)
+        setListeners(this, container, '.name', 'click', (e) => this.select(getID(e)))
+        setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
     }
 }
 
