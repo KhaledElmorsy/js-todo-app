@@ -4,7 +4,7 @@ import view from './view'
 const { instance, classes } = model
 
 const setListeners = (context, container, selector, listener, callback) => {
-    let elements = container.querySelectorAll(selector)
+    const elements = container.querySelectorAll(selector)
     if (!elements) return
     for (let el of elements) el.addEventListener(listener, callback.bind(context))
 }
@@ -25,7 +25,7 @@ class Controller {
     edit() { }
 
     remove(event) {
-        let id = event.target.getAttribute('data-child-id');
+        const id = event.target.getAttribute('data-child-id');
         this.list[id].visible = false;
         this.update();
     }
@@ -56,7 +56,7 @@ class ProjectController extends Controller {
 
         const [startDate, endDate] = [null, null]
 
-        let todo = new classes.Todo(id, title, descr, startDate, endDate, list)
+        const todo = new classes.Todo(id, title, descr, startDate, endDate, list)
         this.list.push(todo)
 
         super.update()
@@ -76,7 +76,7 @@ class ProjectController extends Controller {
     }
 
     listeners() {
-        let container = this.view.container
+        const container = this.view.container
         setListeners(this, container, '#add-todo', 'click', this.add)
         setListeners(this, container, '.delete', 'click', this.remove)
         setListeners(this, container, '#reset-todo-inputs', 'click', this.resetInput)
@@ -93,7 +93,7 @@ class ProjectListController extends Controller {
 
         super.update();
 
-        let activeProjects = this.list.filter(proj => proj.visible)
+        const activeProjects = this.list.filter(proj => proj.visible)
         if (activeProjects.length) {
             this.projectController = new ProjectController(activeProjects[0]) // Clean this up
         }
