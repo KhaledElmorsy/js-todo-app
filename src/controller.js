@@ -106,7 +106,7 @@ class ProjectController extends Controller {
         const inputValues = [...inputs].map(element => element.value) // Convert to array of values
         const [title, descr, ...checklist] = inputValues
 
-        const list = checklist.map((itemDescr, i) =>
+        const list = checklist.filter(itemDescr => itemDescr).map((itemDescr, i) =>
             new classes.ChecklistItem(i, itemDescr)) // id, descr
 
         const [startDate, endDate] = [null, null]
