@@ -167,10 +167,16 @@ class ProjectListController extends Controller {
     select(id) {
         const project = this.model.list[id]
         this.projectController = new ProjectController(project); // New controller instance updates/renders its view
+        
+        this.previousProject = this.activetProject // Record last selected project
+        this.activetProject = project // Easier than this.projectController.model
     }
 
     remove(id) {
         super.remove(id)
+
+        // If active project is deleted, select previous project
+        if (id === this.activetProject.id) this.select(this.previousProject.id)
     }
 
     listeners() {
