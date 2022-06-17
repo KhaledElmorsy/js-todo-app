@@ -162,6 +162,7 @@ class ProjectListController extends Controller {
         this.model.list.push(new classes.Project(id, title))
         
         super.update();
+        this.select(id); // Switch to new project
     }
 
     select(id) {
