@@ -28,7 +28,7 @@ function setListeners(context, parent, selector, event, callback) {
  * @returns {number} - ID of model object linked to event target
  */
 function getID(event) {
-    return event.target.getAttribute('data-child-id')
+    return parseInt(event.target.getAttribute('data-child-id'))
 }
 
 /**
