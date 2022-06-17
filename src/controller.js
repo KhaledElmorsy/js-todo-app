@@ -77,11 +77,18 @@ class ProjectController extends Controller {
         [...formInputs].forEach(input => input.value = '')
     }
 
+    toggle(id) {
+        this.list[id].status = !this.list[id].status
+        console.log(this.list[id].status)
+        super.update();
+    }
+
     listeners() {
         const container = this.view.container
         setListeners(this, container, '#add-todo', 'click', this.add)
         setListeners(this, container, '#reset-todo-inputs', 'click', this.resetInput)
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
+        setListeners(this, container, '.done.button', 'click', (e) => this.toggle(getID(e)))
     }
 
 }
