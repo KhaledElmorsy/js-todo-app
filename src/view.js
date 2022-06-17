@@ -14,8 +14,8 @@ class View {
 
         const viewType = this.constructor.name.replace('View', ''); // ProjectView -> Project
         this.container = containers[viewType];
-        this.addForm = templates(viewType, 'add')
-        this.template = templates(viewType, 'standard');
+        this.formTemplate = templates(viewType, 'add')
+        this.standardTemplate = templates(viewType, 'standard');
     }
 
     // Model objects aren't 'removed' but disabled, this function returns active models
@@ -26,9 +26,9 @@ class View {
         this.container.innerHTML = ''; // Clear container
 
         this.getActive(list).forEach(childObj =>
-            this.container.append(this.template(childObj)))  // Append Elements
+            this.container.append(this.standardTemplate(childObj)))  // Append Elements
 
-        this.container.append(this.addForm());  // Append 'Add "model"' element 
+        this.form = this.container.append(this.formTemplate());  // Append 'Add "model"' element 
     }
 }
 
