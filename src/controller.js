@@ -156,10 +156,9 @@ class ProjectListController extends Controller {
 
         super.update();
 
-        const activeProjects = this.list.filter(proj => proj.visible)
-        if (activeProjects.length) {
-            this.projectController = new ProjectController(activeProjects[0]) // Clean this up
-        }
+        // Get enabled projects and select the first one by default 
+        const visibleProjects = this.getVisible()
+        if (visibleProjects.length) this.select(visibleProjects[0].id) 
     }
 
     add(event) {
