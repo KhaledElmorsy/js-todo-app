@@ -28,7 +28,8 @@ function setListeners(context, parent, selector, event, callback) {
  * @returns {number} - ID of model object linked to event target
  */
 function getID(event) {
-    return parseInt(event.target.getAttribute('data-child-id'))
+    const itemContainerEl = event.composedPath().find(el => el.hasAttribute('data-child-id'))
+    return parseInt(itemContainerEl.getAttribute('data-child-id'))
 }
 
 /**
@@ -122,8 +123,26 @@ class ProjectController extends Controller {
         super.remove(event);
     }
 
-    edit() {
-        // Add edit functionality
+    edit(id) {
+        this.view.editMode(id);
+        this.view.container.querySelector('.edit-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const inputValues = [...e.target.elements].map(el => el.value)
+            const [title, descr, ...list] = inputValues
+
+            const todoModel = this.model.list[id] // Model instance being edited
+            todoModel.title = title;
+            todoModel.descr = descr;
+            list.forEach((itemDescr, i) => {
+                let itemList = todoModel.list
+                if (itemList[i]) itemList[i].descr = itemDescr
+                else itemList.push(new classes.ChecklistItem(i, itemDescr))
+            })
+            
+            super.update()
+        })
+        
     }
 
     resetInput() {
@@ -139,10 +158,11 @@ class ProjectController extends Controller {
 
     listeners() {
         const container = this.view.container
-        this.view.form.addEventListener('submit',this.add.bind(this))
+        this.view.form.addEventListener('submit', this.add.bind(this))
         setListeners(this, container, '#reset-todo-inputs', 'click', this.resetInput)
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
         setListeners(this, container, '.done.button', 'click', (e) => this.toggle(getID(e)))
+        setListeners(this, container, '.card:not(#new-todo, .done)', 'dblclick', (e) => this.edit(getID(e)))
     }
 
 }
@@ -158,7 +178,7 @@ class ProjectListController extends Controller {
 
         // Get enabled projects and select the first one by default 
         const visibleProjects = this.getVisible()
-        if (visibleProjects.length) this.select(visibleProjects[0].id) 
+        if (visibleProjects.length) this.select(visibleProjects[0].id)
     }
 
     add(event) {
@@ -167,7 +187,7 @@ class ProjectListController extends Controller {
         const id = this.list.length;
         const title = event.target.elements['name'].value;
         this.model.list.push(new classes.Project(id, title))
-        
+
         super.update();
         this.select(id); // Switch to new project
     }
@@ -175,7 +195,7 @@ class ProjectListController extends Controller {
     select(id) {
         const project = this.model.list[id]
         this.projectController = new ProjectController(project); // New controller instance updates/renders its view
-        
+
         this.previousProject = this.activetProject // Record last selected project
         this.activetProject = project // Easier than this.projectController.model
     }
@@ -189,7 +209,7 @@ class ProjectListController extends Controller {
 
     listeners() {
         const container = this.view.container
-        this.view.form.addEventListener('submit',this.add.bind(this))
+        this.view.form.addEventListener('submit', this.add.bind(this))
         setListeners(this, container, '.name', 'click', (e) => this.select(getID(e)))
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
     }

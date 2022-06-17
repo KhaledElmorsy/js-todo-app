@@ -14,7 +14,7 @@ const todoElement =  todoObj => {
     function itemStatus(item) { return item.status ? 'done' : '' }
     
     const elementHTML = 
-        `<div class="card ${todoStatus}">
+        `<div class="card ${todoStatus}" data-child-id="${todoObj.id}">
             <h2 class="title">${todoObj.title}</h2>
             <p class="desc">${todoObj.descr}</p>
             <div class="checklist-container">
@@ -24,8 +24,8 @@ const todoElement =  todoObj => {
                     ).join('')}
             </div>
             <div class="button-container">
-                <div class="done button" data-child-id="${todoObj.id}">Done</div>
-                <div class="delete button" data-child-id="${todoObj.id}">Delete</div>
+                <div class="done button">Done</div>
+                <div class="delete button">Delete</div>
             </div>
         </div>`
     return elementHTML
@@ -51,9 +51,30 @@ const addTodoForm = () => {
     return elementHTML
 }
 
+// HTML for the element containing forms to create and append a new todo to the project
+const editTodoForm = (todoObj) => {
+    const elementHTML  =  
+        `<form class="edit-form card">
+            <input required class="title" name="title" value="${todoObj.title}">
+            <textarea class="desc" name="descr">${todoObj.descr}"</textarea>
+            <div class="checklist-container">
+                <h3 class="checklist-title">Tasks</h3>
+                    <input name ="list" class="checklist-input" value="${todoObj.list[0]? todoObj.list[0].descr:""}">
+                    <input name ="list" class="checklist-input" value="${todoObj.list[1]? todoObj.list[1].descr:""}">
+                    <input name ="list" class="checklist-input" value="${todoObj.list[2]? todoObj.list[2].descr:""}">
+            </div>
+            <div class="button-container">
+                <button type="submit" id="add-todo" class="button">Save</button>
+                <div id="reset-todo-inputs" class="button">Delete</div>
+            </div>
+        </form>`
+    return elementHTML
+}
+
 const projectTemplates = {
     add: addTodoForm,
     standard: todoElement,
+    edit: editTodoForm
 }
 
 export default projectTemplates

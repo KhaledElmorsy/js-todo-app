@@ -16,6 +16,7 @@ class View {
         this.container = containers[viewType];
         this.formTemplate = templates(viewType, 'add')
         this.standardTemplate = templates(viewType, 'standard');
+        this.editForm = templates(viewType,'edit');
     }
 
     // Model objects aren't 'removed' but disabled, this function returns active models
@@ -42,6 +43,12 @@ class ProjectView extends View {
 
     render() {
         super.render();
+    }
+
+    editMode(id) {
+        const elementToEdit = this.container.querySelector(`[data-child-id="${id}"]`);
+        const filledEditForm = this.editForm(this.model.list[id]);
+        elementToEdit.replaceWith(filledEditForm);
     }
 }
 
