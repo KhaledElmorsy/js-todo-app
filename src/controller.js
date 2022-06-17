@@ -91,11 +91,10 @@ class ProjectController extends Controller {
         super.update();
     }
 
-    add() {
-        const form = document.getElementById('new-todo')
-        if (!form.reportValidity()) return
+    add(event) {
+        event.preventDefault();
 
-        const inputs = form.elements // HTMLCollection: [title, desc, checklist1, checklist2, checklist3]
+        const inputs = event.target.elements // HTMLCollection: [title, desc, checklist1, checklist2, checklist3]
         const inputValues = [...inputs].map(element => element.value) // Convert to array of values
         const [title, descr, ...checklist] = inputValues
 
@@ -132,7 +131,7 @@ class ProjectController extends Controller {
 
     listeners() {
         const container = this.view.container
-        setListeners(this, container, '#add-todo', 'click', this.add)
+        this.view.form.addEventListener('submit',this.add.bind(this))
         setListeners(this, container, '#reset-todo-inputs', 'click', this.resetInput)
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
         setListeners(this, container, '.done.button', 'click', (e) => this.toggle(getID(e)))
