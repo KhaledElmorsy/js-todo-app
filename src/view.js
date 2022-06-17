@@ -22,8 +22,10 @@ class View {
     getActive(list) { return list.filter(model => model.visible) }
 
     // Default rendering method. AKA Populating
-    render(list) {
+    render() {
         this.container.innerHTML = ''; // Clear container
+
+        const list = this.model.list;
 
         this.getActive(list).forEach(childObj =>
             this.container.append(this.standardTemplate(childObj)))  // Append Elements
@@ -39,7 +41,7 @@ class ProjectView extends View {
     }
 
     render() {
-        super.render(this.model.list);
+        super.render();
     }
 }
 
@@ -50,7 +52,7 @@ class ProjectListView extends View {
     }
 
     render() {
-        super.render(this.model.list);
+        super.render();
     }
 }
 
