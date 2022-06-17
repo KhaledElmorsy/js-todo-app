@@ -155,10 +155,12 @@ class ProjectListController extends Controller {
     }
 
     add(event) {
-        if (event.key !== 'Enter') return
+        event.preventDefault();
+
         const id = this.list.length;
-        const title = event.target.value;
+        const title = event.target.elements['name'].value;
         this.model.list.push(new classes.Project(id, title))
+        
         super.update();
     }
 
@@ -173,7 +175,7 @@ class ProjectListController extends Controller {
 
     listeners() {
         const container = this.view.container
-        setListeners(this, container, '#add-project', 'keydown', this.add)
+        this.view.form.addEventListener('submit',this.add.bind(this))
         setListeners(this, container, '.name', 'click', (e) => this.select(getID(e)))
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
     }

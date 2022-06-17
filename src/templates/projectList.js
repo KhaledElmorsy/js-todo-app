@@ -19,7 +19,7 @@ const projectTemplate = (project) => {
 // Generate HTML for the 'New Project' input field
 const addProjectTemplate = () => {
     const elementHTML =
-        `<form id="new-project"><input required placeholder="New Project" id="add-project"><form>`
+        `<form id="new-project"><input required placeholder="New Project" name="name"><form>`
     return elementHTML
 }
 
