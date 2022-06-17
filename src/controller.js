@@ -118,9 +118,9 @@ class ProjectController extends Controller {
     edit() {
         // Add edit functionality
     }
-    
+
     resetInput() {
-        const formInputs = document.getElementById('new-todo').elements;
+        const formInputs = this.view.form.elements;
         [...formInputs].forEach(input => input.value = '')
     }
 
