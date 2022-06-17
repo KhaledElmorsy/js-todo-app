@@ -30,7 +30,7 @@ class View {
         this.getActive(list).forEach(childObj =>
             this.container.append(this.standardTemplate(childObj)))  // Append Elements
 
-        this.form = this.container.append(this.formTemplate());  // Append 'Add "model"' element 
+        this.form = this.container.appendChild(this.formTemplate());  // Append 'Add "model"' element 
     }
 }
 
