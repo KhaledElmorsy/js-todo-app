@@ -74,6 +74,14 @@ class Controller {
         this.list[id].visible = false;
         this.update();
     }
+
+    /**
+     * Filters list of child objects and only keep ones where visible = true.
+     * @returns {Array} - Array of child objects
+     */
+    getVisible() {
+        return this.list.filter(child => child.visible)
+    }
 }
 
 /**
