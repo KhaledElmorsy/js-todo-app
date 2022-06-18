@@ -100,6 +100,12 @@ class TodoController extends Controller {
         this.projectController.update();
     }
 
+    // Runs close() by submitting the form.
+    clickOut(event) {
+        if(event.target === event.currentTarget) 
+            this.view.form.elements['save'].click(); // submit() doesn't trigger listener
+    }
+
     edit(event) {
         const input = event.target
         const modelProperty = input.name
@@ -110,6 +116,7 @@ class TodoController extends Controller {
     listeners(){
         this.view.form.addEventListener('submit',()=>this.close())
         setListeners(this, this.view.form, 'input,textarea', 'input', this.edit)
+        setListeners(this, this.view.container, '#todo-background', 'click', this.clickOut)
     }
 }
 
