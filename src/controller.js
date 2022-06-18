@@ -124,20 +124,26 @@ class ProjectController extends Controller {
     }
 
     edit(id) {
+        super.update() // Avoids multiple concurrent editing forms. Doesn't save changes.
+
         this.view.editMode(id);
-        this.view.container.querySelector('.edit-form').addEventListener('submit', (e) => {
-            e.preventDefault();
+        this.view.container.querySelector('.edit-form').addEventListener('submit', (event) => {
+            event.preventDefault();
 
-            const inputValues = [...e.target.elements].map(el => el.value)
-            const [title, descr, ...list] = inputValues
-
+            const inputValues = [...event.target.elements].map(el => el.value)
+            const [newTitle, newDescr, ...newList] = inputValues
+            
             const todoModel = this.model.list[id] // Model instance being edited
-            todoModel.title = title;
-            todoModel.descr = descr;
-            list.forEach((itemDescr, i) => {
-                let itemList = todoModel.list
-                if (itemList[i]) itemList[i].descr = itemDescr
-                else itemList.push(new classes.ChecklistItem(i, itemDescr))
+            todoModel.title = newTitle;
+            todoModel.descr = newDescr;
+
+            const modelList = todoModel.list
+            newList.forEach((itemDescr, i) => {
+                if (modelList[i]) {
+                    modelList[i].descr = itemDescr;
+                } else {
+                    modelList.push(new classes.ChecklistItem(i, itemDescr));
+                }
             })
             
             super.update()
