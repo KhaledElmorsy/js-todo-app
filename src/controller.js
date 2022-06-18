@@ -130,19 +130,30 @@ class ProjectController extends Controller {
         this.view.container.querySelector('.edit-form').addEventListener('submit', (event) => {
             event.preventDefault();
 
-            const inputValues = [...event.target.elements].map(el => el.value)
+            const inputs = [...event.target.elements].filter(el=>(el.tagName !== 'BUTTON')) //Filter out buttons
+            const inputValues = inputs.map(el => el.value)
             const [newTitle, newDescr, ...newList] = inputValues
             
             const todoModel = this.model.list[id] // Model instance being edited
             todoModel.title = newTitle;
             todoModel.descr = newDescr;
-
-            const modelList = todoModel.list
+            
+            const renderedList = todoModel.list.filter(item=>item.visible) // Only compare to visible items
             newList.forEach((itemDescr, i) => {
-                if (modelList[i]) {
-                    modelList[i].descr = itemDescr;
-                } else {
-                    modelList.push(new classes.ChecklistItem(i, itemDescr));
+                if (!itemDescr && !renderedList[i]) return // Skip if field is empty and nothing was rendered
+
+                if (renderedList[i]) { // If an item was rendered:
+                    const itemID = renderedList[i].id // Get the actual index of the item in the model list
+                    
+                    if (!itemDescr){ 
+                        todoModel.list[itemID].visible = false;     // If the relevant field is now empty, hide the item
+                    } else {           
+                        todoModel.list[itemID].descr = itemDescr;   // Otherwise change its value
+                    }
+
+                } else { // If there's no rendered item, then add a new item
+                    const id = todoModel.list.length
+                    todoModel.list.push(new classes.ChecklistItem(id, itemDescr));
                 }
             })
             

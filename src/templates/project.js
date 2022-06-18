@@ -48,15 +48,16 @@ const addTodoForm = () => {
 
 // HTML for the element containing forms to create and append a new todo to the project
 const editTodoForm = (todoObj) => {
+    const activeList = getActive(todoObj.list)
     const elementHTML  =  
         `<form class="edit-form card">
             <input required class="title" name="title" value="${todoObj.title}">
             <textarea class="desc" name="descr">${todoObj.descr}</textarea>
             <div class="checklist-container">
                 <h3 class="checklist-title">Tasks</h3>
-                    <input name ="list" class="checklist-input" value="${todoObj.list[0]? todoObj.list[0].descr:""}">
-                    <input name ="list" class="checklist-input" value="${todoObj.list[1]? todoObj.list[1].descr:""}">
-                    <input name ="list" class="checklist-input" value="${todoObj.list[2]? todoObj.list[2].descr:""}">
+                    <input name ="list" class="checklist-input" value="${activeList[0]? activeList[0].descr:""}">
+                    <input name ="list" class="checklist-input" value="${activeList[1]? activeList[1].descr:""}">
+                    <input name ="list" class="checklist-input" value="${activeList[2]? activeList[2].descr:""}">
             </div>
             <div class="button-container">
                 <button type="submit" id="add-todo" class="button">Save</button>
