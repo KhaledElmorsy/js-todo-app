@@ -56,7 +56,7 @@ const editTodoForm = (todoObj) => {
     const elementHTML  =  
         `<form class="edit-form card">
             <input required class="title" name="title" value="${todoObj.title}">
-            <textarea class="desc" name="descr">${todoObj.descr}"</textarea>
+            <textarea class="desc" name="descr">${todoObj.descr}</textarea>
             <div class="checklist-container">
                 <h3 class="checklist-title">Tasks</h3>
                     <input name ="list" class="checklist-input" value="${todoObj.list[0]? todoObj.list[0].descr:""}">
