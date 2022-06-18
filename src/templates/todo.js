@@ -15,12 +15,7 @@ const standardTodoDetails = (todoObj) => {
             <div id="more-details">
                 <div class="checklist-container">
                     <h3>Tasks</h3>
-                    <ul>
-                    ${getActive(todoObj.list).map(item => 
-                        `<input value="${item.descr}" class="checklist-item ${statusToClass(item,'done')}">`
-                    ).join('')}
-                        <input class="checklist-item">
-                    </ul>
+                    <div id="checklist"></div>
                 </div>
                 <div class="dates">
                     <h3>Dates</h3>

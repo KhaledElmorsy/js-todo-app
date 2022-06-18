@@ -1,16 +1,16 @@
 import templates from "./templates"
 
 const containers = {
-    Todo: document.body,
-    Project: document.querySelector('main'),
-    ProjectList: document.getElementById('projects')
+    get Checklist() {console.log('hey'); return document.getElementById('checklist')},
+    get Todo() { return document.body},
+    get Project() { return document.querySelector('main')},
+    get ProjectList() { return document.getElementById('projects')},
 }
 
 
 class PopulatorView {
     constructor(model, type) {
         this.model = model;
-
         this.container = containers[type];
         this.formTemplate = templates(type, 'add')
         this.standardTemplate = templates(type, 'standard');
@@ -58,9 +58,6 @@ class TodoView {
         this.container.removeChild(this.standardElement)
     }
 
-    refresh() {
-        // this.standardElement = this.standardTemplate(this.model) 
-    }
 }
 
 const views = {

@@ -85,6 +85,49 @@ class Controller {
     }
 }
 
+class ChecklistController extends Controller{
+    constructor(todo){
+        super();
+        this.model = todo;
+        this.list = todo.list;
+        this.view = new view.populator(todo, 'Checklist');
+        super.update();
+    }
+
+    edit(event){
+        const todoID = getID(event);
+        const inputValue = event.target.value;
+        if (inputValue) 
+            this.list[todoID].descr = inputValue;
+        else {
+            this.list[todoID].visible = false;
+            this.update();
+        }
+    }
+
+    add(event){
+        const form = this.view.form
+        const id = this.list.length
+        this.list.push(new classes.ChecklistItem(id, form['descr'].value))
+        this.update();
+        
+        // Focus input and put cursos at the end by resetting the value (kinda hacky)
+        const checklistElement = this.view.container.querySelector(`[data-child-id="${id}"] input`)
+        const tempDescr = checklistElement.value;
+        checklistElement.focus();
+        checklistElement.value = ''; 
+        checklistElement.value= tempDescr;
+    }
+
+    listeners(){
+        const container = this.view.container
+        setListeners(this, container, '.checklist-item', 'input', this.edit)
+        setListeners(this, container, '#new-checklist-item', 'input', this.add)
+        setListeners(this, container, '.delete', 'click', (e)=>this.remove(getID(e)))
+    }
+}
+
+
 class TodoController extends Controller {
     constructor(todo) {
         super();
@@ -92,12 +135,18 @@ class TodoController extends Controller {
         this.view = new view.todo(todo);
         this.form = this.view.form;
         this.update();
+        this.checklist = new ChecklistController(todo)
     }
 
     close() {
         event.preventDefault();
         this.view.hide();
         this.projectController.update();
+    }
+
+    refresh() {
+        this.close();
+        this.update();
     }
 
     // Runs close() by submitting the form.
@@ -110,7 +159,6 @@ class TodoController extends Controller {
         const input = event.target
         const modelProperty = input.name
         this.model[modelProperty] = input.value
-        this.view.refresh();
     }
 
     listeners(){

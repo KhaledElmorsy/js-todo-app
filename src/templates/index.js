@@ -1,5 +1,6 @@
 import todoTemplates from "./todo.js";
 import projectTemplates from "./project.js";
+import checklistTemplates from "./checklist.js";
 import projectListTemplates from "./projectList.js";
 
 /***
@@ -28,6 +29,7 @@ const convertElement = elementHTML => {
 const templateFuncs = {
     Todo: todoTemplates,
     Project: projectTemplates,
+    Checklist: checklistTemplates,
     ProjectList: projectListTemplates
 }
 
