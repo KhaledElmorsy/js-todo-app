@@ -1,3 +1,4 @@
+import { statusToClass, getActive } from "./helpers"
 /***
  * Here lie the templates that are used to render a project. Since a project is
  * composed of todo items, then the standard element displays some data concerning
@@ -7,20 +8,14 @@
 
 // Generate HTML using todo object properties
 const todoElement =  todoObj => {
-    const todoStatus = todoObj.status ? 'done' : '' ;
-    
-    // Checklist Item Functions
-    function getActive(list) { return list.filter(item => item.visible && item.descr)}
-    function itemStatus(item) { return item.status ? 'done' : '' }
-    
     const elementHTML = 
-        `<div class="card ${todoStatus}" data-child-id="${todoObj.id}">
+        `<div class="card ${statusToClass(todoObj,'done')}" data-child-id="${todoObj.id}">
             <h2 class="title">${todoObj.title}</h2>
             <p class="desc">${todoObj.descr}</p>
             <div class="checklist-container">
                 <h3 class="checklist-title">Tasks</h3>
                     ${getActive(todoObj.list).map(item => 
-                        `<li class="checklist-item ${itemStatus(item)}">${item.descr}</li>`
+                        `<li class="checklist-item ${statusToClass(item,'done')}">${item.descr}</li>`
                     ).join('')}
             </div>
             <div class="button-container">
