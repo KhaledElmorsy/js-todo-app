@@ -6,17 +6,14 @@ const containers = {
 }
 
 
-class View {
-    constructor(model) {
-        if (this.constructor === View) throw new Error('Abstract Class');
-
+class PopulatorView {
+    constructor(model, type) {
         this.model = model;
 
-        const viewType = this.constructor.name.replace('View', ''); // ProjectView -> Project
-        this.container = containers[viewType];
-        this.formTemplate = templates(viewType, 'add')
-        this.standardTemplate = templates(viewType, 'standard');
-        this.editForm = templates(viewType,'edit');
+        this.container = containers[type];
+        this.formTemplate = templates(type, 'add')
+        this.standardTemplate = templates(type, 'standard');
+        this.editForm = templates(type,'edit');
     }
 
     // Model objects aren't 'removed' but disabled, this function returns active models
@@ -42,25 +39,15 @@ class View {
     }
 }
 
+class TodoView {
+    constructor(todo) {
 
-class ProjectView extends View {
-    constructor(project) {
-        super(project);
-    }
-
-}
-
-
-class ProjectListView extends View {
-    constructor(projectList) {
-        super(projectList);
     }
 }
-
 
 const views = {
-    project: ProjectView,
-    projectList: ProjectListView
+    populator: PopulatorView,
+    todo: TodoView
 }
 
 export default views

@@ -95,7 +95,7 @@ class ProjectController extends Controller {
         super();
         this.model = project;
         this.list = project.list;
-        this.view = new view.project(this.model);
+        this.view = new view.populator(this.model, 'Project');
 
         super.update();
     }
@@ -177,7 +177,7 @@ class ProjectListController extends Controller {
     constructor() {
         super();
         this.model = instance;
-        this.view = new view.projectList(this.model);
+        this.view = new view.populator(this.model, 'ProjectList');
         this.list = instance.list;
 
         super.update();
