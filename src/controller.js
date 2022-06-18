@@ -169,7 +169,6 @@ class ProjectController extends Controller {
 
     toggle(id) {
         this.list[id].status = !this.list[id].status
-        console.log(this.list[id].status)
         super.update();
     }
 
