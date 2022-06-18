@@ -1,3 +1,4 @@
+import todoTemplates from "./todo.js";
 import projectTemplates from "./project.js";
 import projectListTemplates from "./projectList.js";
 
@@ -25,6 +26,7 @@ const convertElement = elementHTML => {
 
 // Consilidate template function in an object to enable the command pattern below
 const templateFuncs = {
+    Todo: todoTemplates,
     Project: projectTemplates,
     ProjectList: projectListTemplates
 }

@@ -1,6 +1,7 @@
 import templates from "./templates"
 
 const containers = {
+    Todo: document.body,
     Project: document.querySelector('main'),
     ProjectList: document.getElementById('projects')
 }
@@ -41,7 +42,24 @@ class PopulatorView {
 
 class TodoView {
     constructor(todo) {
+        this.model = todo;
+        this.container = containers['Todo'];
+        this.standardTemplate = templates('Todo','standard')
+    }
 
+    render() {
+        this.standardElement = this.standardTemplate(this.model) 
+        this.container.appendChild(this.standardElement)
+        this.form = this.standardElement.querySelector('form')
+    }
+
+    hide() {
+        console.log(this.standardElement)
+        this.container.removeChild(this.standardElement)
+    }
+
+    refresh() {
+        // this.standardElement = this.standardTemplate(this.model) 
     }
 }
 
