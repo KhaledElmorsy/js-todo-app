@@ -33,6 +33,13 @@ class View {
 
         this.form = this.container.appendChild(this.formTemplate());  // Append 'Add "model"' element 
     }
+
+    editMode(id) {
+        const elementToEdit = this.container.querySelector(`[data-child-id="${id}"]`);
+        const filledEditForm = this.editForm(this.model.list[id]);
+        console.log(this.model.list[id])
+        elementToEdit.replaceWith(filledEditForm);
+    }
 }
 
 
@@ -45,11 +52,6 @@ class ProjectView extends View {
         super.render();
     }
 
-    editMode(id) {
-        const elementToEdit = this.container.querySelector(`[data-child-id="${id}"]`);
-        const filledEditForm = this.editForm(this.model.list[id]);
-        elementToEdit.replaceWith(filledEditForm);
-    }
 }
 
 

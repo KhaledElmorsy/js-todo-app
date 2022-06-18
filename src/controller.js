@@ -213,11 +213,29 @@ class ProjectListController extends Controller {
         if (id === this.activetProject.id) this.select(this.previousProject.id)
     }
 
+    edit(id) {
+        super.update() // Avoids multiple concurrent editing forms. Doesn't save changes.
+
+        this.view.editMode(id);
+        this.view.container.querySelector('.edit-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const newTitle = event.target.elements['title'].value
+            
+            const projectModel = this.model.list[id] // Model instance being edited
+            projectModel.title = newTitle
+
+            super.update()
+        })
+        
+    }
+
     listeners() {
         const container = this.view.container
         this.view.form.addEventListener('submit', this.add.bind(this))
         setListeners(this, container, '.name', 'click', (e) => this.select(getID(e)))
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
+        setListeners(this, container, '.project', 'dblclick', (e) => this.edit(getID(e)))
     }
 }
 

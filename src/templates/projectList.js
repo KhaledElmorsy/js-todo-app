@@ -23,9 +23,16 @@ const addProjectTemplate = () => {
     return elementHTML
 }
 
+const editProjectForm = (projectObj) => {
+    const elementHTML =
+    `<form class="edit-form"><input required value="${projectObj.title}" name="title"><form>`
+    return elementHTML
+}
+
 const projectListTemplates = {
     add: addProjectTemplate,
-    standard: projectTemplate
+    standard: projectTemplate,
+    edit: editProjectForm
 }
 
 export default projectListTemplates
