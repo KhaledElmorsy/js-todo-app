@@ -48,20 +48,12 @@ class ProjectView extends View {
         super(project);
     }
 
-    render() {
-        super.render();
-    }
-
 }
 
 
 class ProjectListView extends View {
     constructor(projectList) {
         super(projectList);
-    }
-
-    render() {
-        super.render();
     }
 }
 
