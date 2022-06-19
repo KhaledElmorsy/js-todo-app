@@ -12,9 +12,9 @@ class PopulatorView {
     constructor(model, type) {
         this.model = model;
         this.container = containers[type];
-        this.formTemplate = templates(type, 'add')
+        this.addFormTemplate = templates(type, 'add')
         this.standardTemplate = templates(type, 'standard');
-        this.editForm = templates(type,'edit');
+        this.editFormTemplate = templates(type,'edit');
     }
 
     // Model objects aren't 'removed' but disabled, this function returns active models
@@ -35,14 +35,13 @@ class PopulatorView {
             this.container.append(standardElement)
             })
 
-        this.form = this.container.appendChild(this.formTemplate());  // Append 'Add "model"' element 
+        this.addForm = this.container.appendChild(this.addFormTemplate());  // Append 'Add "model"' element 
     }
 
     editMode(id) {
         const elementToEdit = this.container.querySelector(`[data-child-id="${id}"]`);
-        const filledEditForm = this.editForm(this.model.list[id]);
-        console.log(this.model.list[id])
-        elementToEdit.replaceWith(filledEditForm);
+        this.editForm = this.editFormTemplate(this.model.list[id]);
+        elementToEdit.replaceWith(this.editForm);
     }
 }
 

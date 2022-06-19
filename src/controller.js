@@ -106,7 +106,7 @@ class ChecklistController extends Controller{
     }
 
     add(event){
-        const form = this.view.form
+        const form = this.view.addForm
         const id = this.list.length
         this.list.push(new classes.ChecklistItem(id, form['descr'].value))
         this.update();
@@ -251,7 +251,7 @@ class ProjectController extends Controller {
     }
 
     resetInput() {
-        const formInputs = this.view.form.elements;
+        const formInputs = this.view.addForm.elements;
         [...formInputs].forEach(input => input.value = '')
     }
 
@@ -262,7 +262,7 @@ class ProjectController extends Controller {
 
     listeners() {
         const container = this.view.container
-        this.view.form.addEventListener('submit', this.add.bind(this))
+        this.view.addForm.addEventListener('submit', this.add.bind(this))
         setListeners(this, container, '#reset-todo-inputs', 'click', this.resetInput)
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
         setListeners(this, container, '.done-toggle', 'click', (e) => {this.toggle(getID(e))})
@@ -320,24 +320,28 @@ class ProjectListController extends Controller {
 
     edit(id) {
         super.update() // Avoids multiple concurrent editing forms. Doesn't save changes.
-
         this.view.editMode(id);
-        this.view.container.querySelector('.edit-form').addEventListener('submit', (event) => {
-            event.preventDefault();
 
-            const newTitle = event.target.elements['title'].value
-            
-            const projectModel = this.model.list[id] // Model instance being edited
-            projectModel.title = newTitle
+        const project = this.model.list[id]
+        const originalTitle = project.title // Save original incase view updates while form's empty
 
-            super.update()
+        this.view.editForm['title'].addEventListener('input', () => {
+            const newTitle = this.view.editForm['title'].value
+            if (newTitle)
+                project.title = newTitle
+            else
+                project.title = originalTitle // If field's empty, keep the original title in the model
         })
-        
+
+        this.view.editForm.onsumbit = (event) => {
+            event.preventDefault();
+            super.update()
+        }
     }
 
     listeners() {
         const container = this.view.container
-        this.view.form.addEventListener('submit', this.add.bind(this))
+        this.view.addForm.addEventListener('submit', this.add.bind(this))
         setListeners(this, container, '.name', 'click', (e) => this.select(getID(e)))
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
         setListeners(this, container, '.project', 'dblclick', (e) => this.edit(getID(e)))
