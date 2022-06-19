@@ -350,11 +350,11 @@ class ProjectListController extends Controller {
             else
                 project.title = originalTitle // If field's empty, keep the original title in the model
         })
-
-        this.view.editForm.onsumbit = (event) => {
+        this.view.editForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            super.update()
-        }
+            super.update();
+            this.select(id);
+        })
     }
 
     listeners() {
