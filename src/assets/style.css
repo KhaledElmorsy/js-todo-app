@@ -52,12 +52,51 @@ header {
 #projects {
     display: flex;
     flex-direction: column;
+    gap: 5px;
+
 }
 
 #projects .project{
+    box-sizing: border-box;
+    height: 60px;
+    padding: 5px 10px;
+    position: relative;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    transition: all 300ms ease-out;
+    box-shadow: inset 1px 0px 6px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+#projects .project.active {
+    position: relative;
+    box-shadow: inset 1px 0px 2px rgba(0,0,0,0.5);
+    padding-left: 9px;
+}
+
+#projects .project::after{
+    content: "";
+    width: 5px;
+    height:100%;
+    position: absolute;
+    right:0;
+    top:0;
+
+    transition: 300ms ease-out;
+    background-color: cornflowerblue; 
+}
+
+#projects .project.active::after {
+    content: "";
+    width: 15px;
+    height:100%;
+    position: absolute;
+    right:0;
+    top:0;
+    background-color: cornflowerblue;
 }
 
 #projects .name{
@@ -65,17 +104,19 @@ header {
     flex: 1;
 }
 
-#projects .active {
-    background-color:antiquewhite;
-}
 
 #projects .delete{
     color: palevioletred;
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
     
+    margin-right: 2px;
     opacity: 0;
-    transition: 200ms;
+    transition: 200ms, margin 400ms ease-out;
+}
+
+#projects .active .delete{
+    margin-right: 15px;
 }
 
 #projects .project:hover .delete{
