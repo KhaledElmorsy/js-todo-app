@@ -6,12 +6,10 @@
 
 // Generate HTML template literal using the project object
 const projectTemplate = (project) => {
-    const projectStatus = project.status ? 'done' : '' ;
-
     const elementHTML =
-        `<div class="project ${projectStatus}" data-active-project="false">
-            <p class="name" data-child-id="${project.id}">${project.title}</p>
-            <div class="delete" data-child-id="${project.id}">x</div>
+        `<div class="project"  data-child-id="${project.id}" >
+            <p class="name">${project.title}</p>
+            <div class="delete">x</div>
         </div>`
     return elementHTML
 }

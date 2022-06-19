@@ -306,6 +306,9 @@ class ProjectListController extends Controller {
 
         this.previousProject = this.activetProject // Record last selected project
         this.activetProject = project // Easier than this.projectController.model
+    
+        this.view.render(this.activetProject)
+        this.listeners()
     }
 
     remove(id) {

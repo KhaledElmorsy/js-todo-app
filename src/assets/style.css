@@ -65,6 +65,10 @@ header {
     flex: 1;
 }
 
+#projects .active {
+    background-color:antiquewhite;
+}
+
 #projects .delete{
     color: palevioletred;
     cursor: pointer;
