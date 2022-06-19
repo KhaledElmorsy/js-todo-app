@@ -110,6 +110,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    overflow-y: auto;
 }
 .card .checklist-item{
     color: grey;
@@ -153,7 +154,7 @@ main {
     font-size: 2rem;
 }
 
-#todo-details .descr{
+#todo-details textarea.descr{
     font-size: 1.1rem;
     height: 20%;
     resize: none;
@@ -206,7 +207,32 @@ main {
     position: relative
 }
 
-#todo-details .done{
+#todo-details .button-container .done{
     position: absolute;
     right: 0;
+}
+
+#checklist {
+    overflow: auto;
+    height: 100%;
+}
+#checklist .checklist-item {
+    display: flex;
+    align-items: center;
+}
+
+#checklist input {
+    height: 40px;
+    width: 90%;
+    margin-right: -50px;
+}
+
+#checklist .done {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: white;
+    position: relative;
+    background-color: lightgreen;
+    border-radius: 50%;
 }
