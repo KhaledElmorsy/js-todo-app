@@ -21,20 +21,16 @@ class PopulatorView {
     getActive(list) { return list.filter(model => model.visible) }
 
     // Default rendering method. AKA Populating
-    render(activeObj = undefined) {
+    render() {
         this.container.innerHTML = ''; // Clear container
 
         const list = this.model.list;
         
         this.getActive(list).forEach( childObj => {
             const standardElement = this.standardTemplate(childObj)
-            if (activeObj && (childObj === activeObj)){
-                standardElement.classList.add('active')
-            }
-
-            this.container.append(standardElement)
-            })
-
+            this.container.appendChild(standardElement)
+        })
+        
         this.addForm = this.container.appendChild(this.addFormTemplate());  // Append 'Add "model"' element 
     }
 
@@ -42,6 +38,16 @@ class PopulatorView {
         const elementToEdit = this.container.querySelector(`[data-child-id="${id}"]`);
         this.editForm = this.editFormTemplate(this.model.list[id]);
         elementToEdit.replaceWith(this.editForm);
+    }
+
+    setActive(id) {
+        [...this.container.children].forEach(el => {
+            const elementID = el.getAttribute('data-child-id')
+            if (elementID == id) 
+                el.classList.add('active')
+            else
+                el.classList.remove('active')
+            })
     }
 }
 
