@@ -99,11 +99,35 @@ main {
 
     display: flex;
     flex-direction: column;
-    gap:20px;
 }
 
 .card .title{
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card .descr {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+
+    line-height: 1.1em;
+    height: 3.3em;
+}
+
+.card .descr:not(textarea){
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card .checklist-title {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
 }
 
 .card .checklist-container{
@@ -112,10 +136,13 @@ main {
     gap: 5px;
     overflow-y: auto;
 }
+
 .card .checklist-item{
     color: grey;
     font-size: 0.9rem;
-
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .card .button-container{
