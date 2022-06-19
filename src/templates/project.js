@@ -11,7 +11,7 @@ const todoElement =  todoObj => {
     const elementHTML = 
         `<div class="card ${statusToClass(todoObj,'done')}" data-child-id="${todoObj.id}">
             <h2 class="title">${todoObj.title}</h2>
-            <p class="desc">${todoObj.descr}</p>
+            <p class="descr">${todoObj.descr}</p>
             <h4 class="checklist-title">Tasks</h4>
             <div class="checklist-container">
                     ${getActive(todoObj.list).map(item => 
@@ -34,7 +34,7 @@ const addTodoForm = () => {
     const elementHTML  =  
         `<form id="new-todo" class="card">
             <input required class="title" name="title" placeholder="New Todo">
-            <textarea class="desc" name="desc" placeholder="Description"></textarea>
+            <textarea class="descr" name="descr" placeholder="Description"></textarea>
             <h4 class="checklist-title">Tasks</h4>
             <div class="checklist-container">
                 <input name ="checklist" class="checklist-input">
@@ -55,7 +55,7 @@ const editTodoForm = (todoObj) => {
     const elementHTML  =  
         `<form class="edit-form card">
             <input required class="title" name="title" value="${todoObj.title}">
-            <textarea class="desc" name="descr">${todoObj.descr}</textarea>
+            <textarea class="descr" name="descr">${todoObj.descr}</textarea>
             <h4 class="checklist-title">Tasks</h4>
             <div class="checklist-container">
                     <input name ="list" class="checklist-input" value="${activeList[0]? activeList[0].descr:""}">
