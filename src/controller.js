@@ -338,22 +338,32 @@ class ProjectListController extends Controller {
     edit(id) {
         super.update() // Avoids multiple concurrent editing forms. Doesn't save changes.
         this.view.editMode(id);
+        const titleInput = this.view.editForm['title']
+        titleInput.focus();
+        // Put cursor at the end
+        const tempvalue = titleInput.value
+        titleInput.value = '';
+        titleInput.value = tempvalue;
 
         const project = this.model.list[id]
         const originalTitle = project.title // Save original incase view updates while form's empty
 
-        this.view.editForm['title'].addEventListener('input', () => {
-            const newTitle = this.view.editForm['title'].value
+        titleInput.addEventListener('input', () => {
+            const newTitle = titleInput.value
             if (newTitle)
                 project.title = newTitle
             else
                 project.title = originalTitle // If field's empty, keep the original title in the model
         })
-        this.view.editForm.addEventListener('submit', (event) => {
+
+        const finishEdit = event => {
             event.preventDefault();
             super.update();
             this.select(id);
-        })
+        }
+
+        this.view.editForm.addEventListener('focusout', finishEdit)
+        this.view.editForm.addEventListener('submit', finishEdit)
     }
 
     listeners() {
