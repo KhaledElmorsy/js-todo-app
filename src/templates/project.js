@@ -16,7 +16,10 @@ const todoElement =  todoObj => {
             <div class="checklist-container">
                     ${getActive(todoObj.list).map(item => 
                         `<li class="checklist-item ${statusToClass(item,'done')}">${item.descr}</li>`
-                    ).join('')}
+                    ).slice(0,3).join('')}
+                    
+                    ${(getActive(todoObj.list).length > 3)? 
+                        '<div class="more-items-inside"></div>':''}
             </div>
             <div class="button-container">
                 <div class="done button">Done</div>
