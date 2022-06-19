@@ -314,9 +314,19 @@ class ProjectListController extends Controller {
     remove(id) {
         super.remove(id)
 
-        // If active project is deleted, select previous project
-        if (id === this.activetProject.id) this.select(this.previousProject.id)
-    }
+        // We need to reselect our project since update() that's called in
+        // super.remove() refreshes the view. 
+        // Also, we might have removed the currently selected project so we need
+        // to select a different one.
+        if (id === this.activetProject.id){ // If we removed the active project
+            if (this.previousProject.visible)        // Check if the previous project is visible
+                this.select(this.previousProject.id) // And select it (feels better than going to the top)
+            else
+                this.select(this.getVisible()[0].id) // Or select the first visible project if it isn't
+        } else {
+            this.select(this.activetProject.id)  // Reselect the active project if it wasn't the one removed
+        }                                        
+    }                                            
 
     edit(id) {
         super.update() // Avoids multiple concurrent editing forms. Doesn't save changes.
