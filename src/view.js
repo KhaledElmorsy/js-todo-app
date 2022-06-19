@@ -21,13 +21,19 @@ class PopulatorView {
     getActive(list) { return list.filter(model => model.visible) }
 
     // Default rendering method. AKA Populating
-    render() {
+    render(activeObj = undefined) {
         this.container.innerHTML = ''; // Clear container
 
         const list = this.model.list;
+        
+        this.getActive(list).forEach( childObj => {
+            const standardElement = this.standardTemplate(childObj)
+            if (activeObj && (childObj === activeObj)){
+                standardElement.classList.add('active')
+            }
 
-        this.getActive(list).forEach(childObj =>
-            this.container.append(this.standardTemplate(childObj)))  // Append Elements
+            this.container.append(standardElement)
+            })
 
         this.form = this.container.appendChild(this.formTemplate());  // Append 'Add "model"' element 
     }
