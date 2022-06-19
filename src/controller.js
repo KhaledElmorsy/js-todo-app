@@ -265,7 +265,7 @@ class ProjectController extends Controller {
         this.view.form.addEventListener('submit', this.add.bind(this))
         setListeners(this, container, '#reset-todo-inputs', 'click', this.resetInput)
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
-        setListeners(this, container, '.done.button', 'click', (e) => {this.toggle(getID(e))})
+        setListeners(this, container, '.done-toggle', 'click', (e) => {this.toggle(getID(e))})
         setListeners(this, container, '.card:not(#new-todo, button)', 'dblclick', (e) => this.edit(getID(e)))
         setListeners(this, container, '.card:not(#new-todo, button)', 'click', (e) => {
             if (e.target === e.currentTarget)
