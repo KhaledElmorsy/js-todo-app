@@ -65,9 +65,24 @@ class TodoView {
 
 }
 
+class NewAppView {
+    constructor(){
+        this.standardTemplate = templates('Project','empty');
+        this.container = containers['Project'];
+        this.render();
+    }
+
+    render() {
+        this.container.innerHTML = '';
+        this.standardElement = this.standardTemplate()
+        this.container.appendChild(this.standardElement)
+    }
+}
+
 const views = {
     populator: PopulatorView,
-    todo: TodoView
+    todo: TodoView,
+    new: NewAppView,
 }
 
 export default views

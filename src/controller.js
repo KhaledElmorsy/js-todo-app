@@ -285,8 +285,7 @@ class ProjectListController extends Controller {
         super.update();
 
         // Get enabled projects and select the first one by default 
-        const visibleProjects = this.getVisible()
-        if (visibleProjects.length) this.select(visibleProjects[0].id)
+        this.selectDefault();
     }
 
     add(event) {
@@ -311,6 +310,15 @@ class ProjectListController extends Controller {
         this.listeners()
     }
 
+    selectDefault() {
+        const visibleProjects = super.getVisible();
+        if (visibleProjects.length) {
+            this.select(visibleProjects[0].id)
+        } else {
+            this.emptyView = new view.new()
+        }
+    }
+
     remove(id) {
         super.remove(id)
 
@@ -319,10 +327,10 @@ class ProjectListController extends Controller {
         // Also, we might have removed the currently selected project so we need
         // to select a different one.
         if (id === this.activetProject.id){ // If we removed the active project
-            if (this.previousProject.visible)        // Check if the previous project is visible
+            if (this.previousProject?.visible)        // Check if the previous project is visible
                 this.select(this.previousProject.id) // And select it (feels better than going to the top)
             else
-                this.select(this.getVisible()[0].id) // Or select the first visible project if it isn't
+                this.selectDefault() // Or select the first visible project if it isn't
         } else {
             this.select(this.activetProject.id)  // Reselect the active project if it wasn't the one removed
         }                                        

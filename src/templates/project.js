@@ -70,10 +70,17 @@ const editTodoForm = (todoObj) => {
     return elementHTML
 }
 
+const emptyProjects = () => {
+    const elementHTML =
+         `<div id="new-app">Add a new project</div>`
+    return elementHTML
+}
+
 const projectTemplates = {
     add: addTodoForm,
     standard: todoElement,
-    edit: editTodoForm
+    edit: editTodoForm,
+    empty: emptyProjects
 }
 
 export default projectTemplates
