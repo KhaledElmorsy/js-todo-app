@@ -82,7 +82,7 @@ header {
 
 #projects .project::after{
     content: "";
-    width: 10px;
+    width: 6px;
     height:100%;
     position: absolute;
     right:0;
@@ -103,6 +103,20 @@ header {
     background-color: cornflowerblue;
 }
 
+#projects .project:hover{
+    background-color: var(--light-blue);
+}
+
+#projects .project:not(.active):hover::after{
+    content: "";
+    width: 12px;
+    height:100%;
+    position: absolute;
+    right:0;
+    top:0;
+    background-color: cornflowerblue;
+}
+
 #projects .name{
     line-height: 2rem;
     flex: 1;
@@ -114,14 +128,13 @@ header {
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
     
-    margin-right: 7px;
+    margin-right: 10px;
     opacity: 0;
     transition: 200ms, margin 400ms ease-out;
 }
 
 #projects .active .delete{
     color: white;
-    margin-right: 7px;
 }
 
 #projects .project:hover .delete{
@@ -167,13 +180,25 @@ main {
 }
 
 .card {
+    position: relative;
     box-sizing: border-box;
     padding: 20px 30px;
     height: 300px;
-    background-color: bisque;
+    background-color: white;
+    box-shadow: 2px 2px 9px rgba(0,0,0,0.5);
 
     display: flex;
     flex-direction: column;
+}
+
+.card::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width:10px;
+    height: 100%;
+    background-color: cornflowerblue;
 }
 
 .card .title{
