@@ -131,6 +131,31 @@ header {
     opacity: 1;
 }
 
+#projects .edit-form input{
+    color: white;
+    background-color: cornflowerblue;
+    font-style: italic;
+}
+
+#projects input {
+    padding: 5px 10px;
+    box-sizing: border-box;
+    appearance: none;
+    height: 60px;
+    width: 100%;
+
+    color: rgb(160, 160, 160);
+    box-shadow: inset 1px 0px 4px rgba(0,0,0,0.5);
+    font-size: 0.9rem;
+    outline: none;
+    border: none;
+}
+
+#projects input::placeholder {
+    font-style: italic;
+    color: rgb(196, 193, 193);
+  }
+
 main {
     overflow: auto;
     padding: 30px 30px;
