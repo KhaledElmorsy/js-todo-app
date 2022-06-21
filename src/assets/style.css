@@ -12,7 +12,7 @@ body {
     width: 100vw;
 
     display: grid;
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 260px 1fr;
     grid-template-rows: 100px 1fr;
     grid-template-areas: "header header"
                          "sidebar main";
@@ -45,15 +45,12 @@ header {
 #sidebar {
     overflow: auto;
     grid-area: sidebar;
-    padding: 15px 20px;
     box-shadow: 0 0 8px rgba(0,0,0,0.5);
 }
 
 #projects {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-
 }
 
 #projects .project{
@@ -66,20 +63,25 @@ header {
     align-items: center;
     justify-content: space-between;
 
+    color: rgb(100, 100, 100);
     transition: all 300ms ease-out;
-    box-shadow: inset 1px 0px 6px rgba(0,0,0,0.5);
+    background-color: white;
+    box-shadow: inset 1px 0px 4px rgba(0,0,0,0.3);
+    outline: solid 0.5px rgb(213, 213, 213);
     cursor: pointer;
 }
 
 #projects .project.active {
+    z-index: 1;
+    color: white;
     position: relative;
-    box-shadow: inset 1px 0px 2px rgba(0,0,0,0.5);
     padding-left: 9px;
+    box-shadow: inset 1px 0px 2px rgba(0,0,0,0.5);
 }
 
 #projects .project::after{
     content: "";
-    width: 5px;
+    width: 10px;
     height:100%;
     position: absolute;
     right:0;
@@ -90,8 +92,9 @@ header {
 }
 
 #projects .project.active::after {
+    z-index: -1;
     content: "";
-    width: 15px;
+    width: 100%;
     height:100%;
     position: absolute;
     right:0;
@@ -110,13 +113,14 @@ header {
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
     
-    margin-right: 2px;
+    margin-right: 7px;
     opacity: 0;
     transition: 200ms, margin 400ms ease-out;
 }
 
 #projects .active .delete{
-    margin-right: 15px;
+    color: white;
+    margin-right: 7px;
 }
 
 #projects .project:hover .delete{
