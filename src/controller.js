@@ -161,10 +161,16 @@ class TodoController extends Controller {
         this.model[modelProperty] = input.value
     }
 
+    remove() {
+        this.projectController.remove(this.model.id);
+        this.close();
+    }
+
     listeners(){
         this.view.form.addEventListener('submit',()=>this.close())
         setListeners(this, this.view.form, 'input,textarea', 'input', this.edit)
         setListeners(this, this.view.container, '#todo-background', 'click', this.clickOut)
+        setListeners(this, this.view.form, '.delete', 'click', this.remove)
     }
 }
 
