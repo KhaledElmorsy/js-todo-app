@@ -301,11 +301,15 @@ button {
     user-select: none;
 }
 
-.card .done-toggle{
+.button:hover{
+    background-color: rgb(90, 131, 207);
+}
+
+.button.done-toggle{
     background-color: cornflowerblue;
 }
 
-.card .done-toggle:hover{
+.button.done-toggle:hover{
     background-color: green;
 }
 
@@ -313,11 +317,11 @@ button {
     background-color: green;
 }
 
-.card .delete{
+.button.delete{
     background-color: crimson;
 }
 
-.card .delete:hover{
+.button.delete:hover{
     background-color: brown;
 }
 
@@ -329,9 +333,6 @@ button {
     background-color: grey;
 }
 
-#add-todo:hover{
-    background-color: rgb(90, 131, 207);
-}
 
 .card.done {
     background-color: rgb(237, 248, 237);
