@@ -283,7 +283,7 @@ class ProjectController extends Controller {
         setListeners(this, container, '#reset-todo-inputs', 'click', this.resetInput)
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
         setListeners(this, container, '.done-toggle', 'click', (e) => {this.toggle(getID(e))})
-        setListeners(this, container, '.card p,h2,h4,li,.checklist-container', 'dblclick', (e) => this.edit(getID(e)))
+        setListeners(this, container, '.card:not(#new-todo) :is(p,h2,h4,li)', 'dblclick', (e) => this.edit(getID(e)))
         setListeners(this, container, '.card:not(#new-todo, button)', 'click', (e) => {
             if (e.target === e.currentTarget)
                 this.select(getID(e))
