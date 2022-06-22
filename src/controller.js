@@ -256,8 +256,12 @@ class ProjectController extends Controller {
     }
 
     toggle(id) {
+        // Edit Model
         this.list[id].status = !this.list[id].status
-        super.update();
+        // Add/remove class in view depending on new status.
+        // Status: flase >> Task isn't done >> Remove 'done' = true.
+        const removeClass = this.list[id].status? false : true;
+        this.view.setClass(id, 'done', removeClass)
     }
 
     listeners() {
