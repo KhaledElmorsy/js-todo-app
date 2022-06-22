@@ -461,13 +461,16 @@ button {
 #todo-details .button-container{
     display: flex;
     justify-content: center;
-    gap: 150px;
+    gap: 110px;
     position: relative
 }
 
-#todo-details .button-container .done{
-    position: absolute;
-    right: 0;
+#todo-details .button{
+    width: 110px;
+}
+
+#todo-details .save.button{
+    color: white;
 }
 
 #checklist {
