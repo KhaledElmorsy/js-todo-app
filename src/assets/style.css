@@ -238,6 +238,8 @@ main {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    cursor: text;
 }
 
 .card .descr:empty::after{
