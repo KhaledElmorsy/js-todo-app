@@ -267,6 +267,7 @@ main {
     text-overflow: ellipsis;
     white-space: nowrap;
     list-style: square; 
+    width: fit-content;
     
     cursor: text;
 }
