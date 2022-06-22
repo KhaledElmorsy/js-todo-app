@@ -282,6 +282,56 @@ main {
 
 }
 
+button {
+    appearance: none;
+    border: none;
+}
+
+.card .button{
+    box-sizing: border-box;
+    padding: 5px;
+    font-size: 0.9rem;
+    width: 80px;
+    border-radius: 6px;
+    text-align: center;
+    color: white;
+    background-color: cornflowerblue;
+    transition: 300ms ease-in-out;
+    cursor: pointer;
+}
+
+.card .done-toggle{
+    background-color: cornflowerblue;
+}
+
+.card .done-toggle:hover{
+    background-color: green;
+}
+
+.card.done .done-toggle{
+    background-color: green;
+}
+
+.card .delete{
+    background-color: crimson;
+}
+
+.card .delete:hover{
+    background-color: brown;
+}
+
+#reset-todo-inputs{
+    background-color: rgb(170, 170, 170);
+}
+
+#reset-todo-inputs:hover{
+    background-color: grey;
+}
+
+#add-todo:hover{
+    background-color: rgb(90, 131, 207);
+}
+
 .card.done {
     outline: green 4px solid;
 }
