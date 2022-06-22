@@ -17,7 +17,6 @@ const standardTodoDetails = (todoObj) => {
                 <div id="checklist"></div>
             </div>
             <div class="dates">
-                <h3>Dates</h3>
                 <div class="date-container">
                     <p class="date-type">Start Date</p>
                     <input type="date" name="startDate" value="${todoObj.startDate || ''}">
