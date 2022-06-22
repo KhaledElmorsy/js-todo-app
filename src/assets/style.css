@@ -260,6 +260,9 @@ main {
     flex-direction: column;
     gap: 5px;
     overflow-y: auto;
+}
+
+.card:not(#new-todo) .checklist-container{
     pointer-events: none;
 }
 
