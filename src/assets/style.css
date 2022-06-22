@@ -207,26 +207,37 @@ main {
 
 .card .title{
     font-size: 1.3rem;
+    width: fit-content;
     margin-bottom: 5px;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
 
-.card .descr {
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-
-    line-height: 1.1em;
-    height: 3.3em;
-}
-
-.card .descr:not(textarea){
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.card .descr{
+    margin-bottom: 10px;
+    width: fit-content;
+
+    font-size: 1rem;
+    line-height: 1em;
+    height: 2em;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card .descr:empty::after{
+    content: 'Description';
+    cursor: text;
+    font-style:italic;
+    color:rgb(160, 160, 160)
 }
 
 .card .checklist-title {
