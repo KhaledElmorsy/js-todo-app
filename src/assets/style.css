@@ -393,10 +393,17 @@ button {
     background-color: white;
     height: 60vh;
     width: 70vw;
+
+    transition: 300ms;
 }
 
 #todo-details.done{
     background-color: var(--lighter-green);
+}
+
+#todo-details :is(input,textarea){
+    transition-duration: 300ms;
+    background-color: white;
 }
 
 #todo-details.done :is(input,textarea){
