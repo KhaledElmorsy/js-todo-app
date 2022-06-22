@@ -9,7 +9,7 @@ const standardTodoDetails = (todoObj) => {
 
     const elementHTML =
     `<div id="todo-background">
-        <form id="todo-details">
+        <form id="todo-details" class="${statusToClass(todoObj,'done')}">
             <input required class="title" name="title" value="${todoObj.title}">
             <textarea class="descr" name="descr">${todoObj.descr}</textarea>
             <div class="checklist-container">
