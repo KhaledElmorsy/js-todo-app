@@ -262,7 +262,7 @@ main {
     overflow-y: auto;
 }
 
-.card:not(#new-todo) .checklist-container{
+.card:not(#new-todo,.edit-form) .checklist-container{
     pointer-events: none;
 }
 
