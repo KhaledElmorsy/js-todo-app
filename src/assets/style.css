@@ -258,6 +258,20 @@ main {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    list-style: square; 
+}
+
+.card .checklist-container:empty{
+    width: fit-content;
+}
+
+.card .checklist-container:empty::after {
+    margin-top: 10px;
+    content: "Add Tasks";
+    font-style: italic;
+    color:rgb(160, 160, 160);
+    font-size: 0.8rem;
+    cursor: text;
 }
 
 .card .button-container{
