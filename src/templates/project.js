@@ -13,14 +13,16 @@ const todoElement =  todoObj => {
             <h2 class="title">${todoObj.title}</h2>
             <p class="descr">${todoObj.descr}</p>
             <h4 class="checklist-title">Tasks</h4>
-            <div class="checklist-container">
-                    ${getActive(todoObj.list).map(item => 
-                        `<li class="checklist-item ${statusToClass(item,'done')}">${item.descr}</li>`
-                    ).slice(0,3).join('')}
-
-                    ${(getActive(todoObj.list).length > 3)? 
-                        '<div class="more-items-inside"></div>':''}
-            </div>
+            <div class="checklist-container">${
+                ( // Item List > Filter inactive > Map to template string > Slice First 3 > Remove commas
+                    getActive(todoObj.list).map(item => 
+                    `<li class="checklist-item ${statusToClass(item,'done')}">${item.descr}</li>`
+                    ).slice(0,3).join('')
+                ) + (
+                    (getActive(todoObj.list).length > 3)? 
+                    '<div class="more-items-inside"></div>' : ''
+                )
+            }</div>
             <div class="button-container">
                 <div class="done-toggle button">Done</div>
                 <div class="delete button">Delete</div>
