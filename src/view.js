@@ -78,6 +78,9 @@ class TodoView {
         this.container.removeChild(this.standardElement)
     }
 
+    setClass(className, remove = false) {
+        this.form.classList[(remove? 'remove' : 'add')](className)
+    }
 }
 
 class NewAppView {
