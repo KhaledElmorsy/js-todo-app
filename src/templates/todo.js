@@ -1,4 +1,4 @@
-import { statusToClass, getActive } from "./helpers"
+import { statusToClass } from "./helpers"
 /**
  * Template for the element that shows the Todo item in more detail.
  * Is loaded by the view when you click the todo item.
