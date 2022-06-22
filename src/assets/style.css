@@ -197,6 +197,7 @@ main {
     flex-direction: column;
 
     transition: 300ms;
+    cursor: pointer;
 }
 
 .card::after{
@@ -220,6 +221,8 @@ main {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    cursor: text;
 }
 
 .card .descr{
@@ -247,6 +250,7 @@ main {
 .card .checklist-title {
     font-size: 0.9rem;
     margin-bottom: 5px;
+    cursor: text;
 }
 
 .card .checklist-container{
@@ -263,6 +267,8 @@ main {
     text-overflow: ellipsis;
     white-space: nowrap;
     list-style: square; 
+    
+    cursor: text;
 }
 
 .card .checklist-container:empty{
