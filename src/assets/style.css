@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
 
 :root {
-    font-family: 'Overpass',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Arial,'Overpass',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 20px;
     font-weight: 300;
     --light-blue: rgb(239, 242, 250);
@@ -363,6 +363,7 @@ button {
 }
 
 #todo-background{
+    z-index: 1;
     height: 100vh;
     width: 100vw;
     background-color: rgba(0,0,0,0.5);
@@ -377,38 +378,48 @@ button {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background-color: aliceblue;
+    background-color: white;
     height: 60vh;
     width: 70vw;
 }
 
 #todo-details .title{
     font-size: 2rem;
+    padding-left: 10px;
 }
 
 #todo-details textarea.descr{
+    padding-left: 10px;
+    font-style: normal;
     font-size: 1.1rem;
     height: 20%;
     resize: none;
-    background-color: aqua;
+}
 
+#todo-details input,textarea{
+    appearance: none;
+    color: rgb(100, 100, 100);
+    outline: none !important;
+    border-radius: 5px;
+    border: 0.5px rgb(180, 180, 180) solid;
 }
 
 #todo-details #more-details{
     height: 50%;
     display: flex;
     flex:1;
-    background-color: burlywood;
+}
 
+#todo-details h3{
+    font-size: 1rem;
 }
 
 #todo-details .checklist-container{
     font-size: 1.2rem;
-    width: 60%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: beige;
 }
 
 #todo-details .checklist-container ul{
@@ -426,10 +437,24 @@ button {
 #todo-details .dates{
     flex:1;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    gap: 60px;
     align-items: center;
-    background-color: beige;
+    justify-content: center;
+}
+
+#todo-details .date-container{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#todo-details .date-container input{
+    font-size: 1rem;
+}
+
+#todo-details .date-type{
+    text-align: center;
 }
 
 #todo-details .button-container{
@@ -454,8 +479,9 @@ button {
 }
 
 #checklist input {
+    box-sizing: border-box;
+    width:100%;
     height: 40px;
-    width: 90%;
     margin-right: -50px;
 }
 
