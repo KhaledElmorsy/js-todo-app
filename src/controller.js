@@ -306,7 +306,7 @@ class ProjectListController extends Controller {
         this.previousProject = this.activetProject // Record last selected project
         this.activetProject = project // Easier than this.projectController.model
     
-        this.view.setActive(id);
+        this.view.setClass(id,'active',false,true);
     }
 
     selectDefault() {

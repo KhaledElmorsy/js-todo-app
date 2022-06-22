@@ -40,13 +40,22 @@ class PopulatorView {
         elementToEdit.replaceWith(this.editForm);
     }
 
-    setActive(id) {
+    /**
+     * Add or remove an HTML class to the element representing the child object.
+     * It's also possible to set the class to the specific child exclusively by 
+     * removing it from all other children.
+     * @param {number} id - The ID of the child model object
+     * @param {String} className- The class to be added/removed 
+     * @param {Boolean} remove - True: Remove class. False: Add class. (Default: False) 
+     * @param {Boolean} exclusive - True: Remove class from all other children. (Default: False)
+     */
+    setClass(id, className, remove = false, exclusive = false) {
         [...this.container.children].forEach(el => {
             const elementID = el.getAttribute('data-child-id')
             if (elementID == id) 
-                el.classList.add('active')
+                el.classList[(remove? 'remove' : 'add')](className)
             else
-                el.classList.remove('active')
+                if (exclusive) el.classList.remove(className)
             })
     }
 }
