@@ -12,21 +12,19 @@ const standardTodoDetails = (todoObj) => {
         <form id="todo-details">
             <input required class="title" name="title" value="${todoObj.title}">
             <textarea class="descr" name="descr">${todoObj.descr}</textarea>
-            <div id="more-details">
-                <div class="checklist-container">
-                    <h3>Tasks</h3>
-                    <div id="checklist"></div>
+            <div class="checklist-container">
+                <h3>Tasks</h3>
+                <div id="checklist"></div>
+            </div>
+            <div class="dates">
+                <h3>Dates</h3>
+                <div class="date-container">
+                    <p class="date-type">Start Date</p>
+                    <input type="date" name="startDate" value="${todoObj.startDate || ''}">
                 </div>
-                <div class="dates">
-                    <h3>Dates</h3>
-                    <div class="date-container">
-                        <p class="date-type">Start Date</p>
-                        <input type="date" name="startDate" value="${todoObj.startDate || ''}">
-                    </div>
-                    <div class="date-container">
-                        <p class="date-type">End Date</p>
-                        <input type="date" name="endDate" value="${todoObj.endDate || ''}">
-                    </div>
+                <div class="date-container">
+                    <p class="date-type">End Date</p>
+                    <input type="date" name="endDate" value="${todoObj.endDate || ''}">
                 </div>
             </div>
             <div class="button-container">
