@@ -423,6 +423,11 @@ button {
     gap: 10px;
 }
 
+#checklist {
+    max-height: 10rem;
+    overflow: hidden;
+}
+
 #todo-details .checklist-container ul{
     display: flex;
     flex-direction: column;
@@ -444,7 +449,6 @@ button {
 }
 
 #todo-details .date-container{
-    margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
