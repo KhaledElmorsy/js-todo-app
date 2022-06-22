@@ -166,11 +166,18 @@ class TodoController extends Controller {
         this.close();
     }
 
+    toggle() {
+        this.model.status = !this.model.status;
+        const removeClass = this.model.status? false : true;
+        this.view.setClass('done',removeClass)
+    }
+
     listeners(){
         this.view.form.addEventListener('submit',()=>this.close())
         setListeners(this, this.view.form, 'input,textarea', 'input', this.edit)
         setListeners(this, this.view.container, '#todo-background', 'click', this.clickOut)
         setListeners(this, this.view.form, '.delete', 'click', this.remove)
+        setListeners(this, this.view.form, '.done-toggle', 'click', this.toggle)
     }
 }
 
