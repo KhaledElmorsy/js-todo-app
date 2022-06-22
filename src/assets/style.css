@@ -5,6 +5,8 @@
     font-size: 20px;
     font-weight: 300;
     --light-blue: rgb(239, 242, 250);
+    --light-green: rgb(237, 248, 237);
+    --lighter-green: hsl(120, 44%, 98%);
 }
 
 *{
@@ -335,7 +337,7 @@ button {
 
 
 .card.done {
-    background-color: rgb(237, 248, 237);
+    background-color: var(--light-green);
 }
 
 .card.done .title {
@@ -382,6 +384,14 @@ button {
     background-color: white;
     height: 60vh;
     width: 70vw;
+}
+
+#todo-details.done{
+    background-color: var(--lighter-green);
+}
+
+#todo-details.done :is(input,textarea){
+    background-color: var(--light-green);
 }
 
 #todo-details .title{
@@ -467,6 +477,10 @@ button {
     justify-content: center;
     gap: 110px;
     position: relative
+}
+
+#todo-details.done .done-toggle{
+    background-color: green;
 }
 
 #todo-details .button{
