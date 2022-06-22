@@ -133,6 +133,7 @@ class ChecklistController extends Controller{
         setListeners(this, container, '.checklist-item', 'input', this.edit)
         setListeners(this, container, '#new-checklist-item', 'input', this.add)
         setListeners(this, container, '.delete', 'click', (e)=>this.remove(getID(e)))
+        setListeners(this, container, '.done-toggle', 'click', (e) => super.toggle(getID(e)))
     }
 }
 
