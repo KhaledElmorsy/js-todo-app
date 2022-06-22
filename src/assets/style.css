@@ -333,7 +333,12 @@ button {
 }
 
 .card.done {
-    outline: green 4px solid;
+    background-color: rgb(237, 248, 237);
+}
+
+.card.done .title {
+    text-decoration: line-through;
+    color:rgb(80, 80, 80)
 }
 
 #todo-background{
