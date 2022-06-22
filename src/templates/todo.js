@@ -27,9 +27,9 @@ const standardTodoDetails = (todoObj) => {
                 </div>
             </div>
             <div class="button-container">
-                <input class="button" type="submit" name="save" value="Save">
-                <div class="delete button">Delete</div>
                 <div class="done-toggle button">Done</div>
+                <input class="save button" type="submit" name="save" value="Save">
+                <div class="delete button">Delete</div>
             </div>
         </form>
     </div>`
