@@ -76,6 +76,15 @@ class Controller {
         this.update();
     }
 
+    toggle(id) {
+        // Edit Model
+        this.list[id].status = !this.list[id].status
+        // Add/remove class in view depending on new status.
+        // Status: flase >> child isn't done >> Remove 'done' = true.
+        const removeClass = this.list[id].status? false : true;
+        this.view.setClass(id, 'done', removeClass)
+    }
+    
     /**
      * Filters list of child objects and only keep ones where visible = true.
      * @returns {Array} - Array of child objects
@@ -268,21 +277,12 @@ class ProjectController extends Controller {
         [...formInputs].forEach(input => input.value = '')
     }
 
-    toggle(id) {
-        // Edit Model
-        this.list[id].status = !this.list[id].status
-        // Add/remove class in view depending on new status.
-        // Status: flase >> Task isn't done >> Remove 'done' = true.
-        const removeClass = this.list[id].status? false : true;
-        this.view.setClass(id, 'done', removeClass)
-    }
-
     listeners() {
         const container = this.view.container
         this.view.addForm.addEventListener('submit', this.add.bind(this))
         setListeners(this, container, '#reset-todo-inputs', 'click', this.resetInput)
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
-        setListeners(this, container, '.done-toggle', 'click', (e) => {this.toggle(getID(e))})
+        setListeners(this, container, '.done-toggle', 'click', (e) => super.toggle(getID(e)))
         setListeners(this, container, '.card:not(#new-todo) :is(p,h2,h4,li)', 'dblclick', (e) => this.edit(getID(e)))
         setListeners(this, container, '.card:not(#new-todo, button)', 'click', (e) => {
             if (e.target === e.currentTarget)
