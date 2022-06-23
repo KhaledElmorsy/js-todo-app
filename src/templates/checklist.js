@@ -13,8 +13,10 @@ import { statusToClass } from "./helpers"
     const elementHTML =
         `<div class="checklist-item ${statusToClass(item,'done')}" data-child-id="${item.id}">
             <input class="descr" value="${item.descr}">
-            <div class="done-toggle">✓</div>
-            <div class="delete">x</div>
+            <div class="item-button-container">    
+                <div class="item-button done-toggle">✓</div>
+                <div class="item-button delete">x</div>
+            </div>
         </div>`
     return elementHTML
 }
