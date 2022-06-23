@@ -25,8 +25,8 @@ const convertElement = elementHTML => {
     return tempWrapper                       // This is a failsafe, not a feature. 
 }
 
-// Consilidate template function in an object to enable the command pattern below
-const templateFuncs = {
+// Consilidate template functions in an object to enable the command pattern below
+const viewTemplateModules = {
     Todo: todoTemplates,
     Project: projectTemplates,
     Checklist: checklistTemplates,
@@ -36,7 +36,7 @@ const templateFuncs = {
 
 export default function templates(view, type) {
     return function (model) {
-        const templateHTML = templateFuncs[view][type](model)
+        const templateHTML = viewTemplateModules[view][type](model)
         return convertElement(templateHTML)
     }
 }
