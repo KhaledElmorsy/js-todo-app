@@ -7,7 +7,19 @@ const containers = {
     get ProjectList() { return document.getElementById('projects')},
 }
 
-
+/**
+ * This View class handles rendering and manipulating models that contain an 
+ * array of child models [Project List > Array of projects]. 
+ * 
+ * The view handler loops through the array of child models to generate elements
+ *  and populates a specified DOM container with said elements.
+ * 
+ * Each standard element can enter 'edit mode' if called by the controller, where 
+ * it's replaced by an edit form that allows the user to quickly change model properties.
+ * 
+ * Populator views also have 'add' elements allowing the user to create a new child 
+ * model (logic is handled by the controller). 
+ */
 class PopulatorView {
     constructor(model, type) {
         this.model = model;
@@ -34,6 +46,11 @@ class PopulatorView {
         this.addForm = this.container.appendChild(this.addFormTemplate());  // Append 'Add "model"' element 
     }
 
+    /**
+     * Switch the DOM element representing the child model with an 'edit form' that's  
+     * pre-filled with the model's original properties and allows the user to edit those properties.
+     * @param {number} id - ID of the child model object being edited
+     */
     editMode(id) {
         const elementToEdit = this.container.querySelector(`[data-child-id="${id}"]`);
         this.editForm = this.editFormTemplate(this.model.list[id]);
@@ -60,6 +77,11 @@ class PopulatorView {
     }
 }
 
+/**
+ * Handles the rendering and DOM manipulation for a modal that displays the details 
+ * for a specific Todo model. Can be generalized for other models that would benefit 
+ * from being rendered as a single modal.
+ */
 class TodoView {
     constructor(todo) {
         this.model = todo;
@@ -68,8 +90,11 @@ class TodoView {
     }
 
     render() {
+        // Generate and append element
         this.standardElement = this.standardTemplate(this.model) 
         this.container.appendChild(this.standardElement)
+
+        // Define reference for easier access by the controller object 
         this.form = this.standardElement.querySelector('form')
     }
 
@@ -77,11 +102,21 @@ class TodoView {
         this.container.removeChild(this.standardElement)
     }
 
+    /**
+     * Add or Remove an HTML class to the modal.
+     * @param {string} className - The class to be added to the modal's body
+     * @param {Boolean} remove - True: Remove class. False: Add class. (Default: False)
+     */
     setClass(className, remove = false) {
         this.form.classList[(remove? 'remove' : 'add')](className)
     }
 }
 
+/**
+ * When there are no projects in the proejct list, this renders a default element 
+ * in the project container that normally holds Todo cards. This view is called by 
+ * the project list controller. 
+ */
 class NewAppView {
     constructor(){
         this.emptyTemplate = templates('Project','empty');
