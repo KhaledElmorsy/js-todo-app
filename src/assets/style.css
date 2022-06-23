@@ -526,12 +526,41 @@ button {
     margin-right: -50px;
 }
 
-#checklist .done {
-    height: 30px;
-    width: 30px;
-    text-align: center;
-    color: white;
-    position: relative;
-    background-color: lightgreen;
-    border-radius: 50%;
+#checklist .done input {
+    text-decoration: line-through;
+    background-color: var(--light-green);
+}
+
+#checklist .item-button-container {
+    display: flex;
+    gap: 5px;
+    user-select: none;
+}
+
+#checklist .item-button {
+    cursor: pointer;
+    transition: 200ms ease-out;
+}
+
+#todo-details #checklist .done-toggle {
+    font-weight: 600;
+    background-color: transparent;
+    color: grey;
+}
+
+#todo-details #checklist .done-toggle:hover {
+    color: green;
+}
+
+#todo-details #checklist .done .done-toggle {
+    background-color: transparent;
+    color: green;
+}
+
+#todo-details #checklist .delete{
+    color: crimson;
+}
+
+#todo-details #checklist .delete:hover{
+    color: brown;
 }
