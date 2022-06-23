@@ -1,7 +1,7 @@
 import templates from "./templates"
 
 const containers = {
-    get Checklist() {console.log('hey'); return document.getElementById('checklist')},
+    get Checklist() { return document.getElementById('checklist')},
     get Todo() { return document.body},
     get Project() { return document.querySelector('main')},
     get ProjectList() { return document.getElementById('projects')},
@@ -74,7 +74,6 @@ class TodoView {
     }
 
     hide() {
-        console.log(this.standardElement)
         this.container.removeChild(this.standardElement)
     }
 
