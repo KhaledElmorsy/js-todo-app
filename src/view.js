@@ -84,15 +84,15 @@ class TodoView {
 
 class NewAppView {
     constructor(){
-        this.standardTemplate = templates('Project','empty');
+        this.emptyTemplate = templates('Project','empty');
         this.container = containers['Project'];
         this.render();
     }
 
     render() {
         this.container.innerHTML = '';
-        this.standardElement = this.standardTemplate()
-        this.container.appendChild(this.standardElement)
+        this.element = this.emptyTemplate()
+        this.container.appendChild(this.element)
     }
 }
 
