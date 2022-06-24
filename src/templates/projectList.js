@@ -7,7 +7,9 @@
  * There are also templates for adding new projects and editing existing projects. 
  * 
  * {@link projectListTemplates Visit Module}
- * @namespace viewTemplates.projectListTemplates
+ * @namespace 
+ * @memberof viewTemplates
+ * 
  * @property {Function} standard - Create HTML for standard project element {@link projectListTemplates.standard see here}
  * @property {Function} add - Create HTML for a form element for adding a new project {@link projectListTemplates.add see here}
  * @property {Function} edit - Create HTML for form element for editing an existing project {@link projectListTemplates.edit see here}
@@ -21,7 +23,10 @@ const projectListTemplates = {
 
     /**
      * Generate HTML for the standard element that displays a project's information and contains relevant buttons and attributes
+     * 
+     * {@link projectListTemplates.standard View}
      * @memberof viewTemplates.projectListTemplates
+     * 
      * @param {Project} project - Project model
      * @returns {string} Element Outer HTML
      */
@@ -47,7 +52,10 @@ const projectListTemplates = {
 
     /**
      * Generate HTML for a form element for editing an existing project
+     * 
+     * {@link projectListTemplates.edit View}
      * @memberof viewTemplates.projectListTemplates
+     * 
      * @param {Project} projectObj Project model to pull data from and fill the form
      * @returns {string} Element Outer HTML
      */

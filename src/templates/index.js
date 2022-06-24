@@ -29,8 +29,12 @@ const convertElement = elementHTML => {
 }
 
 /** 
- * @callback
- * 
+ * Consilidate template modules into a dictionary to allow view constructors to reference them with the {@link templates command pattern} below.
+ * @namespace 
+ * @property {Object} Todo - Todo View Templates {@link todoTemplates see here}
+ * @property {Object} Project - Project View Templates {@link projectTemplates see here}
+ * @property {Object} Checklist - Checklist View Templates {@link checklistTemplates see here}
+ * @property {Object} ProjectList - Project List View Templates {@link projectListTemplates see here}
  */
 const viewTemplates = {
     Todo: todoTemplates,

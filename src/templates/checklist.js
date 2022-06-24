@@ -8,7 +8,9 @@ import { statusToClass } from "./helpers"
 * Checklist items can be created by the user through an 'Add Checklist Item' form element.
 * 
 * {@link checklistTemplates Visit Module}
-* @namespace checklistTemplates
+* @namespace
+* @memberof viewTemplates
+
 * @property {Function} standard - Create 'Standard Checklist Item' element HTML {@link checklistTemplates.standard see here}
 * @property {Function} add - Create 'Add Checklist Item' form element HTML {@link checklistTemplates.add see here}
 */
@@ -22,9 +24,9 @@ const checklistTemplates = {
      * Generate HTML for a form that lets users add checklsit items
      * 
      * {@link checklistTemplates.add View}
+     * @memberof viewTemplates.checklistTemplates
      * 
      * @returns {string} Element Outer HTML
-     * 
      */
     add() {
         const elementHTML =
@@ -36,6 +38,8 @@ const checklistTemplates = {
    * Generate HTML for the standard view element that displays a checklist item
    * 
    * {@link checklistTemplates.standard  View } 
+   * @memberof viewTemplates.checklistTemplates
+   * 
    * @param {ChecklistItem} item Checklist item model object
    * @returns {string} Element Outer HTML
    */
