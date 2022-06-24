@@ -1,36 +1,53 @@
-/***
- * Templates for the project list view, AKA the sidebar only need to display the 
- * project names. The Project List View will iterate over its projects and
- * populate the sidebar.
+/**
+ * Templates for the project list view, AKA the sidebar.
+ *
+ * The Project List uses a populator-type View which will iterate over its 
+ * projects array and generate elements for each project.
+ * 
+ * There are also templates for adding new projects and editing existing projects. 
+ * 
+ * {@link projectListTemplates Visit Module}
+ * 
+ * @namespace projectListTemplates
+ * @property {Function} standard Create HTML for standard project element {@link projectListTemplates.standard see here}
+ * @property {Function} add Create HTML for a form element for adding a new project {@link projectListTemplates.add see here}
+ * @property {Function} edit Create HTML for form element for editing an existing project {@link projectListTemplates.edit see here}
  */
+const projectListTemplates = {
 
-// Generate HTML template literal using the project object
-const projectTemplate = (project) => {
-    const elementHTML =
-        `<div class="project"  data-child-id="${project.id}" >
+    /**
+     * Generate HTML for the standard element that displays a project's information and contains relevant buttons and attributes
+     * @param {Project} project 
+     * @returns {string} Element Outer HTML
+     */
+    standard(project) {
+        const elementHTML =
+            `<div class="project"  data-child-id="${project.id}" >
             <p class="name">${project.title}</p>
             <div class="delete">x</div>
         </div>`
-    return elementHTML
-}
+        return elementHTML
+    },
 
-// Generate HTML for the 'New Project' input field
-const addProjectTemplate = () => {
-    const elementHTML =
-        `<form id="new-project"><input required placeholder="New Project" name="name"><form>`
-    return elementHTML
-}
+    /**
+     * Generate HTML for a form element for adding a new projects
+     * @returns {string} Element Outer HTML
+     */
+    add() {
+        const elementHTML =
+            `<form id="new-project"><input required placeholder="New Project" name="name"><form>`
+        return elementHTML
+    },
 
-const editProjectForm = (projectObj) => {
-    const elementHTML =
-    `<form class="edit-form"><input required value="${projectObj.title}" name="title"><form>`
-    return elementHTML
-}
-
-const projectListTemplates = {
-    add: addProjectTemplate,
-    standard: projectTemplate,
-    edit: editProjectForm
+    /**
+     * Generate HTML for a form element for editing an existing project
+     * @returns {string} Element Outer HTML
+     */
+    edit() {
+        const elementHTML =
+            `<form class="edit-form"><input required value="${projectObj.title}" name="title"><form>`
+        return elementHTML
+    }
 }
 
 export default projectListTemplates
