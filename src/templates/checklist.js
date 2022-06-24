@@ -1,13 +1,15 @@
 import { statusToClass } from "./helpers"
-/**
- * Each todo item has a checklist that can be populated with items that
- * have their own properties and states. Checklists are rendered similar to the 
- * project list where strings are appended one after the other with an empty
- * input in the end. The only functional difference is that each element is also
- * an input to give a sense of live editing
- * 
+
+/** Checklist Item Model 
+ * @typedef {import("../model.js").ChecklistItem} ChecklistItem 
  */
 
+/**
+ * Generate HTML for an element that displays a checklist item
+ * @param {ChecklistItem} item Checklist item model object
+ * @returns {string} Element Outer HTML
+ * {@link checklistItemTemplate View}
+ */
  const checklistItemTemplate = (item) => {
 
     const elementHTML =
@@ -21,16 +23,33 @@ import { statusToClass } from "./helpers"
     return elementHTML
 }
 
-// Generate HTML for the 'New Project' input field
+/** 
+ * Generate HTML for a form that lets users add checklsit items
+ * @returns {string} Element Outer HTML
+ * {@link addchecklistItem View}
+ */
 const addchecklistItem = () => {
     const elementHTML =
         `<form id="new-checklist-item"><input required placeholder="New task" name="descr"><form>`
     return elementHTML
 }
 
-
+/**
+ * Each todo item has subtasks called checklist items which are stored in an array.
+ * Rendering cheklist items is handled by a Populator-type View which iterates over 
+ * the parent Todo model's array and generates separate elements for each checklist item.
+ * 
+ * Checklist items can be created by the user through an 'add chhecklist item' form element.
+ * 
+ * {@link checklistTemplates Visit Module}
+ * @property {Function} add - Create 'Add Checklist' form element HTML {@link addchecklistItem see here}
+ * @property {Function} standard - Create 'Standard Checklist Item' element HTML {@link checklistItemTemplate see here}
+ */
 const checklistTemplates = {
+    /** Generate 'add checklist item' element HTML */
     add: addchecklistItem,
+
+    /** Generate standard checklist item element HTML */
     standard: checklistItemTemplate,
 }
 
