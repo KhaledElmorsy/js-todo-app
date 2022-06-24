@@ -32,11 +32,7 @@ const convertElement = elementHTML => {
  * @callback
  * 
  */
-
-/** 
- * Consilidate template functions in an object to enable the command pattern below 
- */
-const viewTemplateModules = {
+const viewTemplates = {
     Todo: todoTemplates,
     Project: projectTemplates,
     Checklist: checklistTemplates,
@@ -63,7 +59,7 @@ export default function templates(view, type) {
      * @returns {Element} - HTML element
      */
     return function (model = null) {
-        const templateHTML = viewTemplateModules[view][type](model)
+        const templateHTML = viewTemplates[view][type](model)
         return convertElement(templateHTML)
     }
 }
