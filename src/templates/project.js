@@ -11,8 +11,8 @@ import { statusToClass, getVisible } from "./helpers"
  * informing the user that they need to add a new project if the project list's empty.
  * 
  * {@link projectTemplates Visit Module}
- * @namespace
- * @memberof viewTemplates
+ * @namespace ProjectTemplates
+ * @memberof Templates
  * 
  * @property {Function} add - Create 'Add Todo Form' element HTML {@link projectTemplates.add see here}
  * @property {Function} standard - Create 'Standard Todo' element HTML {@link projectTemplates.standard see here}
@@ -31,7 +31,7 @@ const projectTemplates = {
      * in the Project View.
      * 
      * {@link projectTemplates.standard View}
-     * @memberof viewTemplates.projectTemplates
+     * @memberof Templates.ProjectTemplates
      * 
      * @param {Todo} todoObj Todo model object
      * @returns {string} Element's Outer HTML
@@ -64,7 +64,7 @@ const projectTemplates = {
      * Generate HTML for the element containing forms to create and append a new todo to the project
      * 
      * {@link projectTemplates.add View}
-     * @memberof viewTemplates.projectTemplates
+     * @memberof Templates.ProjectTemplates
      * 
      * @returns {string} Element's Outer HTML
      */
@@ -91,7 +91,7 @@ const projectTemplates = {
      * Generate HTML for the element containing forms to create and append a new todo to the project
      * 
      * {@link projectTemplates.edit View}
-     * @memberof viewTemplates.projectTemplates
+     * @memberof Templates.ProjectTemplates
      * 
      * @param {Todo} todoObj Todo model object
      * @returns {string} Element's Outer HTML
@@ -120,7 +120,7 @@ const projectTemplates = {
      * Generate HTML for the element to add to the project view when there are no projects
      * 
      * {@link projectTemplates.empty View}
-     * @memberof viewTemplates.projectTemplates
+     * @memberof Templates.ProjectTemplates
      * 
      * @returns {string} Element's Outer HTML
      */

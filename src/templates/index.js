@@ -5,11 +5,10 @@ import projectListTemplates from "./projectList.js";
 
 /***
  * In this project, templates are functions that optionally receive model 
- * objects and use them to fill and return template literals (Strings of HTML).
- * Template files contain different templates relaated to a single view.
- * Open one and check them out (project.js is more intense)
+ * objects and use them to interpolate template literals and return strings of HTML.
+ * Template modules contain templates related to a specific view.
+ * Open one and check them out (project.js is intense)
  */
-
 
 /**
  * Converts template literals into HTML element objects.
@@ -30,7 +29,7 @@ const convertElement = elementHTML => {
 
 /** 
  * Consilidate template modules into a dictionary to allow view constructors to reference them with the {@link templates command pattern} below.
- * @namespace 
+ * @namespace Templates
  * @property {Object} Todo - Todo View Templates {@link todoTemplates see here}
  * @property {Object} Project - Project View Templates {@link projectTemplates see here}
  * @property {Object} Checklist - Checklist View Templates {@link checklistTemplates see here}
@@ -44,8 +43,8 @@ const viewTemplates = {
 }
 
 /**
- * Takes the view and view-element types as inputs and returns a factory function that 
- * accepts a model object and returns an HTML elements. 
+ * Takes the view and element types as inputs and returns a function that 
+ * accepts a model object and returns an HTML element. 
  * 
  * The returned function calls the appropriate template function by creating a 
  * reference to members of nested objects, similar to a command pattern.

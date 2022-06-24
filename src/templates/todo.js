@@ -5,8 +5,8 @@ import { statusToClass } from "./helpers"
  * Is rendered by the view when you click the todo item.
  * 
  * {@link todoTemplates Visit Module}
- * @namespace
- * @memberof viewTemplates
+ * @namespace TodoTemplates
+ * @memberof Templates
  * 
  * @property {Function} standard - Create Outer HTML for the standard Todo View Element {@link todoTemplates.standard see here}
  */
@@ -21,7 +21,7 @@ const todoTemplates = {
      * properties of the Todo item in more detail.
      * 
      * {@link todoTemplates.standard View}
-     * @memberof viewTemplates.todoTemplates
+     * @memberof Templates.TodoTemplates
      * 
      * @param {Todo} todoObj Todo object to fill modal values with
      * @returns {string} Element Outer HTML
