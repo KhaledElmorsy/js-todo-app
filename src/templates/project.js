@@ -1,4 +1,4 @@
-import { statusToClass, getActive } from "./helpers"
+import { statusToClass, getVisible } from "./helpers"
 
 /**
  * This module consolidates the tempaltes that are used to render the project view.
@@ -40,11 +40,11 @@ const projectTemplates = {
                 <p class="descr">${todoObj.descr}</p>
                 <h4 class="checklist-title">Tasks</h4>
                 <div class="checklist-container">${( // Item List > Filter inactive > Map to template string > Slice First 3 > Remove commas
-                    getActive(todoObj.list).map(item =>
+                    getVisible(todoObj.list).map(item =>
                         `<li class="checklist-item ${statusToClass(item, 'done')}">${item.descr}</li>`
                     ).slice(0, 3).join('')
                 ) + (
-                    (getActive(todoObj.list).length > 3) ?
+                    (getVisible(todoObj.list).length > 3) ?
                         '<div class="more-items-inside"></div>' : ''
                 )
                 }</div>
@@ -91,7 +91,7 @@ const projectTemplates = {
      * @returns {string} Element's Outer HTML
      */
     edit() {
-        const activeList = getActive(todoObj.list)
+        const activeList = getVisible(todoObj.list)
         const elementHTML =
             `<form class="edit-form card">
                 <input required class="title" name="title" value="${todoObj.title}">

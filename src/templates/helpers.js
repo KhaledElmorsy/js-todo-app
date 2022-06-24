@@ -14,6 +14,6 @@ function statusToClass(model, htmlClass) {
   * @param {Array} list - Array of child objects in the parent model
   * @returns {Array} - Filtered array
   */
- function getActive(list) { return list.filter(item => item.visible)}
+ function getVisible(list) { return list.filter(item => item.visible)}
 
- export {statusToClass, getActive}
+ export {statusToClass, getVisible}
