@@ -19,8 +19,8 @@ function statusToClass(model, htmlClass) {
  /**
   * Filters child objects based on their visibility
   * @memberof Templates.TemplateHelpers
-  * @param {Array} list - Array of child objects in the parent model
-  * @returns {DataModel[]} - Array of data model subclass objects (Project, Todo, Checklist Item)
+  * @param {DataModel[]} list - Array of model objects
+  * @returns {DataModel[]} - Filtered array of model objects
   */
  function getVisible(list) { return list.filter(item => item.visible)}
 
