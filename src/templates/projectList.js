@@ -16,6 +16,11 @@
 const projectListTemplates = {
 
     /**
+     * Project model object
+     * @typedef {import('../model.js').Project} Project
+     */
+
+    /**
      * Generate HTML for the standard element that displays a project's information and contains relevant buttons and attributes
      * @param {Project} project 
      * @returns {string} Element Outer HTML
@@ -41,9 +46,10 @@ const projectListTemplates = {
 
     /**
      * Generate HTML for a form element for editing an existing project
+     * @param {Project} projectObj Project model to pull data from and fill the form
      * @returns {string} Element Outer HTML
      */
-    edit() {
+    edit(projectObj) {
         const elementHTML =
             `<form class="edit-form"><input required value="${projectObj.title}" name="title"><form>`
         return elementHTML
