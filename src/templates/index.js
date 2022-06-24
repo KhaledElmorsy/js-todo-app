@@ -48,7 +48,10 @@ const viewTemplates = {
  * 
  * The returned function calls the appropriate template function by creating a 
  * reference to members of nested objects, similar to a command pattern.
- * @param {string} view - The template module relevant to the View object making the call
+ * 
+ * {@link templates View}
+ * 
+ * @param {string} view - The template module relevant to the View generating the elements
  * @param {string} type - Each module contains mulitple functions that can generate different
  * template literals (i.e. standard view element, add form, edit form). This input specifices
  * which function to call (i.e. standard, edit, add)
