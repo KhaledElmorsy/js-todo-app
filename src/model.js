@@ -1,3 +1,4 @@
+/**@typedef {DataModel} DataModel */
 /**
  * Main parent class for basic data objects: Projects, Todos, and Checklist Items.
  * Each instance has an ID, status flag, and visible flag.
