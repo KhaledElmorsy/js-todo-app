@@ -15,6 +15,7 @@ import projectListTemplates from "./projectList.js";
  * 
  * Note: This isn't straightforward because you can't edit an element objects outer 
  * HTML if it's not in the document, so a temporary wrapper element is used.
+ * @memberof Templates
  * @param {string} elementHTML - The outer HTML of the element being created
  * @returns {Element} - Element object 
  */
@@ -50,6 +51,7 @@ const viewTemplates = {
  * reference to members of nested objects, similar to a command pattern.
  * 
  * {@link templates View}
+ * @memberof Templates
  * 
  * @param {string} view - The template module relevant to the View generating the elements
  * @param {string} type - Each module contains mulitple functions that can generate different
