@@ -33,6 +33,7 @@ class DataModel {
     }
 }
 
+/** @typedef {ChecklistItem} ChecklistItem */
 /** 
  * Model for checklist items - subtasks for each Todo item 
  * @extends DataModel
@@ -52,7 +53,7 @@ class ChecklistItem extends DataModel {
         this.descr = descr;
     }
 }
-
+/** @typedef {Todo} Todo */
 /** 
  * Model for todo items
  * @extends DataModel
@@ -102,6 +103,7 @@ class Todo extends DataModel {
     }
 }
 
+/** @typedef {Project} Project */
 /**
  * Project Model that contains todo items
  * @extends DataModel
