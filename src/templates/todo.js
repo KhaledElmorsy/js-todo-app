@@ -6,7 +6,7 @@ import { statusToClass } from "./helpers"
  * 
  * {@link todoTemplates Visit Module}
  * @namespace todoTemplates
- * @property {Function} standard Create Outer HTML for the standard Todo View Element {@link todoTemplates.standard see here}
+ * @property {Function} standard - Create Outer HTML for the standard Todo View Element {@link todoTemplates.standard see here}
  */
 const todoTemplates = {
     /**

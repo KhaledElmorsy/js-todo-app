@@ -9,9 +9,9 @@
  * {@link projectListTemplates Visit Module}
  * 
  * @namespace projectListTemplates
- * @property {Function} standard Create HTML for standard project element {@link projectListTemplates.standard see here}
- * @property {Function} add Create HTML for a form element for adding a new project {@link projectListTemplates.add see here}
- * @property {Function} edit Create HTML for form element for editing an existing project {@link projectListTemplates.edit see here}
+ * @property {Function} standard - Create HTML for standard project element {@link projectListTemplates.standard see here}
+ * @property {Function} add - Create HTML for a form element for adding a new project {@link projectListTemplates.add see here}
+ * @property {Function} edit - Create HTML for form element for editing an existing project {@link projectListTemplates.edit see here}
  */
 const projectListTemplates = {
 
