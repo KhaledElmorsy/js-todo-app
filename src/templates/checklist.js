@@ -8,6 +8,7 @@ import { statusToClass } from "./helpers"
 * Checklist items can be created by the user through an 'Add Checklist Item' form element.
 * 
 * {@link checklistTemplates Visit Module}
+* @namespace checklistTemplates
 * @property {Function} standard - Create 'Standard Checklist Item' element HTML {@link checklistTemplates.standard see here}
 * @property {Function} add - Create 'Add Checklist Item' form element HTML {@link checklistTemplates.add see here}
 */
