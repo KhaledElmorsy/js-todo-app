@@ -96,7 +96,7 @@ const projectTemplates = {
      * @param {Todo} todoObj Todo model object
      * @returns {string} Element's Outer HTML
      */
-    edit() {
+    edit(todoObj) {
         const activeList = getVisible(todoObj.list)
         const elementHTML =
             `<form class="edit-form card">
