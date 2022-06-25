@@ -13,7 +13,7 @@ class DataModel {
      */
     constructor(id){
         /**
-         * ID of the object, also acts as its index in a parent's array. 
+         * ID of the object. Used as index in parent object's array. 
          * @type {number}
          */
         this.id = id;
@@ -25,7 +25,7 @@ class DataModel {
          */
         this.status = false;
         /**
-         * Indicates if the object should be rendered. True = render
+         * Indicates if the object should be rendered. True = render.
          *
          * When a user removes an object, it's not deleted from the parent's array, 
          * instead its visibility is set to 'false'.
@@ -161,7 +161,7 @@ const model = {
      * @property {Todo}
      * @property {Project}
      */
-    classes: {
+    classes: {  
         ChecklistItem,
         Todo,
         Project
