@@ -7,6 +7,8 @@ import templates from "./templates"
  * Built as a psuedo-dictionary using getters to select elements when called by a new view's constructor.
  * This circumvents containers that aren't in the DOM at page load (i.e. containers that are
  * elements in other yet-to-be-rendered views) 
+ * 
+ * @memberof Views~
  */
 const containers = {
     get Checklist() { return document.getElementById('checklist') },
@@ -21,7 +23,10 @@ const containers = {
  * @typedef {import("./model").Todo} Todo
  */
 
-/** Views handle drawing elements to the DOM based on data stored in a model. */
+/** 
+ * Views handle drawing elements to the DOM based on data stored in a model. 
+ * @memberof Views~
+ */
 class View {
     /**
      * @param {DataModel} model Object to render data from
@@ -75,6 +80,7 @@ class View {
  * 
  * {@link PopulatorView View}
  * @extends View 
+ * @memberof Views
  */
 class PopulatorView extends View{
     /**
@@ -180,6 +186,7 @@ class PopulatorView extends View{
  * {@link TodoView View}
  * 
  * @extends View
+ * @memberof Views
  */
 class TodoView extends View{
     /**
@@ -219,6 +226,7 @@ class TodoView extends View{
  * When there are no projects in the proejct list, this renders a default element 
  * in the project container that normally holds Todo cards. This view is called by 
  * the project list controller. 
+ * @memberof Views
  */
 class NewAppView {
     constructor() {
@@ -234,6 +242,9 @@ class NewAppView {
     }
 }
 
+/**
+ * @namespace Views
+ */
 const views = {
     populator: PopulatorView,
     todo: TodoView,
