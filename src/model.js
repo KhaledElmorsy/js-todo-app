@@ -41,7 +41,10 @@ class DataModel {
  * @typedef {ChecklistItem} ChecklistItem 
  * @ignore 
  */
-/** Model for checklist items - subtasks for each Todo item */
+/** 
+ * Model for checklist items - subtasks for each Todo item
+ * @extends DataModel
+ */
 class ChecklistItem extends DataModel {
     /**
      * Create a new checklist item
@@ -61,7 +64,10 @@ class ChecklistItem extends DataModel {
  * @typedef {Todo} Todo 
  * @ignore
  */
-/** Model for todo items */
+/** 
+ * Model for todo items 
+ * @extends DataModel
+ */
 class Todo extends DataModel {
     /**
      * Create new Todo Item
@@ -70,8 +76,7 @@ class Todo extends DataModel {
      * @param {string} descr Description of the todo with more details. Optional - Defualt = null
      * @param {string} endDate End Date of the todo item. Optional - Default = null
      * @param {string} startDate Start date of the todo item. Optional - Default = null
-     * @param {ChecklistItem[]} [list=[]]  Array of checklist items. Default = empty array.
-     * @extends DataModel
+     * @param {ChecklistItem[]} [list=[]]  Array of checklist items. Default = empty array.  
      */
     constructor(id, title, descr = null, endDate = null, startDate = null, list = null) {
         super(id);
@@ -111,7 +116,10 @@ class Todo extends DataModel {
  * @typedef {Project} Project 
  * @ignore 
  */
-/** Project Model that contains todo items */
+/** 
+ * Project Model that contains todo items 
+ * @extends DataModel
+ */
 class Project extends DataModel {
     /**
      * 
