@@ -41,10 +41,7 @@ class DataModel {
  * @typedef {ChecklistItem} ChecklistItem 
  * @ignore 
  */
-/** 
- * Model for checklist items - subtasks for each Todo item 
- * @extends DataModel
-*/
+/** Model for checklist items - subtasks for each Todo item */
 class ChecklistItem extends DataModel {
     /**
      * Create a new checklist item
@@ -64,10 +61,7 @@ class ChecklistItem extends DataModel {
  * @typedef {Todo} Todo 
  * @ignore
  */
-/** 
- * Model for todo items
- * @extends DataModel
-*/
+/** Model for todo items */
 class Todo extends DataModel {
     /**
      * Create new Todo Item
@@ -117,10 +111,7 @@ class Todo extends DataModel {
  * @typedef {Project} Project 
  * @ignore 
  */
-/**
- * Project Model that contains todo items
- * @extends DataModel
- */
+/** Project Model that contains todo items */
 class Project extends DataModel {
     /**
      * 
@@ -143,9 +134,7 @@ class Project extends DataModel {
     }
 }
 
-/**
- * Main app object containing a list of projects.
- */
+/** Main app object containing a list of projects */
 class ProjectList {
     constructor() {
         // Check Local Storage and Import
