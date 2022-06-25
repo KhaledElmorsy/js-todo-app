@@ -2,6 +2,7 @@ import templates from "./templates"
 
 /**
  * Consolidates generic containers for use by views.
+ * <br><br>
  * 
  * Built as a psuedo-dictionary using getters to select elements when called by a new view's constructor.
  * This circumvents containers that aren't in the DOM at page load (i.e. containers that are
@@ -57,16 +58,20 @@ class View {
 
 /**
  * This View class handles rendering and manipulating models that contain an 
- * array of child models [Project List > Array of projects]. 
+ * array of child models [Project List > Array of projects].
+ * <br><br>
  * 
  * The view handler loops through the array of child models to generate elements
- *  and populates a specified DOM container with said elements.
+ * and populates a specified DOM container with said elements.
+ * <br><br>
  * 
  * Each standard element can enter 'edit mode' if called by the controller, where 
  * it's replaced by an edit form that allows the user to quickly change model properties.
+ * <br><br>
  * 
  * Populator views also have 'add' elements allowing the user to create a new child 
  * model (logic is handled by the controller).
+ * <br><br>
  * 
  * {@link PopulatorView View}
  * @extends View 

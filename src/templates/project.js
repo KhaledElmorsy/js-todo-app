@@ -2,10 +2,12 @@ import { statusToClass, getVisible } from "./helpers"
 
 /**
  * This module consolidates the tempaltes that are used to render the project view.
- *
+ * <br><br>
+ * 
  * A project contains an array of todo objects. To render a project, a populator-type
  * view is used that iterates through the array and creates separate elements for 
  * each todo object.
+ * <br><br>
  * 
  * There are other templates that can be rendered by the View for adding new Todos, editing Todos, and 
  * informing the user that they need to add a new project if the project list's empty.

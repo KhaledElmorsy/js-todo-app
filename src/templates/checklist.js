@@ -4,7 +4,8 @@ import { statusToClass } from "./helpers"
 * Each todo item has subtasks called checklist items which are stored in an array.
 * Rendering cheklist items is handled by a Populator-type View which iterates over 
 * the parent Todo model's checklist array and generates separate elements for each checklist item.
-* 
+* <br><br>
+*
 * Checklist items can be created by the user through an 'Add Checklist Item' form element.
 * 
 * {@link checklistTemplates Visit Module}

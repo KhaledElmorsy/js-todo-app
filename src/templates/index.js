@@ -12,6 +12,7 @@ import projectListTemplates from "./projectList.js";
 
 /**
  * Converts template literals into HTML element objects.
+ * <br><br>
  * 
  * Note: This isn't straightforward because you can't edit an element objects outer 
  * HTML if it's not in the document, so a temporary wrapper element is used.
@@ -46,9 +47,11 @@ const viewTemplates = {
 /**
  * Takes the view and element types as inputs and returns a function that 
  * accepts a model object and returns an HTML element. 
+ * <br><br>
  * 
  * The returned function calls the appropriate template function by creating a 
  * reference to members of nested objects, similar to a command pattern.
+ * <br><br>
  * 
  * {@link templates View}
  * @memberof Templates

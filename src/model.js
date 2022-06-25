@@ -26,10 +26,12 @@ class DataModel {
         this.status = false;
         /**
          * Indicates if the object should be rendered. True = render.
-         *
+         * <br><br>
+         * 
          * When a user removes an object, it's not deleted from the parent's array, 
          * instead its visibility is set to 'false'.
-         *
+         * <br><br>
+         * 
          * Default: true.
          * @type {Boolean}
          */
