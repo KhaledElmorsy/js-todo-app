@@ -79,7 +79,7 @@ class View {
  * <br><br>
  * 
  * {@link PopulatorView View}
- * @extends View 
+ * @extends View~View
  * @memberof Views
  */
 class PopulatorView extends View{
@@ -185,7 +185,7 @@ class PopulatorView extends View{
  * 
  * {@link TodoView View}
  * 
- * @extends View
+ * @extends Views~View
  * @memberof Views
  */
 class TodoView extends View{
