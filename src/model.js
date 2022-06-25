@@ -1,4 +1,7 @@
-/**@typedef {DataModel} DataModel */
+/**
+ * @typedef {DataModel} DataModel 
+ * @ignore 
+ */
 /**
  * Main parent class for basic data objects: Projects, Todos, and Checklist Items.
  * Each instance has an ID, status flag, and visible flag.
@@ -34,7 +37,10 @@ class DataModel {
     }
 }
 
-/** @typedef {ChecklistItem} ChecklistItem */
+/** 
+ * @typedef {ChecklistItem} ChecklistItem 
+ * @ignore 
+ */
 /** 
  * Model for checklist items - subtasks for each Todo item 
  * @extends DataModel
@@ -54,7 +60,10 @@ class ChecklistItem extends DataModel {
         this.descr = descr;
     }
 }
-/** @typedef {Todo} Todo */
+/** 
+ * @typedef {Todo} Todo 
+ * @ignore
+ */
 /** 
  * Model for todo items
  * @extends DataModel
@@ -104,7 +113,10 @@ class Todo extends DataModel {
     }
 }
 
-/** @typedef {Project} Project */
+/** 
+ * @typedef {Project} Project 
+ * @ignore 
+ */
 /**
  * Project Model that contains todo items
  * @extends DataModel
