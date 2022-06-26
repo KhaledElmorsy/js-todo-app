@@ -1,14 +1,22 @@
+import { AsyncDependenciesBlock } from 'webpack'
 import model from './model'
 import view from './view'
 
 const { instance, classes } = model
 
 /**
+ * Controllers handle manipulating models, creating and controlling views, and handling events.
+ * @namespace Controllers
+ */
+
+/**
  * Helper functions to facilitate some repetitive tasks:
+ * @namespace Controllers.Helpers
  */
 
 /**
  * Selects certain elements in a specific parent element and adds listeners to each.
+ * @memberof Controllers.Helpers
  * @param {Object} context - Controller instance to bind callbacks to since they're class methods
  * @param {HTMLElement} parent - DOM node to select from
  * @param {string} selector - Selector of elements to add listeners to
@@ -24,6 +32,7 @@ function setListeners(context, parent, selector, event, callback) {
 /**
  * Gets model object's ID from event target's data attribute for callbacks that
  * take ID as input.
+ * @memberof Controllers.Helpers
  * @param {Event} event - Event object with target HTML element data 
  * @returns {number} - ID of model object linked to event target
  */
@@ -33,19 +42,20 @@ function getID(event) {
 }
 
 /**
- * Controller class definitions:
- */
-
-/**
  * Parent abstract class for Controllers which update the model and re-render view.
  * They also assigns event listeners to relevant view elements.
- * Subclasses are hierarchical like models & views: Project List > Project > etc
+ * Subclasses are hierarchical like models & views: Project List > Project > .
+ * @memberof Controllers
  */
 class Controller {
 
-    constructor() {
+    constructor(model) {
         // Ensure class is abstract
         if (this.constructor === Controller) throw new Error('Abstract Class')
+        /** 
+         * @type {import('./model').DataModel}
+         */
+        this.model = model;
     }
 
     /**
@@ -61,9 +71,12 @@ class Controller {
     }
 
     // Abstract methods extepcted of each controller
-    add() { }  // Add data to the model
-    edit() { } // Edit model properties
-    listeners() { } // Add event listeners to view elements
+    /** Add child model */
+    add() { }
+    /** Edit model/child data */
+    edit() { }
+    /** Set event listeners to elements rendered by the view */
+    listeners() { }
 
     /**
      * 'Deletes' child object by hiding it then runs update() above. View renderer 
@@ -94,22 +107,41 @@ class Controller {
     }
 }
 
+/**
+ * Controller for checklists, which are an array in each Todo containing checklist items.
+ * The parent Todo which contains the list, is the source model since rendering and data manipulation 
+ * the whole list.
+ */
 class ChecklistController extends Controller{
+    /**
+     * 
+     * @param {import('./model').Todo} todo Parent todo
+     */
     constructor(todo){
-        super();
-        this.model = todo;
+        super(todo);
+        /**
+         * Array of checklist items in parent Todo
+         * @type {model['classes']['ChecklistItem'][]}
+         */
         this.list = todo.list;
+        /**
+         * @type {view['populator']}
+         */
         this.view = new view.populator(todo, 'Checklist');
         super.update();
     }
 
-    edit(event){
-        const todoID = getID(event);
+    /**
+     * Edit a checklist item live by updating the model wit each input
+     * @param {InputEvent} event User input in the field
+     */
+    edit(event){  // Use Event as input to cleanly get and use target's value
+        const itemID = getID(event);
         const inputValue = event.target.value;
-        if (inputValue) 
-            this.list[todoID].descr = inputValue;
-        else {
-            this.list[todoID].visible = false;
+        if (inputValue) // If field isn't empty, update item's model
+            this.list[itemID].descr = inputValue;
+        else { // If field is empty, remove item, and update 
+            super.remove(id)
             this.update();
         }
     }
@@ -195,12 +227,14 @@ class TodoController extends Controller {
  * Controller that manages Project models and views. Projects are essentially 
  * parent containers of Todo elements, so the controller handles adding and 
  * removing todos and updating the view/listeners.
+ * @extends Controller
+ * @memberof Controllers.Classes~
  */
 class ProjectController extends Controller {
     constructor(project) {
-        super();
-        this.model = project;
-        this.list = project.list;
+        super(project);
+        // this.model = project;
+        // this.list = project.list;
         this.view = new view.populator(this.model, 'Project');
 
         super.update();
