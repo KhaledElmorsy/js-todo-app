@@ -57,16 +57,21 @@ class Controller {
         this.model = model;
     }
 
+    /** Save overall app model to local storage */
+    save() {
+        localStorage.projectList = JSON.stringify(instance.list)
+    }
+
     /**
-     * Update procedure after model manipulations.
-     * 1. Re-render view elements (view is linked to the model)
+     * Update procedure after model manipulations that affect view elements.
+     * 1. Re-render view elements 
      * 2. Set relevant event listeners
      * 3. Save Project List instance in local storage 
      */
     update() {
         this.view.render();
         this.listeners();
-        localStorage.projectList = JSON.stringify(instance.list)
+        this.save();
     }
 
     // Abstract methods extepcted of each controller
