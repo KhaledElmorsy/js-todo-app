@@ -10,7 +10,7 @@ import { statusToClass } from "./helpers"
 * 
 * {@link checklistTemplates Visit Module}
 * @namespace ChecklistTemplates
-* @memberof Templates
+* @memberof Views.Templates
 
 * @property {Function} standard - Create 'Standard Checklist Item' element HTML {@link checklistTemplates.standard see here}
 * @property {Function} add - Create 'Add Checklist Item' form element HTML {@link checklistTemplates.add see here}
@@ -25,7 +25,7 @@ const checklistTemplates = {
      * Generate HTML for a form that lets users add checklsit items
      * 
      * {@link checklistTemplates.add View}
-     * @memberof Templates.ChecklistTemplates
+     * @memberof Views.Templates.ChecklistTemplates
      * 
      * @returns {string} Element Outer HTML
      */
@@ -39,7 +39,7 @@ const checklistTemplates = {
    * Generate HTML for the standard view element that displays a checklist item
    * 
    * {@link checklistTemplates.standard  View } 
-   * @memberof Templates.ChecklistTemplates
+   * @memberof Views.Templates.ChecklistTemplates
    * 
    * @param {ChecklistItem} item Checklist item model object
    * @returns {string} Element Outer HTML

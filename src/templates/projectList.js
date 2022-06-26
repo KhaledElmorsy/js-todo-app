@@ -8,7 +8,7 @@
  * 
  * {@link projectListTemplates Visit Module}
  * @namespace ProjectListTemplates
- * @memberof Templates
+ * @memberof Views.Templates
  * 
  * @property {Function} standard - Create HTML for standard project element {@link projectListTemplates.standard see here}
  * @property {Function} add - Create HTML for a form element for adding a new project {@link projectListTemplates.add see here}
@@ -25,7 +25,7 @@ const projectListTemplates = {
      * Generate HTML for the standard element that displays a project's information and contains relevant buttons and attributes
      * 
      * {@link projectListTemplates.standard View}
-     * @memberof Templates.ProjectListTemplates
+     * @memberof Views.Templates.ProjectListTemplates
      * 
      * @param {Project} project - Project model
      * @returns {string} Element Outer HTML
@@ -41,7 +41,7 @@ const projectListTemplates = {
 
     /**
      * Generate HTML for a form element for adding a new projects
-     * @memberof Templates.ProjectListTemplates
+     * @memberof Views.Templates.ProjectListTemplates
      * @returns {string} Element Outer HTML
      */
     add() {
@@ -54,7 +54,7 @@ const projectListTemplates = {
      * Generate HTML for a form element for editing an existing project
      * 
      * {@link projectListTemplates.edit View}
-     * @memberof Templates.ProjectListTemplates
+     * @memberof Views.Templates.ProjectListTemplates
      * 
      * @param {Project} projectObj Project model to pull data from and fill the form
      * @returns {string} Element Outer HTML

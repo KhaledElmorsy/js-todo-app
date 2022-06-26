@@ -14,7 +14,7 @@ import { statusToClass, getVisible } from "./helpers"
  * 
  * {@link projectTemplates Visit Module}
  * @namespace ProjectTemplates
- * @memberof Templates
+ * @memberof Views.Templates
  * 
  * @property {Function} add - Create 'Add Todo Form' element HTML {@link projectTemplates.add see here}
  * @property {Function} standard - Create 'Standard Todo' element HTML {@link projectTemplates.standard see here}
@@ -33,8 +33,7 @@ const projectTemplates = {
      * in the Project View.
      * 
      * {@link projectTemplates.standard View}
-     * @memberof Templates.ProjectTemplates
-     * 
+     * @memberof Views.Templates.ProjectTemplates
      * @param {Todo} todoObj Todo model object
      * @returns {string} Element's Outer HTML
      */
@@ -66,7 +65,7 @@ const projectTemplates = {
      * Generate HTML for the element containing forms to create and append a new todo to the project
      * 
      * {@link projectTemplates.add View}
-     * @memberof Templates.ProjectTemplates
+     * @memberof Views.Templates.ProjectTemplates
      * 
      * @returns {string} Element's Outer HTML
      */
@@ -93,7 +92,7 @@ const projectTemplates = {
      * Generate HTML for the element containing forms to create and append a new todo to the project
      * 
      * {@link projectTemplates.edit View}
-     * @memberof Templates.ProjectTemplates
+     * @memberof Views.Templates.ProjectTemplates
      * 
      * @param {Todo} todoObj Todo model object
      * @returns {string} Element's Outer HTML
@@ -122,7 +121,7 @@ const projectTemplates = {
      * Generate HTML for the element to add to the project view when there are no projects
      * 
      * {@link projectTemplates.empty View}
-     * @memberof Templates.ProjectTemplates
+     * @memberof Views.Templates.ProjectTemplates
      * 
      * @returns {string} Element's Outer HTML
      */

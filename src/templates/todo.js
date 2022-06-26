@@ -6,7 +6,7 @@ import { statusToClass } from "./helpers"
  * 
  * {@link todoTemplates Visit Module}
  * @namespace TodoTemplates
- * @memberof Templates
+ * @memberof Views.Templates
  * 
  * @property {Function} standard - Create Outer HTML for the standard Todo View Element {@link todoTemplates.standard see here}
  */
@@ -21,7 +21,7 @@ const todoTemplates = {
      * properties of the Todo item in more detail.
      * 
      * {@link todoTemplates.standard View}
-     * @memberof Templates.TodoTemplates
+     * @memberof Views.Templates.TodoTemplates
      * 
      * @param {Todo} todoObj Todo object to fill modal values with
      * @returns {string} Element Outer HTML
