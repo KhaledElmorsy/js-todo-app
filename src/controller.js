@@ -232,8 +232,7 @@ class TodoController extends Controller {
 class ProjectController extends Controller {
     constructor(project) {
         super(project);
-        // this.model = project;
-        // this.list = project.list;
+        this.list = this.model.list;
         this.view = new view.populator(this.model, 'Project');
 
         super.update();
