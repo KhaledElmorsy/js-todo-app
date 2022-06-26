@@ -64,14 +64,14 @@ class Controller {
 
     /**
      * Update procedure after model manipulations that affect view elements.
-     * 1. Re-render view elements 
-     * 2. Set relevant event listeners
-     * 3. Save Project List instance in local storage 
+     * 1. Save Project List instance in local storage 
+     * 2. Re-render view elements 
+     * 3. Set relevant event listeners
      */
     update() {
+        this.save();
         this.view.render();
         this.listeners();
-        this.save();
     }
 
     // Abstract methods extepcted of each controller
