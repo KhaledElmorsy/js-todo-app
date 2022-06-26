@@ -1,4 +1,3 @@
-import { AsyncDependenciesBlock } from 'webpack'
 import model from './model'
 import view from './view'
 
