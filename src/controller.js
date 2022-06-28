@@ -204,6 +204,7 @@ class TodoController extends Controller {
         const input = event.target
         const modelProperty = input.name
         this.model[modelProperty] = input.value
+        this.save() // Save to local storage
     }
 
     remove() {
