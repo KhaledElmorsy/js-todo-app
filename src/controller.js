@@ -221,8 +221,9 @@ class ChecklistController extends ListController {
  * Controller for the detailed Todo View modal. Automatically renders modal when instanced
  * 
  * {@link TodoController View}
+ * @memberof Controllers
  * @extends Controller
- * @extends Controller~
+ * @extends Controllers~Controller
  */
 class TodoController extends Controller {
     /**
