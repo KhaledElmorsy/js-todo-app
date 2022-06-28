@@ -1,7 +1,7 @@
 import model from './model'
-import view from './view'
-
+import { PopulatorView, TodoView, NewAppView } from './view'
 const { instance, classes } = model
+/** @typedef {import('./model').DataModel} DataModel */
 
 /**
  * Controllers handle manipulating models, creating and controlling views, and handling events.
@@ -46,7 +46,7 @@ function getID(event) {
  * Subclasses are hierarchical like models & views: Project List > Project > .
  * 
  * {@link Controller View}
- * @memberof Controllers
+ * @memberof Controllers~
  */
 class Controller {
     /**
@@ -93,7 +93,7 @@ class Controller {
  * i.e. Rendering each Todo in an array of Todos in a parent Project model.
  * 
  * {@link ListController View}
- * @memberof Controllers
+ * @memberof Controllers~
  * @extends Controller
  * @extends Controllers~Controller
  */
@@ -157,6 +157,11 @@ class ListController extends Controller {
  * Controller for checklists, which are an array in each Todo containing checklist items.
  * The parent Todo which contains the list, is the source model since rendering and data manipulation 
  * the whole list.
+ * 
+ * {@link ChecklistController View}
+ * @memberof Controllers
+ * @extends ListController
+ * @extends Controllers~ListController
  */
 class ChecklistController extends ListController {
     /**
@@ -169,90 +174,120 @@ class ChecklistController extends ListController {
     }
 
     /**
-     * Edit a checklist item live by updating the model wit each input
+     * Edit a checklist item live by updating the model with each input
      * @param {InputEvent} event User input in the field
      */
-    edit(event){  // Use Event as input to cleanly get and use target's value
-        const itemID = getID(event);
+    edit(event) {  // Pass Event as input to cleanly get and use event target's value
+        const itemID = getID(event); // Instead of using getID then edit(id) in the callback
         const inputValue = event.target.value;
-        if (inputValue) // If field isn't empty, update item's model
+        if (inputValue) { // If field isn't empty, update item's model
             this.list[itemID].descr = inputValue;
-        else { // If field is empty, remove item, and update 
-            super.remove(id)
+            super.save();
+        }
+        else { // If field is empty, remove item, and update (save and re-render) 
+            super.remove(itemID)
             this.update();
+            console.log(this.view.addForm)
+            this.view.addForm['descr'].focus(); // Focus add form's input if user still wants to enter an item
         }
     }
 
-    add(event){
+    /** Add a new checklist item to the model when the user makes an input in the add form */
+    add() {
         const form = this.view.addForm
         const id = this.list.length
         this.list.push(new classes.ChecklistItem(id, form['descr'].value))
         this.update();
-        
-        // Focus input and put cursos at the end by resetting the value (kinda hacky)
+
+        // Focus newly created input and put cursos at the end by resetting the value (kinda hacky)
         const checklistElement = this.view.container.querySelector(`[data-child-id="${id}"] input`)
         const tempDescr = checklistElement.value;
         checklistElement.focus();
-        checklistElement.value = ''; 
-        checklistElement.value= tempDescr;
+        checklistElement.value = '';
+        checklistElement.value = tempDescr;
     }
 
-    listeners(){
+    /** Set relevant listeners to each checklist item */
+    listeners() {
         const container = this.view.container
         setListeners(this, container, '.checklist-item', 'input', this.edit)
         setListeners(this, container, '#new-checklist-item', 'input', this.add)
-        setListeners(this, container, '.delete', 'click', (e)=>this.remove(getID(e)))
+        setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
         setListeners(this, container, '.done-toggle', 'click', (e) => super.toggle(getID(e)))
     }
 }
 
-
+/** 
+ * Controller for the detailed Todo View modal. Automatically renders modal when instanced
+ * 
+ * {@link TodoController View}
+ * @extends Controller
+ * @extends Controller~
+ */
 class TodoController extends Controller {
+    /**
+     * @param {Todo} todo Source Todo model
+     */
     constructor(todo) {
-        super();
-        this.model = todo;
-        this.view = new view.todo(todo);
+        super(todo);
+        /**
+         * @type {TodoView}
+         */
+        this.view = new TodoView(todo);
+
+        this.update(); // Render and set listeners
+
+        /**
+         * The modal body. An form element with fields for each model property, pre-filled with 
+         * their original values. User inputs updated the model {@link edit see here}
+         * @type {HTMLFormElement}
+         */
         this.form = this.view.form;
-        this.update();
+
+        /**
+         * Checklist controller that handles rendering and updating the array of 
+         * child checklist item objects
+         * @type {ChecklistController}
+         */
         this.checklist = new ChecklistController(todo)
     }
 
+    /** Hide the modal and re-render project view */
     close() {
         this.view.hide();
         this.projectController.update();
     }
 
-    refresh() {
-        this.close();
-        this.update();
-    }
-
-    // Runs close() by submitting the form.
+    /** Close modal if the user clicks outside by submitting it, hence running {@link close} */
     clickOut(event) {
-        if(event.target === event.currentTarget) 
+        if (event.target === event.currentTarget)
             this.view.form.elements['save'].click(); // submit() doesn't trigger listener
     }
 
+    /** Edit the model live by updating it when a user makes in an input in field */
     edit(event) {
         const input = event.target
-        const modelProperty = input.name
+        const modelProperty = input.name // Field names match model property names
         this.model[modelProperty] = input.value
         this.save() // Save to local storage
     }
 
+    /** Set Todo's visibility to false and close the modal element (refreshing the project view) */
     remove() {
         this.model.visible = false;
         this.close();
     }
 
+    /** Toggle the status of the Todo element and toggle the 'done' class on the modal */
     toggle() {
         this.model.status = !this.model.status;
-        const removeClass = this.model.status? false : true;
-        this.view.setClass('done',removeClass)
+
+        const removeClass = this.model.status ? false : true;
+        this.view.setClass('done', removeClass)
     }
 
-    listeners(){
-        this.view.form.addEventListener('submit',()=>this.close())
+    /** Set relevant listeners to modal elements, the form, and the background */
+    listeners() {
         setListeners(this, this.view.form, 'input,textarea', 'input', this.edit)
         setListeners(this, this.view.container, '#todo-background', 'click', this.clickOut)
         setListeners(this, this.view.form, '.delete', 'click', this.remove)
@@ -268,7 +303,8 @@ class TodoController extends Controller {
  * Controller that manages Project models and views. Projects are essentially 
  * parent containers of Todo elements, so the controller handles the array of todos.
  * 
- * @extends Controller~ListController
+ * @extends ListController
+ * @extends Controllers~ListController
  * @memberof Controllers
  */
 class ProjectController extends ListController {
@@ -276,13 +312,11 @@ class ProjectController extends ListController {
      * @param {Project} project Source projet model
      */
     constructor(project) {
-        super(project);
-        this.list = this.model.list;
-        this.view = new view.populator(this.model, 'Project');
-
+        super(project, 'Project');
         super.update();
     }
 
+    /** Add todo element to project based on form input values */
     add(event) {
         event.preventDefault();
 
@@ -302,10 +336,11 @@ class ProjectController extends ListController {
         super.update()
     }
 
-    remove(event) {
-        super.remove(event);
-    }
-
+    /** 
+     * Replace the Todo card with a form containing the original values. 
+     * Submitting the form then updates the model with the new values and updates the
+     *  view/listeners and local storage
+     */
     edit(id) {
         super.update() // Avoids multiple concurrent editing forms. Doesn't save changes.
 
@@ -313,24 +348,24 @@ class ProjectController extends ListController {
         this.view.container.querySelector('.edit-form').addEventListener('submit', (event) => {
             event.preventDefault();
 
-            const inputs = [...event.target.elements].filter(el=>(el.tagName !== 'BUTTON')) //Filter out buttons
+            const inputs = [...event.target.elements].filter(el => (el.tagName !== 'BUTTON')) //Filter out buttons
             const inputValues = inputs.map(el => el.value)
             const [newTitle, newDescr, ...newList] = inputValues
-            
+
             const todoModel = this.model.list[id] // Model instance being edited
             todoModel.title = newTitle;
             todoModel.descr = newDescr;
-            
-            const renderedList = todoModel.list.filter(item=>item.visible) // Only compare to visible items
+
+            const renderedList = todoModel.list.filter(item => item.visible) // Only compare to visible items
             newList.forEach((itemDescr, i) => {
                 if (!itemDescr && !renderedList[i]) return // Skip if field is empty and nothing was rendered
 
                 if (renderedList[i]) { // If an item was rendered:
                     const itemID = renderedList[i].id // Get the actual index of the item in the model list
-                    
-                    if (!itemDescr){ 
+
+                    if (!itemDescr) {
                         todoModel.list[itemID].visible = false;     // If the relevant field is now empty, hide the item
-                    } else {           
+                    } else {
                         todoModel.list[itemID].descr = itemDescr;   // Otherwise change its value
                     }
 
@@ -339,17 +374,23 @@ class ProjectController extends ListController {
                     todoModel.list.push(new classes.ChecklistItem(id, itemDescr));
                 }
             })
-            
+
             super.update()
         })
-        
     }
 
+    /** Select a Todo item and load it into a {@link TodoController} */
     select(id) {
         this.todoController = new TodoController(this.list[id])
-        this.todoController.projectController = this;
+
+        /**
+         * Parent project controller
+         * @type {ProjectController}
+         */
+        this.todoController.projectController = this; // Add parent controller property to call update() after closing the modal.
     }
 
+    /** Set listeners for all Todo cards child elements in the project view container and the add form.  */
     listeners() {
         const container = this.view.container
         this.view.addForm.addEventListener('submit', this.add.bind(this))
@@ -364,6 +405,7 @@ class ProjectController extends ListController {
 
 }
 
+/** Handles the overall app model instance, which is an array of project models */
 class ProjectListController extends ListController {
     constructor() {
         super(instance, 'ProjectList');
@@ -373,6 +415,7 @@ class ProjectListController extends ListController {
         this.selectDefault();
     }
 
+    /** Add project when 'add form' is submitted */
     add(event) {
         event.preventDefault();
 
@@ -384,47 +427,75 @@ class ProjectListController extends ListController {
         this.select(id); // Switch to new project
     }
 
+    /** Select a child project from the array given its ID by creating a project controller instance*/
     select(id) {
         const project = this.model.list[id]
+        /**
+         * Controller for the currently loaded project.
+         * @type {ProjectController}
+         */
         this.projectController = new ProjectController(project); // New controller instance updates/renders its view
 
-        this.previousProject = this.activetProject // Record last selected project
-        this.activetProject = project // Easier than this.projectController.model
-    
-        this.view.setClass(id,'active',false,true);
+        /**
+         * @type {classes['Project']} 
+         */
+        this.previousProject = this.activetProject // Record last selected project incase active project is removed
+        
+        /**
+         * @type {classes['Project']}
+         */
+        this.activetProject = project
+
+        this.view.setClass(id, 'active', false, true); // Set relevant child view element to active
     }
 
+    /** 
+     * Default selection logic when loading the controller for the first time or when removing the current 
+     * project and the previous proejct was already removed.
+     */
     selectDefault() {
         const visibleProjects = super.getVisible();
+
         if (visibleProjects.length) {
-            this.select(visibleProjects[0].id)
+            this.select(visibleProjects[0].id);
         } else {
-            this.emptyView = new view.new()
+            this.emptyView = new view.new(); // Create a view in the Project View
+                                             // container asking the user to create a new porject
         }
     }
 
+    /** 
+     * Remove a child project object. Since a project should always be selected, 
+     * this handles the selection logic incase the active project is deleted.
+     */
     remove(id) {
-        super.remove(id)
+        super.remove(id) // Remove project model from project list's array and update the sidebar.
 
-        // We need to reselect our project since update() that's called in
-        // super.remove() refreshes the view. 
-        // Also, we might have removed the currently selected project so we need
+        // Rendering the sidebar doesn't show the selected project, so we reselect it.
+        // Also, we might have removed the currently selected project so we'd need
         // to select a different one.
-        if (id === this.activetProject.id){ // If we removed the active project
+        if (id === this.activetProject.id) { // If we removed the active project
             if (this.previousProject?.visible)        // Check if the previous project is visible
-                this.select(this.previousProject.id) // And select it (feels better than going to the top)
+                this.select(this.previousProject.id) // And select it (feels better than just selecting the first project)
             else
-                this.selectDefault() // Or select the first visible project if it isn't
+                this.selectDefault() // Or select the first visible project if it isn't visible
         } else {
             this.select(this.activetProject.id)  // Reselect the active project if it wasn't the one removed
-        }                                        
-    }                                            
+        }
+    }
 
+    /** 
+     * Replace the project container with an pre-filled form that the user can edit.
+     * The model value is updated with each input to make editing feel more seamless.
+     */
     edit(id) {
         super.update() // Avoids multiple concurrent editing forms. Doesn't save changes.
-        this.view.editMode(id);
+
+        this.view.editMode(id); // Replace field with pre-filled edit form using the model
+
         const titleInput = this.view.editForm['title']
         titleInput.focus();
+
         // Put cursor at the end
         const tempvalue = titleInput.value
         titleInput.value = '';
@@ -441,16 +512,21 @@ class ProjectListController extends ListController {
                 project.title = originalTitle // If field's empty, keep the original title in the model
         })
 
+        /**
+         * Callback to run when the user finishes editing by sumbitting the form or defocusing the input field. 
+         * @param {SubmitEvent|FocusEvent} event Event that fires when the user finishes editing. 
+         */
         const finishEdit = event => {
-            event.preventDefault();
-            super.update();
-            this.select(id);
+            event.preventDefault(); // Incase it's a submit even
+            super.update(); // Only save to local storage after finishing
+            this.select(id); // Reselect the project being edited.
         }
 
         this.view.editForm.addEventListener('focusout', finishEdit)
         this.view.editForm.addEventListener('submit', finishEdit)
     }
 
+    /** Set event listeners to relevant child project elements and the 'add project' form */
     listeners() {
         const container = this.view.container
         this.view.addForm.addEventListener('submit', this.add.bind(this))
