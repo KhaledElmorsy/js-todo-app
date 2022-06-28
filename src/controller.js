@@ -44,15 +44,19 @@ function getID(event) {
  * Parent abstract class for Controllers which update the model and re-render view.
  * They also assigns event listeners to relevant view elements.
  * Subclasses are hierarchical like models & views: Project List > Project > .
+ * 
+ * {@link Controller View}
  * @memberof Controllers
  */
 class Controller {
-
+    /**
+     * @param {DataModel} model Source model to be editied
+     */
     constructor(model) {
         // Ensure class is abstract
         if (this.constructor === Controller) throw new Error('Abstract Class')
         /** 
-         * @type {import('./model').DataModel}
+         * @type {DataModel}
          */
         this.model = model;
     }
@@ -75,37 +79,75 @@ class Controller {
     }
 
     // Abstract methods extepcted of each controller
-    /** Add child model */
-    add() { }
     /** Edit model/child data */
     edit() { }
     /** Set event listeners to elements rendered by the view */
     listeners() { }
+    /** Remove relevant model by setting visibility to false */
+    remove() { }
+    /** Toggle the 'done' status of the source/child model and update the relevant DOM element classes*/
+    toggle() { }
+}
+
+/** Parent controller for rendering and manipulating a list of child objects in parent models.
+ * i.e. Rendering each Todo in an array of Todos in a parent Project model.
+ * 
+ * {@link ListController View}
+ * @memberof Controllers
+ * @extends Controller
+ * @extends Controllers~Controller
+ */
+class ListController extends Controller {
+    /**
+     * 
+     * @param {DataModel} parent Source parent model. Must contain an array called 'list' containing derived data model types
+     * @param {string} type Type of parent model, i.e 'ProjectList', 'Project', 'Todo'. Values according to the keys {@link Views~containers here}
+     */
+    constructor(parent, type) {
+        super(parent);
+        /**
+         * List of child objects
+         * @type {DataModel[]}
+         */
+        this.list = this.model.list
+        /**
+         * A populator view created with the parent model
+         * @type {PopulatorView}
+         */
+        this.view = new PopulatorView(this.model, type)
+    }
+
+    /** Add child model */
+    add() { }
 
     /**
-     * 'Deletes' child object by hiding it then runs update() above. View renderer 
-     * ignores objects with visislbe = false. This design decision is explained 
-     * at the Model class.
-     * @param {number} id - child objects id, AKA it's index
-     */
+      * 'Deletes' child object by hiding it then runs update() above. View renderer 
+      * ignores objects with visislbe = false. This design decision is explained 
+      * at the Model class.
+      * @param {number} id - child objects id, AKA it's index
+      */
     remove(id) {
         this.list[id].visible = false;
         this.update();
     }
 
+    /**
+      * Toggle the status (done or not) of a model or child and add/remove a 
+      * 'done' class to the relevant view element
+      * @param {number} id ID/index of the model/child to toggle
+      */
     toggle(id) {
         // Edit Model
         this.list[id].status = !this.list[id].status
         // Add/remove class in view depending on new status.
-        // Status: flase >> child isn't done >> Remove 'done' = true.
-        const removeClass = this.list[id].status? false : true;
+        const removeClass = this.list[id].status ? false : true; // Status: flase >> child isn't done >> Remove 'done' = true.
         this.view.setClass(id, 'done', removeClass)
     }
-    
+
     /**
-     * Filters list of child objects and only keep ones where visible = true.
-     * @returns {Array} - Array of child objects
-     */
+      * Filters list of child objects and only keep ones where visible = true.
+      * @returns {Array} - Array of child objects
+      */
     getVisible() {
         return this.list.filter(child => child.visible)
     }
@@ -116,22 +158,13 @@ class Controller {
  * The parent Todo which contains the list, is the source model since rendering and data manipulation 
  * the whole list.
  */
-class ChecklistController extends Controller{
+class ChecklistController extends ListController {
     /**
      * 
      * @param {import('./model').Todo} todo Parent todo
      */
-    constructor(todo){
-        super(todo);
-        /**
-         * Array of checklist items in parent Todo
-         * @type {model['classes']['ChecklistItem'][]}
-         */
-        this.list = todo.list;
-        /**
-         * @type {view['populator']}
-         */
-        this.view = new view.populator(todo, 'Checklist');
+    constructor(todo) {
+        super(todo, 'Checklist');
         super.update();
     }
 
@@ -233,12 +266,15 @@ class TodoController extends Controller {
 
 /**
  * Controller that manages Project models and views. Projects are essentially 
- * parent containers of Todo elements, so the controller handles adding and 
- * removing todos and updating the view/listeners.
- * @extends Controller
- * @memberof Controllers.Classes~
+ * parent containers of Todo elements, so the controller handles the array of todos.
+ * 
+ * @extends Controller~ListController
+ * @memberof Controllers
  */
-class ProjectController extends Controller {
+class ProjectController extends ListController {
+    /**
+     * @param {Project} project Source projet model
+     */
     constructor(project) {
         super(project);
         this.list = this.model.list;
@@ -334,13 +370,9 @@ class ProjectController extends Controller {
 
 }
 
-class ProjectListController extends Controller {
+class ProjectListController extends ListController {
     constructor() {
-        super();
-        this.model = instance;
-        this.view = new view.populator(this.model, 'ProjectList');
-        this.list = instance.list;
-
+        super(instance, 'ProjectList');
         super.update();
 
         // Get enabled projects and select the first one by default 
