@@ -1,6 +1,12 @@
 import templates from "./templates"
 
 /**
+ * View classes used to draw different types of models to the DOM.
+ * Also contains templates.
+ * @namespace Views
+ */
+
+/**
  * Consolidates generic containers for use by views.
  * <br><br>
  * 
@@ -24,7 +30,9 @@ const containers = {
  */
 
 /** 
- * Views handle drawing elements to the DOM based on data stored in a model. 
+ * Parent abstract view class.
+ * 
+ * Views handle drawing elements to the DOM based on data stored in a source model. 
  * @memberof Views~
  */
 class View {
@@ -33,25 +41,28 @@ class View {
      * @param {string} type View type i.e. Todo, Project, Project List
      */
     constructor(model, type) {
-    /**
-     * View object's source data model
-     * @type {DataModel}
-     */
-    this.model = model;
+        // Ensure class is abstract
+        if (this.constructor === View) throw new Error('Abstract Class')
 
-    /**
-     * DOM element to append view elements to 
-     * @type {Element}
-     */
-    this.container = containers[type];
+        /**
+         * View object's source data model
+         * @type {DataModel}
+         */
+        this.model = model;
 
-    /**
-     * Generate a standard view element displaying a model object's data.
-     * @type {Function}
-     * @param {DataModel} model Model object
-     * @returns {Element} HTML element
-     */
-    this.standardTemplate = templates(type, 'standard')
+        /**
+         * DOM element to append view elements to 
+         * @type {Element}
+         */
+        this.container = containers[type];
+
+        /**
+         * Generate a standard view element displaying a model object's data.
+         * @type {Function}
+         * @param {DataModel} model Model object
+         * @returns {Element} HTML element
+         */
+        this.standardTemplate = templates(type, 'standard')
     }
 
     /** 
@@ -78,11 +89,12 @@ class View {
  * model (logic is handled by the controller).
  * <br><br>
  * 
- * {@link PopulatorView View}
- * @extends View~View
+ * {@link views.populator View}
+ * @extends View
+ * @extends Views~View
  * @memberof Views
  */
-class PopulatorView extends View{
+export class PopulatorView extends View {
     /**
      * @param {DataModel} model Object to render data from
      * @param {string} type View type i.e. Project, Project List
@@ -130,7 +142,7 @@ class PopulatorView extends View{
         })
         /**
          * Reference to the DOM 'add child' form element
-         * @type {Element}
+         * @type {HTMLFormElement}
          */
         this.addForm = this.container.appendChild(this.addFormTemplate());  // Append 'Add "model"' element 
     }
@@ -148,7 +160,7 @@ class PopulatorView extends View{
 
         /**
          * Reference to the DOM 'edit child' form element
-         * @type {Element}
+         * @type {HTMLFormElement}
          */
         this.editForm = this.editFormTemplate(this.model.list[id]);
 
@@ -179,16 +191,17 @@ class PopulatorView extends View{
 }
 
 /**
- * Handles the rendering and DOM manipulation for a modal that displays the details 
+ * Handles the rendering and DOM manipulation for a modal element that displays the details 
  * for a specific Todo model. Can be generalized for other models that would benefit 
  * from being rendered as a single modal.
  * 
- * {@link TodoView View}
+ * {@link views.todo View}
  * 
+ * @extends View
  * @extends Views~View
  * @memberof Views
  */
-class TodoView extends View{
+export class TodoView extends View {
     /**
      * @param {Todo} todo  Source Todo model object
      */
@@ -201,7 +214,11 @@ class TodoView extends View{
         this.standardElement = this.standardTemplate(this.model)
         this.container.appendChild(this.standardElement)
 
-        // Define reference for easier access by the controller object 
+        /**
+         * The modal body is composed of a form that's pre-filled with the model data.
+         * The controller handles how to update the model using user inputs into its fields.
+         * @type {HTMLFormElement}
+         */
         this.form = this.standardElement.querySelector('form')
     }
 
@@ -226,9 +243,10 @@ class TodoView extends View{
  * When there are no projects in the proejct list, this renders a default element 
  * in the project container that normally holds Todo cards. This view is called by 
  * the project list controller. 
- * @memberof Views
+ * 
+ * @memberof Views.
  */
-class NewAppView {
+export class NewAppView {
     constructor() {
         this.emptyTemplate = templates('Project', 'empty');
         this.container = containers['Project'];
@@ -242,13 +260,4 @@ class NewAppView {
     }
 }
 
-/**
- * @namespace Views
- */
-const views = {
-    populator: PopulatorView,
-    todo: TodoView,
-    new: NewAppView,
-}
-
-export default views
+export default { PopulatorView, TodoView, NewAppView }
