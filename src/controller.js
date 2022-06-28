@@ -226,7 +226,7 @@ class ChecklistController extends ListController {
  */
 class TodoController extends Controller {
     /**
-     * @param {Todo} todo Source Todo model
+     * @param {classes['Todo']} todo Source Todo model
      */
     constructor(todo) {
         super(todo);

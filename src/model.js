@@ -167,13 +167,19 @@ class ProjectList {
 const model = {
     /**
      * Object consolidating model classes
-     * @property {ChecklistItem}
-     * @property {Todo}
-     * @property {Project}
      */
-    classes: {  
+    classes: {
+        /**
+         * @type {ChecklistItem}
+         */
         ChecklistItem,
+        /**
+         * @type {Todo}
+         */
         Todo,
+        /**
+         * @type {Project}
+         */
         Project
     },
     /**
