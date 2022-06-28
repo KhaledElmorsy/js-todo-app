@@ -208,7 +208,7 @@ class TodoController extends Controller {
     }
 
     remove() {
-        this.projectController.remove(this.model.id);
+        this.model.visible = false;
         this.close();
     }
 
