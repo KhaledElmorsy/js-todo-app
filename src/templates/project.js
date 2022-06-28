@@ -82,7 +82,7 @@ const projectTemplates = {
                 </div>
                 <div class="button-container">
                     <button type="submit" id="add-todo" class="button">Add</button>
-                    <div id="reset-todo-inputs" class="button">Reset</div>
+                    <button type="reset" id="reset-todo-inputs" class="button">Reset</div>
                 </div>
             </form>`
         return elementHTML

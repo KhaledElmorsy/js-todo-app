@@ -350,15 +350,9 @@ class ProjectController extends ListController {
         this.todoController.projectController = this;
     }
 
-    resetInput() {
-        const formInputs = this.view.addForm.elements;
-        [...formInputs].forEach(input => input.value = '')
-    }
-
     listeners() {
         const container = this.view.container
         this.view.addForm.addEventListener('submit', this.add.bind(this))
-        setListeners(this, container, '#reset-todo-inputs', 'click', this.resetInput)
         setListeners(this, container, '.delete', 'click', (e) => this.remove(getID(e)))
         setListeners(this, container, '.done-toggle', 'click', (e) => super.toggle(getID(e)))
         setListeners(this, container, '.card:not(#new-todo) :is(p,h2,h4,li)', 'dblclick', (e) => this.edit(getID(e)))
