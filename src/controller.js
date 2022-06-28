@@ -185,7 +185,6 @@ class TodoController extends Controller {
     }
 
     close() {
-        event.preventDefault();
         this.view.hide();
         this.projectController.update();
     }
@@ -224,6 +223,10 @@ class TodoController extends Controller {
         setListeners(this, this.view.container, '#todo-background', 'click', this.clickOut)
         setListeners(this, this.view.form, '.delete', 'click', this.remove)
         setListeners(this, this.view.form, '.done-toggle', 'click', this.toggle)
+        this.view.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.close()
+        })
     }
 }
 
