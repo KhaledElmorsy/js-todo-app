@@ -1,4 +1,10 @@
+import { Todo } from "./model"
 import templates from "./templates"
+/**
+ * Import model types
+ * @typedef {import("./model").DataModel}
+ * @typedef {import("./model").Todo}
+ */
 
 /**
  * View classes used to draw different types of models to the DOM.
@@ -23,12 +29,6 @@ const containers = {
     get Project() { return document.querySelector('main') },
     get ProjectList() { return document.getElementById('projects') },
 }
-
-/**
- * Import model types
- * @typedef {import("./model").DataModel} DataModel
- * @typedef {import("./model").Todo} Todo
- */
 
 /** 
  * Parent abstract view class.

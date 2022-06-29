@@ -1,12 +1,18 @@
-import model from './model'
+import { ChecklistItem, Todo, Project, ProjectList} from './model'
 import { PopulatorView, TodoView, NewAppView } from './view'
-const { instance, classes } = model
 /** @typedef {import('./model').DataModel} DataModel */
 
 /**
  * Controllers handle manipulating models, creating and controlling views, and handling events.
  * @namespace Controllers
  */
+
+/** 
+ * Main app instance
+ * @type {ProjectList} 
+ * @memberof Controllers
+ */
+const instance = new ProjectList()
 
 /**
  * Helper functions to facilitate some repetitive tasks:
@@ -166,7 +172,7 @@ class ListController extends Controller {
 class ChecklistController extends ListController {
     /**
      * 
-     * @param {import('./model').Todo} todo Parent todo
+     * @param {Todo} todo Parent todo
      */
     constructor(todo) {
         super(todo, 'Checklist');
@@ -196,7 +202,7 @@ class ChecklistController extends ListController {
     add() {
         const form = this.view.addForm
         const id = this.list.length
-        this.list.push(new classes.ChecklistItem(id, form['descr'].value))
+        this.list.push(new ChecklistItem(id, form['descr'].value))
         this.update();
 
         // Focus newly created input and put cursos at the end by resetting the value (kinda hacky)
@@ -326,12 +332,12 @@ class ProjectController extends ListController {
         const [title, descr, ...checklist] = inputValues
 
         const list = checklist.filter(itemDescr => itemDescr).map((itemDescr, i) =>
-            new classes.ChecklistItem(i, itemDescr)) // id, descr
+            new ChecklistItem(i, itemDescr)) // id, descr
 
         const [startDate, endDate] = [null, null]
         const id = this.list.length
 
-        const todo = new classes.Todo(id, title, descr, startDate, endDate, list)
+        const todo = new Todo(id, title, descr, startDate, endDate, list)
         this.list.push(todo)
 
         super.update()
@@ -372,7 +378,7 @@ class ProjectController extends ListController {
 
                 } else { // If there's no rendered item, then add a new item
                     const id = todoModel.list.length
-                    todoModel.list.push(new classes.ChecklistItem(id, itemDescr));
+                    todoModel.list.push(new ChecklistItem(id, itemDescr));
                 }
             })
 
@@ -422,7 +428,7 @@ class ProjectListController extends ListController {
 
         const id = this.list.length;
         const title = event.target.elements['name'].value;
-        this.model.list.push(new classes.Project(id, title))
+        this.model.list.push(new Project(id, title))
 
         super.update();
         this.select(id); // Switch to new project

@@ -40,10 +40,6 @@ class DataModel {
 }
 
 /** 
- * @typedef {ChecklistItem} ChecklistItem 
- * @ignore 
- */
-/** 
  * Model for checklist items - subtasks for each Todo item
  * @extends DataModel
  */
@@ -62,10 +58,7 @@ class ChecklistItem extends DataModel {
         this.descr = descr;
     }
 }
-/** 
- * @typedef {Todo} Todo 
- * @ignore
- */
+
 /** 
  * Model for todo items 
  * @extends DataModel
@@ -115,10 +108,6 @@ class Todo extends DataModel {
 }
 
 /** 
- * @typedef {Project} Project 
- * @ignore 
- */
-/** 
  * Project Model that contains todo items 
  * @extends DataModel
  */
@@ -146,8 +135,8 @@ class Project extends DataModel {
 
 /** Main app object containing a list of projects */
 class ProjectList {
+    /** Create project list by loading from local storage if available or creating an empty list */
     constructor() {
-        // Check Local Storage and Import
         let storedData = localStorage.projectList
         /**
          * Array of project objects. Loaded from local storage.
@@ -159,38 +148,4 @@ class ProjectList {
     }
 }
 
-/**
- * Contains model classes as well as project list singleton instance
- * @property {Object} classes - Consolidates major model classes
- * @property {ProjectList} instance - Singleton intance of main app object
- */
-const model = {
-    /**
-     * Object consolidating model classes
-     */
-    classes: {
-        /**
-         * @type {ChecklistItem}
-         */
-        ChecklistItem,
-        /**
-         * @type {Todo}
-         */
-        Todo,
-        /**
-         * @type {Project}
-         */
-        Project
-    },
-    /**
-     * Main singleton instance of the app. 
-     * 
-     * Gets loaded from local storage when created, and gets saved to local storage 
-     * by controllers.
-     * @type {ProjectList}
-     * @instance 
-     */
-    instance: new ProjectList()
-}
-
-export default model
+export { ChecklistItem, Project, Todo, ProjectList }
