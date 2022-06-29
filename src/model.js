@@ -1,10 +1,21 @@
 /**
+ * Models define how the app's data is stored. For this app, models are structured 
+ * as nested objects with each parent containing an array of child objects.
+ * 
+ * The object heirarchy is: Project List (App) -> Projects -> Todos -> Checlist Items
+ * 
+ * @namespace Models
+ */
+
+/**
  * @typedef {DataModel} DataModel 
  * @ignore 
  */
 /**
  * Main parent class for basic data objects: Projects, Todos, and Checklist Items.
  * Each instance has an ID, status flag, and visible flag.
+ * 
+ * @memberof Models
  */
 class DataModel {
     /**
@@ -41,7 +52,10 @@ class DataModel {
 
 /** 
  * Model for checklist items - subtasks for each Todo item
+ * 
+ * @memberof Models
  * @extends DataModel
+ * @extends Models.DataModel
  */
 class ChecklistItem extends DataModel {
     /**
@@ -61,7 +75,10 @@ class ChecklistItem extends DataModel {
 
 /** 
  * Model for todo items 
+ * 
+ * @memberof Models
  * @extends DataModel
+ * @extends Models.DataModel
  */
 class Todo extends DataModel {
     /**
@@ -109,7 +126,10 @@ class Todo extends DataModel {
 
 /** 
  * Project Model that contains todo items 
+ * 
+ * @memberof Models
  * @extends DataModel
+ * @extends Models.DataModel
  */
 class Project extends DataModel {
     /**
@@ -133,7 +153,10 @@ class Project extends DataModel {
     }
 }
 
-/** Main app object containing a list of projects */
+/** 
+ * Main app object containing a list of projects 
+ * @memberof Models
+ */
 class ProjectList {
     /** Create project list by loading from local storage if available or creating an empty list */
     constructor() {
