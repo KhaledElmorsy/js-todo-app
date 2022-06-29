@@ -10,12 +10,12 @@ const { instance, classes } = model
 
 /**
  * Helper functions to facilitate some repetitive tasks:
- * @namespace Controllers.Helpers
+ * @namespace Controllers.ControllerHelpers
  */
 
 /**
  * Selects certain elements in a specific parent element and adds listeners to each.
- * @memberof Controllers.Helpers
+ * @memberof Controllers.ControllerHelpers
  * @param {Object} context - Controller instance to bind callbacks to since they're class methods
  * @param {HTMLElement} parent - DOM node to select from
  * @param {string} selector - Selector of elements to add listeners to
@@ -31,7 +31,7 @@ function setListeners(context, parent, selector, event, callback) {
 /**
  * Gets model object's ID from event target's data attribute for callbacks that
  * take ID as input.
- * @memberof Controllers.Helpers
+ * @memberof Controllers.ControllerHelpers
  * @param {Event} event - Event object with target HTML element data 
  * @returns {number} - ID of model object linked to event target
  */
