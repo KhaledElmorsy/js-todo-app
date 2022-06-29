@@ -127,7 +127,7 @@ const projectTemplates = {
      */
     empty() {
         const elementHTML =
-            `<div id="new-app">Add a new project</div>`
+            `<div id="new-app">← Add a new project</div>`
         return elementHTML
     }
 
