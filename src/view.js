@@ -14,6 +14,7 @@ import templates from "./templates"
  * This circumvents containers that aren't in the DOM at page load (i.e. containers that are
  * elements in other yet-to-be-rendered views) 
  * 
+ * {@link containers View}
  * @memberof Views~
  */
 const containers = {
@@ -33,6 +34,7 @@ const containers = {
  * Parent abstract view class.
  * 
  * Views handle drawing elements to the DOM based on data stored in a source model. 
+ * {@link View View}
  * @memberof Views~
  */
 class View {
@@ -89,7 +91,7 @@ class View {
  * model (logic is handled by the controller).
  * <br><br>
  * 
- * {@link views.populator View}
+ * {@link PopulatorView View}
  * @extends View
  * @extends Views~View
  * @memberof Views
@@ -195,7 +197,7 @@ class PopulatorView extends View {
  * for a specific Todo model. Can be generalized for other models that would benefit 
  * from being rendered as a single modal.
  * 
- * {@link views.todo View}
+ * {@link TodoView View}
  * 
  * @extends View
  * @extends Views~View
@@ -244,6 +246,7 @@ class TodoView extends View {
  * in the project container that normally holds Todo cards. This view is called by 
  * the project list controller. 
  * 
+ * {@link NewAppView View}
  * @memberof Views.
  */
 class NewAppView {
