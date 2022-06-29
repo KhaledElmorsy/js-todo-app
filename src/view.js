@@ -94,7 +94,7 @@ class View {
  * @extends Views~View
  * @memberof Views
  */
-export class PopulatorView extends View {
+class PopulatorView extends View {
     /**
      * @param {DataModel} model Object to render data from
      * @param {string} type View type i.e. Project, Project List
@@ -201,7 +201,7 @@ export class PopulatorView extends View {
  * @extends Views~View
  * @memberof Views
  */
-export class TodoView extends View {
+class TodoView extends View {
     /**
      * @param {Todo} todo  Source Todo model object
      */
@@ -246,7 +246,7 @@ export class TodoView extends View {
  * 
  * @memberof Views.
  */
-export class NewAppView {
+class NewAppView {
     constructor() {
         this.emptyTemplate = templates('Project', 'empty');
         this.container = containers['Project'];
@@ -260,4 +260,4 @@ export class NewAppView {
     }
 }
 
-export default { PopulatorView, TodoView, NewAppView }
+export { PopulatorView, TodoView, NewAppView }
