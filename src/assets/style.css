@@ -564,3 +564,11 @@ button {
 #todo-details #checklist .delete:hover{
     color: brown;
 }
+
+#new-app {
+    color: cornflowerblue;
+    width: 500px;
+    font-size: 1.7rem;
+    margin-top: -14px;
+    font-style: italic;
+}
