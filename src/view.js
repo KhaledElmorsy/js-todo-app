@@ -1,4 +1,3 @@
-import { Todo } from "./model"
 import templates from "./templates"
 /**
  * Import model types
