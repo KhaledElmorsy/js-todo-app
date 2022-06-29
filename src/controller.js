@@ -460,7 +460,7 @@ class ProjectListController extends ListController {
         if (visibleProjects.length) {
             this.select(visibleProjects[0].id);
         } else {
-            this.emptyView = new view.new(); // Create a view in the Project View
+            this.emptyView = new NewAppView(); // Create a view in the Project View
                                              // container asking the user to create a new porject
         }
     }
