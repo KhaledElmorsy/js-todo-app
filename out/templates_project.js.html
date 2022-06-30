@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: templates/project.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: templates/project.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { statusToClass, getVisible } from "./helpers"
+
+/**
+ * This module consolidates the tempaltes that are used to render the project view.
+ * &lt;br>&lt;br>
+ * 
+ * A project contains an array of todo objects. To render a project, a populator-type
+ * view is used that iterates through the array and creates separate elements for 
+ * each todo object.
+ * &lt;br>&lt;br>
+ * 
+ * There are other templates that can be rendered by the View for adding new Todos, editing Todos, and 
+ * informing the user that they need to add a new project if the project list's empty.
+ * 
+ * {@link projectTemplates Visit Module}
+ * @namespace ProjectTemplates
+ * @memberof Views.Templates
+ * 
+ * @property {Function} add - Create 'Add Todo Form' element HTML {@link projectTemplates.add see here}
+ * @property {Function} standard - Create 'Standard Todo' element HTML {@link projectTemplates.standard see here}
+ * @property {Function} edit  - Create 'Edit Todo' element HTML {@link projectTemplates.edit see here}
+ * @property {Function} empty - Create 'Empty Projects' element HTML {@link projectTemplates.empty see here}
+ * 
+ */
+const projectTemplates = {
+
+    /** Todo model object
+     *  @typedef { import("../model.js").Todo} Todo
+     */
+
+    /**
+     * Create an HTML string of the standard element displaying a Todo's information 
+     * in the Project View.
+     * 
+     * {@link projectTemplates.standard View}
+     * @memberof Views.Templates.ProjectTemplates
+     * @param {Todo} todoObj Todo model object
+     * @returns {string} Element's Outer HTML
+     */
+    standard(todoObj) {
+        const elementHTML =
+            `&lt;div class="card ${statusToClass(todoObj, 'done')}" data-child-id="${todoObj.id}">
+                &lt;h2 class="title">${todoObj.title}&lt;/h2>
+                &lt;p class="descr">${todoObj.descr}&lt;/p>
+                &lt;h4 class="checklist-title">Tasks&lt;/h4>
+                &lt;div class="checklist-container">${
+                ( // Item Array > Filter inactive > Map to template string > Slice First 3 > Remove commas
+                    getVisible(todoObj.list).map(item =>
+                        `&lt;li class="checklist-item ${statusToClass(item, 'done')}">${item.descr}&lt;/li>`
+                    ).slice(0, 3).join('')
+                ) + (
+                    (getVisible(todoObj.list).length > 3) ?
+                        '&lt;div class="more-items-inside">&lt;/div>' : ''
+                )
+                }&lt;/div>
+                &lt;div class="button-container">
+                    &lt;div class="done-toggle button">Done&lt;/div>
+                    &lt;div class="delete button">Delete&lt;/div>
+                &lt;/div>
+            &lt;/div>`
+        return elementHTML
+    },
+
+    /** 
+     * Generate HTML for the element containing forms to create and append a new todo to the project
+     * 
+     * {@link projectTemplates.add View}
+     * @memberof Views.Templates.ProjectTemplates
+     * 
+     * @returns {string} Element's Outer HTML
+     */
+    add() {
+        const elementHTML =
+            `&lt;form id="new-todo" class="card">
+                &lt;input required class="title" name="title" placeholder="New Todo">
+                &lt;textarea class="descr" name="descr" placeholder="Description">&lt;/textarea>
+                &lt;h4 class="checklist-title">Tasks&lt;/h4>
+                &lt;div class="checklist-container">
+                    &lt;input name ="checklist" class="checklist-input">
+                    &lt;input name ="checklist" class="checklist-input">
+                    &lt;input name ="checklist" class="checklist-input">
+                &lt;/div>
+                &lt;div class="button-container">
+                    &lt;button type="submit" id="add-todo" class="button">Add&lt;/button>
+                    &lt;button type="reset" id="reset-todo-inputs" class="button">Reset&lt;/div>
+                &lt;/div>
+            &lt;/form>`
+        return elementHTML
+    },
+
+    /**
+     * Generate HTML for the element containing forms to create and append a new todo to the project
+     * 
+     * {@link projectTemplates.edit View}
+     * @memberof Views.Templates.ProjectTemplates
+     * 
+     * @param {Todo} todoObj Todo model object
+     * @returns {string} Element's Outer HTML
+     */
+    edit(todoObj) {
+        const activeList = getVisible(todoObj.list)
+        const elementHTML =
+            `&lt;form class="edit-form card">
+                &lt;input required class="title" name="title" value="${todoObj.title}">
+                &lt;textarea class="descr" name="descr">${todoObj.descr}&lt;/textarea>
+                &lt;h4 class="checklist-title">Tasks&lt;/h4>
+                &lt;div class="checklist-container">
+                        &lt;input name ="list" class="checklist-input" value="${activeList[0] ? activeList[0].descr : ""}">
+                        &lt;input name ="list" class="checklist-input" value="${activeList[1] ? activeList[1].descr : ""}">
+                        &lt;input name ="list" class="checklist-input" value="${activeList[2] ? activeList[2].descr : ""}">
+                &lt;/div>
+                &lt;div class="button-container">
+                    &lt;button type="submit" id="add-todo" class="button">Save&lt;/button>
+                    &lt;div id="reset-todo-inputs" class="button">Delete&lt;/div>
+                &lt;/div>
+            &lt;/form>`
+        return elementHTML
+    },
+
+    /** 
+     * Generate HTML for the element to add to the project view when there are no projects
+     * 
+     * {@link projectTemplates.empty View}
+     * @memberof Views.Templates.ProjectTemplates
+     * 
+     * @returns {string} Element's Outer HTML
+     */
+    empty() {
+        const elementHTML =
+            `&lt;div id="new-app">← Add a new project&lt;/div>`
+        return elementHTML
+    }
+
+}
+
+export default projectTemplates
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Controllers.html">Controllers</a></li><li><a href="Controllers.ControllerHelpers.html">ControllerHelpers</a></li><li><a href="Models.html">Models</a></li><li><a href="Views.html">Views</a></li><li><a href="Views.TemplateHelpers.html">TemplateHelpers</a></li><li><a href="Views.Templates.html">Templates</a></li><li><a href="Views.Templates.ChecklistTemplates.html">ChecklistTemplates</a></li><li><a href="Views.Templates.ProjectListTemplates.html">ProjectListTemplates</a></li><li><a href="Views.Templates.ProjectTemplates.html">ProjectTemplates</a></li><li><a href="Views.Templates.TodoTemplates.html">TodoTemplates</a></li></ul><h3>Classes</h3><ul><li><a href="Controllers.ChecklistController.html">ChecklistController</a></li><li><a href="Controllers.ProjectController.html">ProjectController</a></li><li><a href="Controllers.TodoController.html">TodoController</a></li><li><a href="Controllers-Controller.html">Controller</a></li><li><a href="Controllers-ListController.html">ListController</a></li><li><a href="Models.ChecklistItem.html">ChecklistItem</a></li><li><a href="Models.DataModel.html">DataModel</a></li><li><a href="Models.Project.html">Project</a></li><li><a href="Models.ProjectList.html">ProjectList</a></li><li><a href="Models.Todo.html">Todo</a></li><li><a href="ProjectListController.html">ProjectListController</a></li><li><a href="Views.NewAppView.html">NewAppView</a></li><li><a href="Views.PopulatorView.html">PopulatorView</a></li><li><a href="Views.TodoView.html">TodoView</a></li><li><a href="Views-View.html">View</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Thu Jun 30 2022 17:04:51 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

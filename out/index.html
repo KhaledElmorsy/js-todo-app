@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>js-todo-app</h1>
+<p>A Todo list webapp built with vanilla Javascript using the Model, View Controller (MVC) design pattern. The source code is annotated extensively and jsdoc documentation is avaiable here.</p>
+<h2>Model-View-Controller</h2>
+<p>The MVC pattern is great for decoupling a webapp's data structure and storage (model), DOM manipulation and HTML element creation (view), and manipulation of both its models and views according to a user's inputs and programmed logic (controller).</p>
+<h3>Model</h3>
+<p>The <code>model</code> represents the app's data. This Todo app is divided into projects, each with a list of Todos, and each Todo has a list of checklist items.</p>
+<h4>Structure Overview</h4>
+<p><img src="diagrams/model-structure.png" alt="Model structure general overview"></p>
+<p><code>Model</code> objects can be <a href="out/Models.Project.html">Project</a>, <a href="out/Models.Todo.html">Todo</a>, or <a href="out/Models.ChecklistItem.html">Checklist Item</a> objects. Each class is derived from a parent <a href="out/Models.DataModel.html">Data model</a> class.</p>
+<p>Projects are stored in a <a href="out/Models.ProjectList.html">project list</a>, which is the main app model and is loaded from and saved to <code>localStorage</code>.</p>
+<h3>View</h3>
+<p>A <code>View</code> handles rendering a <code>model</code> objects' data onto the page by creating and appending elements to the DOM.</p>
+<h4>Overview</h4>
+<p><img src="diagrams/view-overview.png" alt="Summary of View objects"></p>
+<p>In this project, <a href="out/Views-View.html">view objects</a> <code>render</code> elements to the page by:</p>
+<ol>
+<li>Passing a source <code>model</code> into <code>template</code> functions that:
+<ol>
+<li>Generate HTML strings by interpolating template literals <a href="out/templates_todo.js.html">see here</a></li>
+<li>Convert them to HTML elements <a href="out/templates_index.js.html">see here</a></li>
+</ol>
+</li>
+<li>These elements are then appended to a <code>container</code>, a specified parent element in the DOM.</li>
+</ol>
+<h3>Controller</h3>
+<p><code>Controllers</code> contain both the <code>view</code> and <code>model</code> objects and contain all the logic that responds to a user's input.</p>
+<h4>Overview</h4>
+<p><img src="diagrams/controller-overview.png" alt="Controller Overview"></p>
+<p>In this app, <code>controller</code> objects handle:</p>
+<ul>
+<li>Calling the <code>view</code>'s rendering and DOM manipulation methods</li>
+<li>Setting event listeners on elements rendered by the <code>view</code></li>
+<li>Storing handlers and methods that update the <code>model</code> and <code>view</code> according to  events trigerred by the user.</li>
+<li>Saving the <code>model</code> to <code>localStorage</code></li>
+<li>Instancing new <code>controller</code>s for child model objects.</li>
+</ul>
+<h2>Key Project Points</h2>
+<ul>
+<li>Using design patterns lets you write clean and efficient code with less spaghetti 🍝.</li>
+<li>Adding code documentation with JSdoc makes it easier to understand and more maintainable down the line and by others with only minor extra maintanence overhead
+<ul>
+<li>Settings <code>@type</code>s is great, and opens up a lot of functionality such as property suggestions.</li>
+<li>Plus, it feels damn good to hover a function and see what you wrote about it</li>
+</ul>
+</li>
+</ul>
+<h2>Fun Takeaways</h2>
+<ul>
+<li>When you're in a jam for some diagrams, there's no shame in being a PowerPoint stan.
+<ul>
+<li>Just add your shapes, select them all, right click and <code>Save as Picture</code>. It exports PNGs with proper transparency.</li>
+</ul>
+</li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Controllers.html">Controllers</a></li><li><a href="Controllers.ControllerHelpers.html">ControllerHelpers</a></li><li><a href="Models.html">Models</a></li><li><a href="Views.html">Views</a></li><li><a href="Views.TemplateHelpers.html">TemplateHelpers</a></li><li><a href="Views.Templates.html">Templates</a></li><li><a href="Views.Templates.ChecklistTemplates.html">ChecklistTemplates</a></li><li><a href="Views.Templates.ProjectListTemplates.html">ProjectListTemplates</a></li><li><a href="Views.Templates.ProjectTemplates.html">ProjectTemplates</a></li><li><a href="Views.Templates.TodoTemplates.html">TodoTemplates</a></li></ul><h3>Classes</h3><ul><li><a href="Controllers.ChecklistController.html">ChecklistController</a></li><li><a href="Controllers.ProjectController.html">ProjectController</a></li><li><a href="Controllers.TodoController.html">TodoController</a></li><li><a href="Controllers-Controller.html">Controller</a></li><li><a href="Controllers-ListController.html">ListController</a></li><li><a href="Models.ChecklistItem.html">ChecklistItem</a></li><li><a href="Models.DataModel.html">DataModel</a></li><li><a href="Models.Project.html">Project</a></li><li><a href="Models.ProjectList.html">ProjectList</a></li><li><a href="Models.Todo.html">Todo</a></li><li><a href="ProjectListController.html">ProjectListController</a></li><li><a href="Views.NewAppView.html">NewAppView</a></li><li><a href="Views.PopulatorView.html">PopulatorView</a></li><li><a href="Views.TodoView.html">TodoView</a></li><li><a href="Views-View.html">View</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Thu Jun 30 2022 17:04:51 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
