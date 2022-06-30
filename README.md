@@ -39,7 +39,7 @@ In this app, `controller` objects handle:
 - Instancing new `controller`s for child model objects. 
 
 ## Key Project Points
-- Using design patterns allows us to write clean and efficient code (less spaghetti 🍝).
+- Using design patterns lets you write clean and efficient code (less spaghetti 🍝).
 - Adding code documentation with JSdoc makes it easier to understand and more maintainable down the line and by others with only minor extra maintanence overhead 
   - Settings `@type`s is great, and opens up a lot of functionality such as property suggestions.
   - Plus, it feels damn good to hover a function and see what you wrote about it
