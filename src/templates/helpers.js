@@ -11,15 +11,15 @@
  * @returns {string} - HTML class name if Todo's status is true, blank ('') if false.
  */
 function statusToClass(model, htmlClass) {
-    return model.status ? htmlClass : '';
+  return model.status ? htmlClass : '';
 }
- /**@typedef {import('../model.js').DataModel} DataModel*/   
- /**
+/** @typedef {import('../model.js').DataModel} DataModel */
+/**
   * Filters child objects based on their visibility
   * @memberof Views.TemplateHelpers
   * @param {DataModel[]} list - Array of model objects
   * @returns {DataModel[]} - Filtered array of model objects
   */
- function getVisible(list) { return list.filter(item => item.visible)}
+function getVisible(list) { return list.filter((item) => item.visible); }
 
- export {statusToClass, getVisible}
+export { statusToClass, getVisible };
