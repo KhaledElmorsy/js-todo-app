@@ -104,6 +104,12 @@ class PopulatorView extends View {
     super(model, type);
 
     /**
+     * List of child objects
+     * @type {DataModel[]}
+     */
+    this.list = model.list;
+
+    /**
      * Generate Element for the user to add new child object
      * @type {Function}
      * @returns {Element}
@@ -124,7 +130,7 @@ class PopulatorView extends View {
    * @param {DataModel[]} list Array of model objects
    * @returns {DataModel[]} Filtered copy of original array
    */
-  getActive(list) { return list.filter((model) => model.visible); }
+  getActive() { return this.list.filter((model) => model.visible); }
 
   /**
    * Default rendering function that clears the view container and populates it with
@@ -135,9 +141,7 @@ class PopulatorView extends View {
   render() {
     this.container.innerHTML = ''; // Clear container
 
-    const list = this.model.list;
-
-    this.getActive(list).forEach((childObj) => {
+    this.getActive().forEach((childObj) => {
       const standardElement = this.standardTemplate(childObj);
       this.container.appendChild(standardElement);
     });
