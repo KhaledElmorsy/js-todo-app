@@ -374,11 +374,12 @@ class ProjectController extends ListController {
       const inputValues = inputs.map((el) => el.value);
       const [newTitle, newDescr, ...newList] = inputValues;
 
-      const todoModel = this.model.list[id]; // Model instance being edited
+      const todoModel = this.model.list[id]; // Child Todo model instance being edited
       todoModel.title = newTitle;
       todoModel.descr = newDescr;
 
-      const renderedList = todoModel.list.filter((item) => item.visible); // Only compare to visible items
+      // Handle Checklist items by comparing the model's visible checklist items with the 3 inputs's values (newList)
+      const renderedList = todoModel.list.filter((item) => item.visible); // Get visible items
       newList.forEach((itemDescr, i) => {
         if (!itemDescr && !renderedList[i]) return; // Skip if field is empty and nothing was rendered
 
@@ -386,13 +387,13 @@ class ProjectController extends ListController {
           const itemID = renderedList[i].id; // Get the actual index of the item in the model list
 
           if (!itemDescr) {
-            todoModel.list[itemID].visible = false; // If the relevant field is now empty, hide the item
+            todoModel.list[itemID].visible = false; // If the corresponding field is now empty, hide/remove the item
           } else {
-            todoModel.list[itemID].descr = itemDescr; // Otherwise change its value
+            todoModel.list[itemID].descr = itemDescr; // Otherwise update its value
           }
-        } else { // If there's no rendered item, then add a new item
-          const id = todoModel.list.length;
-          todoModel.list.push(new ChecklistItem(id, itemDescr));
+        } else { // If there's no corresponding visible item, then add a new item to the model
+          const newID = todoModel.list.length;
+          todoModel.list.push(new ChecklistItem(newID, itemDescr));
         }
       });
 
