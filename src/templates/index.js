@@ -26,12 +26,14 @@ import projectListTemplates from "./projectList.js";
 const convertElement = elementHTML => {
     const tempWrapper = document.createElement('div');
     tempWrapper.innerHTML = elementHTML;
-    // To consistently keep the output as a single element object, NOT HTML Collections:
-    if (tempWrapper.childElementCount === 1) // Check if template element is already wrapped
-        return tempWrapper.firstChild        // Return it if true, otherwise return temp wrapper
-    return tempWrapper                       // This is a failsafe, not a feature. 
+
+  // Consistently keep the output as a single element object, NOT HTML Collections or nulls
+  if (tempWrapper.childElementCount !== 1) {
+    return tempWrapper; // Returning the wrapper is a failsafe, not a feature.
 }
 
+  return tempWrapper.firstChild;
+};
 /** 
  * Consilidate template modules into a dictionary to allow view constructors to reference them with the {@link templates command pattern} below.
 
