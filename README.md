@@ -1,5 +1,8 @@
 # js-todo-app
-A Todo list webapp built with vanilla Javascript using the Model, View Controller (MVC) design pattern. The source code is annotated extensively and jsdoc documentation is avaiable here.
+A Todo list webapp built with vanilla Javascript using the Model, View Controller (MVC) design pattern. The source code is annotated extensively and jsdoc documentation is avaiable [here][doc home].
+
+### [Live Demo][demo]
+
 
 ## Model-View-Controller
 The MVC pattern is great for decoupling a webapp's data structure and storage (model), DOM manipulation and HTML element creation (view), and manipulation of both its models and views according to a user's inputs and programmed logic (controller).
@@ -46,6 +49,10 @@ In this app, `controller` objects handle:
 ## Fun Takeaways
 - When you're in a jam for some diagrams, there's no shame in being a PowerPoint stan.
   -  Just add your shapes, select them all, right click and `Save as Picture`. It exports PNGs with proper transparency.
+
+[doc home]: https://kelmorsy.github.io/js-todo-app/out
+
+[demo]: https://kelmorsy.github.io/js-todo-app
 
 [models]:https://kelmorsy.github.io/js-todo-app/out/Models.html
 
