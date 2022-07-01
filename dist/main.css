@@ -1,0 +1,579 @@
+@import url(https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600&display=swap);
+:root {
+    font-family: 'Dosis', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    --light-blue: rgb(239, 242, 250);
+    --light-green: rgb(237, 248, 237);
+    --lighter-green: hsl(120, 44%, 98%);
+}
+
+form * {
+    font-family:'Dosis', 'Helvetica Neue', sans-serif; ;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    grid-template-rows: 100px 1fr;
+    grid-template-areas: "header header"
+    "sidebar main";
+}
+
+header {
+    grid-area: header;
+    z-index: 2;
+    height: 100px;
+    padding: 0 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#logo {
+    font-size: 2.5rem;
+    color: cornflowerblue;
+}
+
+#inspiration {
+    font-size: 1.5rem;
+}
+
+#sidebar {
+    overflow: auto;
+    grid-area: sidebar;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+#projects {
+    display: flex;
+    flex-direction: column;
+}
+
+#projects .project{
+    box-sizing: border-box;
+    height: 60px;
+    padding: 5px 10px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: rgb(100, 100, 100);
+    transition: all 300ms ease-out;
+    background-color: white;
+    box-shadow: inset 1px 0px 4px rgba(0,0,0,0.3);
+    outline: solid 0.5px rgb(213, 213, 213);
+    cursor: pointer;
+}
+
+#projects .project.active {
+    z-index: 1;
+    color: white;
+    position: relative;
+    padding-left: 9px;
+    box-shadow: inset 1px 0px 2px rgba(0,0,0,0.5);
+}
+
+#projects .project::after{
+    content: "";
+    width: 6px;
+    height:100%;
+    position: absolute;
+    right:0;
+    top:0;
+
+    transition: 300ms ease-out;
+    background-color: cornflowerblue; 
+}
+
+#projects .project.active::after {
+    z-index: -1;
+    content: "";
+    width: 100%;
+    height:100%;
+    position: absolute;
+    right:0;
+    top:0;
+    background-color: cornflowerblue;
+}
+
+#projects .project:hover{
+    background-color: var(--light-blue);
+}
+
+#projects .project:not(.active):hover::after{
+    content: "";
+    width: 12px;
+    height:100%;
+    position: absolute;
+    right:0;
+    top:0;
+    background-color: cornflowerblue;
+}
+
+#projects .name{
+    line-height: 2rem;
+    flex: 1;
+}
+
+
+#projects .delete{
+    color: palevioletred;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    margin-right: 10px;
+    opacity: 0;
+    transition: 200ms, margin 400ms ease-out;
+}
+
+#projects .active .delete{
+    color: white;
+}
+
+#projects .project:hover .delete{
+    opacity: 0.6;
+}
+
+#projects .project:hover .delete:hover{
+    opacity: 1;
+}
+
+#projects .edit-form input{
+    color: white;
+    background-color: cornflowerblue;
+    font-style: italic;
+}
+
+#projects input {
+    padding: 5px 10px;
+    box-sizing: border-box;
+    appearance: none;
+    height: 60px;
+    width: 100%;
+
+    color: rgb(160, 160, 160);
+    box-shadow: inset 1px 0px 4px rgba(0,0,0,0.5);
+    font-size: 0.9rem;
+    outline: none;
+    border: none;
+}
+
+#projects input::placeholder {
+    font-style: italic;
+    color: rgb(196, 193, 193);
+  }
+
+main {
+    overflow: auto;
+    padding: 30px 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 350px);
+    grid-auto-rows: max-content;
+    gap: 30px;
+}
+
+.card {
+    position: relative;
+    box-sizing: border-box;
+    padding: 20px 30px;
+    height: 300px;
+    background-color: white;
+    box-shadow: 2px 2px 9px rgba(0,0,0,0.5);
+
+    display: flex;
+    flex-direction: column;
+
+    transition: 300ms;
+    cursor: pointer;
+}
+
+.card::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width:10px;
+    height: 100%;
+    background-color: cornflowerblue;
+}
+
+.card .title{
+    font-size: 1.3rem;
+    width: fit-content;
+    margin-bottom: 5px;
+    overflow: hidden;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    cursor: text;
+}
+
+.card .descr{
+    margin-bottom: 10px;
+    width: fit-content;
+
+    font-size: 1rem;
+    line-height: 1em;
+    height: 2em;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    cursor: text;
+}
+
+.card .descr:empty::after{
+    content: 'Description';
+    cursor: text;
+    font-style:italic;
+    color:rgb(160, 160, 160)
+}
+
+.card .checklist-title {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    cursor: text;
+}
+
+.card .checklist-container{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: auto;
+}
+
+.card:not(#new-todo,.edit-form) .checklist-container{
+    pointer-events: none;
+}
+
+.card .checklist-item{
+    color: grey;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    list-style: square; 
+    width: min(fit-content,100%);
+    
+    cursor: text;
+    pointer-events: all;
+}
+
+.card .checklist-container:empty{
+    width: fit-content;
+}
+
+.card .checklist-container:empty::after {
+    margin-top: 10px;
+    content: "Add Tasks";
+    font-style: italic;
+    color:rgb(160, 160, 160);
+    font-size: 0.8rem;
+    cursor: text;
+}
+
+.card .button-container{
+    margin-top: auto;
+
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+button {
+    appearance: none;
+    border: none;
+}
+
+.button{
+    box-sizing: border-box;
+    padding: 5px;
+    font-size: 0.9rem;
+    width: 80px;
+    border-radius: 6px;
+    text-align: center;
+    color: white;
+    background-color: cornflowerblue;
+    transition: 300ms ease-in-out;
+    cursor: pointer;
+    user-select: none;
+}
+
+.button:hover{
+    background-color: rgb(90, 131, 207);
+}
+
+.button.done-toggle{
+    background-color: cornflowerblue;
+}
+
+.button.done-toggle:hover{
+    background-color: green;
+}
+
+.card.done .done-toggle{
+    background-color: green;
+}
+
+.button.delete{
+    background-color: crimson;
+}
+
+.button.delete:hover{
+    background-color: brown;
+}
+
+#reset-todo-inputs{
+    background-color: rgb(170, 170, 170);
+}
+
+#reset-todo-inputs:hover{
+    background-color: grey;
+}
+
+
+.card.done {
+    background-color: var(--light-green);
+}
+
+.card.done .title {
+    text-decoration: line-through;
+    color:rgb(80, 80, 80)
+}
+
+.card input,textarea {
+    resize: none;
+    padding: 4px 5px;
+    outline: none;
+    border: 0.3px rgb(208, 208, 208) solid;
+    border-radius: 5px;
+    
+    color: rgb(100, 100, 100);
+    font-style: italic;
+}
+
+.card input.title{
+    width: auto;
+}
+
+.card textarea.descr{
+    font-size: 0.8rem;
+    width: auto;
+}
+
+#todo-background{
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+}
+
+#todo-details{
+    padding: 30px 50px;
+    position: absolute;
+    top: 100px;
+    left: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    height: 60vh;
+    width: 70vw;
+
+    transition: 300ms;
+}
+
+#todo-details.done{
+    background-color: var(--lighter-green);
+}
+
+#todo-details :is(input,textarea){
+    transition-duration: 300ms;
+    background-color: white;
+}
+
+#todo-details.done :is(input,textarea){
+    background-color: var(--light-green);
+}
+
+#todo-details .title{
+    font-size: 2rem;
+    padding-left: 10px;
+}
+
+#todo-details textarea.descr{
+    padding-left: 10px;
+    font-style: normal;
+    font-size: 1.1rem;
+    height: 20%;
+    resize: none;
+}
+
+#todo-details input,textarea{
+    appearance: none;
+    color: rgb(100, 100, 100);
+    outline: none !important;
+    border-radius: 5px;
+    border: 0.5px rgb(180, 180, 180) solid;
+}
+
+#todo-details #more-details{
+    height: 50%;
+    display: flex;
+    flex:1;
+}
+
+#todo-details h3{
+    font-size: 1rem;
+}
+
+#todo-details .checklist-container{
+    font-size: 1.2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#todo-details .checklist-container ul{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#todo-details .checklist-container input{
+    line-height: 30px;
+    padding-left: 10px;
+    font-size: 0.9rem;
+}
+
+#todo-details .dates{
+    flex:1;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    justify-content: center;
+}
+
+#todo-details .date-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#todo-details .date-container input{
+    font-size: 1rem;
+}
+
+#todo-details .date-type{
+    text-align: center;
+}
+
+#todo-details .button-container{
+    display: flex;
+    justify-content: center;
+    gap: 110px;
+    position: relative
+}
+
+#todo-details.done .done-toggle{
+    background-color: green;
+}
+
+#todo-details .button{
+    width: 110px;
+}
+
+#todo-details .save.button{
+    color: white;
+}
+
+#checklist {
+    overflow: auto;
+    height: 10rem;
+}
+
+#checklist .checklist-item {
+    display: flex;
+    align-items: center;
+}
+
+#checklist input {
+    box-sizing: border-box;
+    width:100%;
+    height: 40px;
+    margin-right: -50px;
+}
+
+#checklist .done input {
+    text-decoration: line-through;
+    background-color: var(--light-green);
+}
+
+#checklist .item-button-container {
+    display: flex;
+    gap: 5px;
+    user-select: none;
+}
+
+#checklist .item-button {
+    cursor: pointer;
+    transition: 200ms ease-out;
+}
+
+#todo-details #checklist .done-toggle {
+    font-weight: 600;
+    background-color: transparent;
+    color: grey;
+}
+
+#todo-details #checklist .done-toggle:hover {
+    color: green;
+}
+
+#todo-details #checklist .done .done-toggle {
+    background-color: transparent;
+    color: green;
+}
+
+#todo-details #checklist .delete{
+    color: crimson;
+}
+
+#todo-details #checklist .delete:hover{
+    color: brown;
+}
+
+#new-app {
+    color: cornflowerblue;
+    width: 500px;
+    font-size: 1.7rem;
+    margin-top: -14px;
+    font-style: italic;
+}
+
+
+/*# sourceMappingURL=main.css.map*/
