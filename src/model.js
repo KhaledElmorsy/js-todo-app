@@ -2,7 +2,7 @@
  * Models define how the app's data is stored. For this app, models are structured
  * as nested objects with each parent containing an array of child objects.
  *
- * The object heirarchy is: Project List (App) -> Projects -> Todos -> Checlist Items
+ * The object heirarchy is: Project List (App) -> Projects -> Todos -> Checklist Items
  *
  * @namespace Models
  */
