@@ -68,8 +68,8 @@ function getID(event) {
  */
 class Controller {
   /**
-     * @param {DataModel} model Source model to be editied
-     */
+   * @param {DataModel} model Source model to be editied
+   */
   constructor(model) {
     // Ensure class is abstract
     if (this.constructor === Controller) throw new Error('Abstract Class');
@@ -143,11 +143,11 @@ class ListController extends Controller {
   add() { }
 
   /**
-      * 'Deletes' child object by hiding it then runs update() above. View renderer
-      * ignores objects with visislbe = false. This design decision is explained
-      * at the Model class.
-      * @param {number} id - child objects id, AKA it's index
-      */
+   * 'Deletes' child object by hiding it then runs update() above. View renderer
+   * ignores objects with visislbe = false. This design decision is explained
+   * at the Model class.
+   * @param {number} id - child objects id, AKA it's index
+   */
   remove(id) {
     this.list[id].visible = false;
     this.update();
@@ -332,8 +332,8 @@ class TodoController extends Controller {
  */
 class ProjectController extends ListController {
   /**
-     * @param {Project} project Source projet model
-     */
+   * @param {Project} project Source projet model
+   */
   constructor(project) {
     super(project, 'Project');
     super.update();
