@@ -74,6 +74,7 @@ class Controller {
     // Ensure class is abstract
     if (this.constructor === Controller) throw new Error('Abstract Class');
     /**
+     * The model object being rendered and edited by the controller.
      * @type {DataModel}
      */
     this.model = model;
@@ -253,6 +254,7 @@ class TodoController extends Controller {
   constructor(todo) {
     super(todo);
     /**
+     * The controller's current view object
      * @type {TodoView}
      */
     this.view = new TodoView(todo);
@@ -457,11 +459,13 @@ class ProjectListController extends ListController {
     this.projectController = new ProjectController(project); // New controller instance updates/renders its view
 
     /**
+     * Last selected project
      * @type {classes['Project']}
      */
     this.previousProject = this.activetProject; // Record last selected project incase active project is removed
 
     /**
+     * Currently active project
      * @type {classes['Project']}
      */
     this.activetProject = project;
