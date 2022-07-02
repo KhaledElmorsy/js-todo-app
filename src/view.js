@@ -189,7 +189,7 @@ class PopulatorView extends View {
     [...this.container.children].forEach((el) => {
       const elementID = parseInt(el.getAttribute('data-child-id'), 10);
       if (elementID === id) el.classList[(remove ? 'remove' : 'add')](className);
-      if (exclusive) el.classList.remove(className);
+      else if (exclusive) el.classList.remove(className);
     });
   }
 }
