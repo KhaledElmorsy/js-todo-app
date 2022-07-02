@@ -6,6 +6,7 @@
     --light-blue: rgb(239, 242, 250);
     --light-green: rgb(237, 248, 237);
     --lighter-green: hsl(120, 44%, 98%);
+    --light-grey: rgb(208, 208, 208);
 }
 
 form * {
@@ -367,7 +368,7 @@ button {
     resize: none;
     padding: 4px 5px;
     outline: none;
-    border: 0.3px rgb(208, 208, 208) solid;
+    border: 0.3px var(--light-grey) solid;
     border-radius: 5px;
     
     color: rgb(100, 100, 100);
@@ -400,9 +401,8 @@ button {
     flex-direction: column;
     gap: 20px;
     background-color: white;
-    height: 60vh;
-    width: 70vw;
-
+    height: max(400px, 60vh);
+    width: 800px;
     transition: 300ms;
 }
 
@@ -428,7 +428,10 @@ button {
     padding-left: 10px;
     font-style: normal;
     font-size: 1.1rem;
-    height: 20%;
+    line-height: 1.2rem;
+    height: 5rem;
+    min-height: 2rem;
+    flex: 0 1 auto;
     resize: none;
 }
 
@@ -437,7 +440,7 @@ button {
     color: rgb(100, 100, 100);
     outline: none !important;
     border-radius: 5px;
-    border: 0.5px rgb(180, 180, 180) solid;
+    border: 0.5px var(--light-grey) solid;
 }
 
 #todo-details #more-details{
@@ -448,26 +451,6 @@ button {
 
 #todo-details h3{
     font-size: 1rem;
-}
-
-#todo-details .checklist-container{
-    font-size: 1.2rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#todo-details .checklist-container ul{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-#todo-details .checklist-container input{
-    line-height: 30px;
-    padding-left: 10px;
-    font-size: 0.9rem;
 }
 
 #todo-details .dates{
@@ -511,9 +494,22 @@ button {
     color: white;
 }
 
+#todo-details .checklist-container{
+    font-size: 1.2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0 1 auto;
+    height: 240px;
+    min-height: 120px;
+}
+
 #checklist {
     overflow: auto;
-    height: 10rem;
+    height:100%;
+    border: 0.5px solid var(--light-grey);
+    border-radius: 5px;
 }
 
 #checklist .checklist-item {
@@ -526,6 +522,14 @@ button {
     width:100%;
     height: 40px;
     margin-right: -50px;
+    padding-left: 10px;
+    font-size: 0.9rem;
+    border-radius: 0;
+}
+
+#new-checklist-item input::placeholder{
+    font-style: italic;
+    color: var(--light-grey);
 }
 
 #checklist .done input {
