@@ -48,8 +48,19 @@ header {
     color: cornflowerblue;
 }
 
-#inspiration {
-    font-size: 1.5rem;
+#doclink{
+    height: 60px;
+    display:grid;
+    place-items: center;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: grey;
+    transition: 100ms;
+}
+
+#doclink:hover{
+    color: cornflowerblue;
+    transform: scale(1.03);
 }
 
 #sidebar {
@@ -393,16 +404,20 @@ button {
 }
 
 #todo-details{
+    box-sizing: border-box;
     padding: 30px 50px;
     position: absolute;
     top: 100px;
-    left: 200px;
+    left:0;
+    right:0;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
     background-color: white;
-    height: max(400px, 60vh);
-    width: 800px;
+    height: max(400px, 65vh);
+    width: clamp(600px, 70%, 800px);
     transition: 300ms;
 }
 
@@ -441,6 +456,11 @@ button {
     outline: none !important;
     border-radius: 5px;
     border: 0.5px var(--light-grey) solid;
+}
+
+#todo-details *::placeholder{
+    font-style: italic;
+    color: var(--light-grey);
 }
 
 #todo-details #more-details{
@@ -525,11 +545,6 @@ button {
     padding-left: 10px;
     font-size: 0.9rem;
     border-radius: 0;
-}
-
-#new-checklist-item input::placeholder{
-    font-style: italic;
-    color: var(--light-grey);
 }
 
 #checklist .done input {
