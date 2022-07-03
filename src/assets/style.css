@@ -459,6 +459,11 @@ button {
     border: 0.5px var(--light-grey) solid;
 }
 
+#todo-details *::placeholder{
+    font-style: italic;
+    color: var(--light-grey);
+}
+
 #todo-details #more-details{
     height: 50%;
     display: flex;
@@ -541,11 +546,6 @@ button {
     padding-left: 10px;
     font-size: 0.9rem;
     border-radius: 0;
-}
-
-#new-checklist-item input::placeholder{
-    font-style: italic;
-    color: var(--light-grey);
 }
 
 #checklist .done input {
