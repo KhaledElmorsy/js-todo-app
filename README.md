@@ -1,5 +1,5 @@
 # js-todo-app
-A Todo list webapp built with vanilla Javascript using the Model, View Controller (MVC) design pattern. The source code is annotated extensively and jsdoc documentation is avaiable [here][doc home].
+A Todo list webapp built with Javascript using the Model, View Controller (MVC) design pattern. The source code is annotated extensively and jsdoc documentation is avaiable [here][doc home].
 
 ### [Live Demo][demo]
 
