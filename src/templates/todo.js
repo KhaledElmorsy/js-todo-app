@@ -31,7 +31,7 @@ const todoTemplates = {
         `<div id="todo-background">
             <form id="todo-details" class="${statusToClass(todoObj,'done')}">
                 <input required class="title" name="title" value="${todoObj.title}">
-                <textarea class="descr" name="descr">${todoObj.descr}</textarea>
+                <textarea class="descr" name="descr" placeholder="Description">${todoObj.descr}</textarea>
                 <div class="checklist-container">
                     <h3>Tasks</h3>
                     <div id="checklist"></div>
