@@ -49,8 +49,19 @@ header {
     color: cornflowerblue;
 }
 
-#inspiration {
-    font-size: 1.5rem;
+#doclink{
+    height: 60px;
+    display:grid;
+    place-items: center;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: grey;
+    transition: 100ms;
+}
+
+#doclink:hover{
+    color: cornflowerblue;
+    transform: scale(1.03);
 }
 
 #sidebar {
